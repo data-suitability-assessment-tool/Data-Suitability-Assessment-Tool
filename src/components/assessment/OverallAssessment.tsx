@@ -275,7 +275,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
             <TableBody>
               {ETHICS_PRINCIPLES.map((principle, index) => (
                 <TableRow key={principle.id} className={index % 2 === 0 ? "bg-white" : "bg-[var(--light-blue)]"}>
-                  <TableCell className="font-medium text-[var(--primary-color)]">{t(`ethicsPrinciples.principle${principle.id}.element`)}</TableCell>
+                  <TableCell className="font-bold text-[var(--primary-color)]">{t(`ethicsPrinciples.principle${principle.id}.element`)}</TableCell>
                   <TableCell>
                     {assessmentData.ethicsPrinciples[principle.id] 
                       ? assessmentData.ethicsPrinciples[principle.id] === "Yes"
@@ -324,8 +324,8 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                 const assessment = getQualityScoreText(Number(score));
                 return (
                   <TableRow key={dimension.id} className={index % 2 === 0 ? "bg-white" : "bg-[var(--light-blue)]"}>
-                    <TableCell className="font-medium text-[var(--primary-color)]">{t(`qualityDimensions.dimension${dimension.id}.element`)}</TableCell>
-                    <TableCell className="text-center font-semibold">{score}</TableCell>
+                    <TableCell className="font-bold text-[var(--primary-color)]">{t(`qualityDimensions.dimension${dimension.id}.element`)}</TableCell>
+                    <TableCell className="text-start font-semibold">{score}/3</TableCell>
                     <TableCell>{assessment}</TableCell>
                   </TableRow>
                 );
