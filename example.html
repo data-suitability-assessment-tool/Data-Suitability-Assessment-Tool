@@ -1,0 +1,1863 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Quality Self Evaluation Tool</title>
+    <style>
+      :root {
+        --primary-color: #002060; /* Dark Blue */
+        --secondary-color: #4472c4; /* Medium Blue */
+        --light-blue: #d9e1f2; /* Light Blue */
+        --success-color: #1a7c42; /* Darker Green for better contrast */
+        --error-color: #a30000; /* Darker Red for better contrast */
+        --background-color: #f5f5f5;
+        --border-color: #d9d9d9;
+        --warning-color: #e6a100; /* Darker Yellow for better contrast */
+        --text-color: #333; /* General text color */
+        --white-text: #fff; /* Text color for dark backgrounds */
+      }
+
+      body {
+        font-family: "Calibri", "Segoe UI", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--background-color);
+        color: #333;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 1.8rem;
+        cursor: pointer; /* Add cursor pointer to indicate clickability */
+      }
+
+      .beta-tag {
+        display: block;
+        font-size: 1rem;
+        margin-bottom: 10px;
+      }
+
+      /* Language Toggle Button */
+      .language-toggle {
+        position: absolute;
+        top: 2.5rem;
+        right: 20px;
+        background-color: white;
+        color: var(--primary-color);
+        border: 2px solid white;
+        border-radius: 4px; /* Corrected from 4 px */
+        padding: 8px 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .language-toggle:hover {
+        background-color: var(--light-blue);
+      }
+
+       .language-toggle:focus {
+          outline: 2px solid var(--light-blue);
+          outline-offset: 2px;
+       }
+
+      .card {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+        padding: 20px;
+      }
+
+      h2 {
+        color: var(--primary-color);
+        border-bottom: 2px solid var(--light-blue);
+        padding-bottom: 10px;
+        margin-top: 0;
+      }
+
+      .intro-text {
+        margin-bottom: 20px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+
+      th {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 12px;
+        text-align: left;
+      }
+
+      td {
+        padding: 12px;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      tr:nth-child(even) {
+        background-color: var(--light-blue);
+      }
+
+      .select-answer {
+        padding: 8px;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        width: 100%;
+        font-size: 1rem;
+      }
+
+      .result-card {
+        padding: 15px;
+        border-radius: 5px;
+        font-weight: bold;
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .pass {
+        background-color: var(--success-color);
+        color: white;
+      }
+
+      .fail {
+        background-color: var(--error-color);
+        color: white;
+      }
+
+      .warning {
+        background-color: var(--warning-color);
+        color: black;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0;
+        gap: 10px; /* Add gap between buttons */
+      }
+
+      button, .button-as-link { /* Apply button styles to .button-as-link */
+        background-color: var(--secondary-color);
+        color: var(--white-text);
+        border: none;
+        padding: 12px 24px; /* Slightly larger padding */
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s, transform 0.2s;
+        flex-grow: 1; /* Allow buttons to grow */
+        text-align: center;
+        text-decoration: none; /* For .button-as-link */
+        display: inline-block; /* For .button-as-link */
+      }
+
+      button:hover, .button-as-link:hover {
+        background-color: var(--primary-color);
+      }
+
+      button:hover:not(.disabled), .button-as-link:hover:not(.disabled) {
+        background-color: var(--primary-color);
+        transform: translateY(-2px); /* Slight lift effect */
+      }
+
+       button:focus, .button-as-link:focus {
+          outline: 2px solid var(--secondary-color); /* Focus indicator */
+          outline-offset: 2px;
+       }
+
+
+      .disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .score-indicator {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: stretch;
+        margin-top: 20px;
+      }
+
+      .numeric-input {
+        width: 60px;
+        padding: 8px;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        font-size: 1rem;
+        text-align: center;
+      }
+
+      .tooltip {
+        position: relative;
+        display: inline-block;
+        margin-left: 5px;
+        cursor: help;
+        border-bottom: 1px dotted var(--text-color); /* Indicate it's interactive */
+      }
+
+        .tooltip .icon {
+        display: inline-block;
+        width: 20px; /* Slightly larger icon */
+        height: 20px;
+        background-color: var(--primary-color);
+        color: var(--white-text);
+        border-radius: 50%;
+        text-align: center;
+        line-height: 20px;
+        font-size: 13px; /* Adjusted font size */
+        font-weight: bold;
+        box-sizing: border-box; /* Include padding and border in element's total width and height */
+      }
+
+      .tooltip .icon:hover,
+      .tooltip .icon:focus { /* Added focus state for icon */
+           outline: 2px solid var(--secondary-color);
+           background-color: var(--secondary-color);
+           outline-offset: 2px;
+           border-radius: 50%; /* Keep the circle shape */
+      }
+
+      .tooltip .tooltip-text {
+        visibility: hidden;
+        width: 300px;
+        background-color: #555;
+        color: #fff;
+        text-align: left;
+        border-radius: 6px;
+        padding: 10px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -150px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-weight: normal;
+        font-size: 0.9rem;
+      }
+
+      .tooltip:hover .tooltip-text,
+      .tooltip .icon:focus + .tooltip-text { /* Show tooltip on icon focus */
+        visibility: visible;
+        opacity: 1;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 10px;
+        }
+
+        th,
+        td {
+          padding: 8px;
+        }
+
+        .buttons {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        button, .button-as-link {
+          width: 100%;
+        }
+
+        .tooltip .tooltip-text {
+          width: 200px;
+          margin-left: -100px;
+        }
+      }
+
+      footer {
+        text-align: center;
+        padding: 20px;
+        margin-top: 40px;
+        border-top: 1px solid var(--border-color);
+      }
+
+      .recommendations {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: var(--light-blue);
+        border-radius: 5px;
+      }
+
+      .summary-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+
+      .summary-table th,
+      .summary-table td {
+        padding: 10px;
+        border: 1px solid var(--border-color);
+      }
+
+      .summary-table th {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .section-header {
+        font-weight: bold;
+        margin-top: 25px; /* Increased margin */
+        margin-bottom: 10px; /* Increased margin */
+        font-size: 1.2rem;
+        color: var(--primary-color);
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 10;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+
+      .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto; /* Adjusted margin for better vertical centering */
+        padding: 25px; /* Increased padding */
+        border: 1px solid #888;
+        width: 90%; /* Adjusted width */
+        max-width: 600px;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        position: relative; /* Needed for absolute positioning of close button */
+      }
+
+      .modal-close-button { /* Styling for new close buttons */
+        background: transparent;
+        color: #aaa;
+        border: none;
+        font-size: 28px;
+        font-weight: bold;
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        padding: 5px;
+        line-height: 1;
+        cursor: pointer;
+      }
+
+      .modal-close-button:hover,
+      .modal-close-button:focus {
+        color: black;
+        text-decoration: none;
+        outline: 2px solid var(--secondary-color);
+        outline-offset: 1px;
+      }
+
+
+      .export-option {
+        margin: 10px 0;
+      }
+      .export-option label { /* Added style for label */
+        margin-right: 10px;
+        font-weight: bold;
+      }
+
+      #exportContent {
+        padding: 10px;
+        height: 300px;
+        width: 100%;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        overflow: auto;
+        white-space: pre-wrap;
+        box-sizing: border-box; /* Ensure padding and border are inside width */
+      }
+
+      .copy-btn {
+        margin-top: 10px;
+      }
+
+      .option-value {
+        display: inline-block;
+        margin-left: 10px;
+        font-weight: normal;
+      }
+
+      /* Custom dropdown for all quality sections */
+      .custom-select {
+        position: relative;
+        width: 100%;
+      }
+
+      .custom-select select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        font-size: 1rem;
+        appearance: none;
+        -webkit-appearance: none; /* For Safari */
+        -moz-appearance: none; /* For Firefox */
+        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27292.4%27%20height%3D%27292.4%27%3E%3Cpath%20fill%3D%27%23007CB2%27%20d%3D%27M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%27%2F%3E%3C%2Fsvg%3E");
+        background-repeat: no-repeat;
+        background-position: right 10px top 50%;
+        background-size: .65em auto;
+        padding-right: 30px; /* Make space for arrow */
+      }
+
+
+      .overall-summary {
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 5px;
+        text-align: center;
+        font-weight: bold;
+      }
+
+      /* Tab navigation styling */
+      .tabs {
+        display: flex;
+        margin-bottom: 20px;
+        overflow-x: auto;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .tab-button { /* This is now a role="tab" */
+        background-color: #cfcfcf;
+        border: none;
+        border-radius: 4px 4px 0 0;
+        padding: 12px 16px;
+        cursor: pointer;
+        margin-right: 4px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+        color: var(--text-color); /* Ensure text color for non-active tabs */
+      }
+
+      .tab-button:hover {
+        background-color: #a4a4a4;
+      }
+
+      .tab-button.active, /* Assuming 'active' class is set by JS */
+      .tab-button[aria-selected="true"] { /* Style based on ARIA state */
+        background-color: var(--secondary-color);
+        color: white;
+      }
+
+      .tab-content { /* This is now role="tabpanel" */
+        display: none; /* JS will manage this */
+      }
+
+      .tab-content.active { /* JS will manage this */
+        display: block;
+      }
+
+
+      #licenseTable td p {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      #licenseTable td:first-child {
+        width: 20%;
+        font-weight: bold;
+        vertical-align: top;
+      }
+
+      .lang-en, .lang-fr {
+        display: none;
+      }
+
+      .lang-en.active, .lang-fr.active {
+        display: block;
+      }
+
+      .start-button {
+        background-color: var(--primary-color);
+        color: var(--white-text);
+        border: none;
+        padding: 15px 30px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: background-color 0.3s, transform 0.3s;
+        margin: 20px auto;
+        display: block; /* Center the button */
+      }
+
+      .start-button:hover:not(.disabled) {
+        background-color: var(--secondary-color);
+        transform: scale(1.05);
+      }
+
+      .start-button:focus {
+          outline: 2px solid var(--secondary-color);
+          outline-offset: 2px;
+       }
+
+      #front-page ul {
+        margin-left: 20px;
+        margin-bottom: 20px;
+      }
+
+      #front-page p {
+        margin-bottom: 15px;
+      }
+
+      /* Screen Reader Only CSS */
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      }
+
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 10px;
+        }
+
+        h1 {
+          font-size: 1.6rem;
+        }
+
+        .beta-tag {
+          font-size: 0.8rem;
+        }
+
+        .language-toggle {
+          position: static;
+          margin-top: 10px;
+          display: inline-block;
+        }
+
+        header {
+            padding: 15px;
+        }
+
+
+        h2 {
+          font-size: 1.3rem;
+        }
+
+        th,
+        td {
+          padding: 8px;
+          font-size: 0.9rem;
+        }
+
+        .buttons {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        button, .button-as-link {
+          /* width: 60%; */ /* Reverted to flex-grow behavior */
+          padding: 10px 15px;
+        }
+
+        .score-indicator {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 10px;
+        }
+
+        .tooltip .tooltip-text {
+               width: 200px;
+               margin-left: -200px; /* May need adjustment if icon moves */
+           }
+
+         .summary-table th,
+         .summary-table td {
+             padding: 8px;
+             font-size: 0.9rem;
+         }
+
+         #licenseTable td:first-child {
+            width: 30%;
+         }
+
+        .modal-content {
+          width: 90%; /* Keep it responsive */
+          margin: 10% auto;
+        }
+         #exportContent {
+             height: 200px;
+         }
+      }
+
+      @media (max-width: 480px) {
+          h1 {
+              font-size: 1.4rem;
+          }
+           h2 {
+               font-size: 1.2rem;
+           }
+           th, td {
+               font-size: 0.85rem;
+           }
+           .tooltip .tooltip-text {
+               width: 180px; /* Further adjust if needed */
+               margin-left: -90px; /* Centering for 180px width */
+           }
+            .language-toggle {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+            .start-button {
+                font-size: 1rem;
+                padding: 12px 24px;
+            }
+             .section-header {
+                 font-size: 1.1rem;
+             }
+            .overall-summary {
+                font-size: 1rem;
+            }
+             .tab-button {
+                 padding: 10px 12px;
+                 font-size: 0.9rem;
+             }
+      }
+    </style>
+  </head>
+  <body>
+    <header role="banner">
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <p class="beta-tag">BETA: This is a tool in development. We welcome your feedback.</p>
+        <h1 id="siteTitle">Data Quality Self Evaluation Tool</h1>
+      </div>
+      <button class="language-toggle" onclick="window.location.href='C:/Users/wangziq/Documents/Outil_autoévaluation_de_la_qualité_des_données.html';" aria-label="Switch to French">
+          <span class="lang-en active">Français</span>
+          </button>
+    </header>
+
+    <main id="main-content" class="container">
+      <div id="front-page" class="tab-content active" role="region" aria-labelledby="front-page-title">
+        <div class="card">
+          <h2 id="front-page-title">Welcome to the Data Quality Self Evaluation Tool</h2>
+          <div class="intro-text">
+            <p>The Data Quality Self Evaluation Tool is designed to assess the fitness-for-use of citizen-generated data in accordance with Statistics Canada's data ethics principles and quality dimensions. This tool is designed to improve reporting on the Sustainable Development Goals (SDGs) and assist in addressing data gaps.</p>
+            <p>By using this tool, you will be able to assess your data against:</p>
+            <ul>
+              <li>Statistics Canada's core principles for data collection, editing, and dissemination</li>
+              <li>Five of the six dimensions of quality developed and used by Statistics Canada to ensure data quality</li>
+            </ul>
+            <p>Anyone who wants to contribute data to help with SDG reporting should use this tool to evaluate the quality and ethical standards of their data before submission.</p>
+            <p>If you wish to submit your data or contact an analyst after completing your evaluation, please reach out to us at:</p>
+            <p><a href="mailto:statcan.sdg-odd.statcan@statcan.gc.ca">statcan.sdg-odd.statcan@statcan.gc.ca</a></p>
+          </div>
+          <div style="text-align: center; margin-top: 40px;">
+            <button id="startButton" class="start-button">Start Assessment</button>
+          </div>
+        </div>
+      </div>
+
+      <nav class="tabs" role="tablist" aria-label="Main navigation">
+        <button class="tab-button active" id="assessmentToolTab" role="tab" aria-selected="true" aria-controls="assessment-tab-panel" onclick="openTab(event, 'assessment-tab-panel')">Data Quality Self Evaluation Tool</button>
+        <button class="tab-button" id="licenseInfoTab" role="tab" aria-selected="false" aria-controls="license-tab-panel" onclick="openTab(event, 'license-tab-panel')">License</button>
+      </nav>
+
+      <div id="assessment-tab-panel" class="tab-content active" role="tabpanel" aria-labelledby="assessmentToolTab">
+        <div class="card">
+          <h2>Part 1 - Data Ethics Principles</h2>
+          <div class="intro-text">
+            <p>
+              This first part is an assessment of the data against Statistics
+              Canada core principles for data collection, editing and
+              dissemination.
+              <br /><br />
+              Please evaluate each element to confirm whether the
+              data align with the principles or not.
+            </p>
+          </div>
+
+          <table id="ethicsPrinciplesTable">
+            <caption>Assessment of Data Ethics Principles</caption>
+            <thead>
+              <tr>
+                <th scope="col">Elements</th>
+                <th scope="col">Explanation</th>
+                <th scope="col">Criteria</th>
+                <th scope="col">Answer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong id="ethics-el-1">Benefit to Canadians</strong></td>
+                <td>
+                  The information acquired and utilized must provide a clear and
+                  easily communicated benefit to Canadians. The data must support
+                  Canada's reporting on the Sustainable Development Goals (SDGs)
+                  by enabling the measurement of an unreported indicator or by
+                  providing data allowing for more granular reporting of a
+                  reported indicator.
+                </td>
+                <td id="ethics-crit-1">
+                  Does the information provide a clear benefit to Canadians?
+                </td>
+                <td>
+                  <select class="select-answer ethics-answer" id="ethics-1" aria-labelledby="ethics-el-1 ethics-crit-1">
+                    <option value="">Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td><strong id="ethics-el-2">Fairness and do no harm</strong></td>
+                <td>
+                  If the disseminated data include potentially sensitive topics,
+                  it is important to have a plan in place to alleviate any
+                  potential harm, unfairness or risk of amplifying stereotypes and
+                  stigma on groups featured in the data. Additionally, the
+                  appropriate partners should be consulted throughout the process
+                  to discuss any potential fairness and harm issues. The data must
+                  use the appropriate terminology and categories to describe the
+                  various population groups featured.
+                </td>
+                <td id="ethics-crit-2">
+                  Are potentially sensitive topics handled in a way that ensures
+                  fairness and causes no harm?
+                </td>
+                <td>
+                  <select class="select-answer ethics-answer" id="ethics-2" aria-labelledby="ethics-el-2 ethics-crit-2">
+                    <option value="">Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td><strong id="ethics-el-3">Transparency and accountability</strong></td>
+                <td>
+                  The methods used to transform the information to produce
+                  statistics must be communicated clearly to ensure transparency.
+                  The methodology used must be documented and continually
+                  monitored alongside its outputs to ensure continued robustness
+                  and relevance for the reporting.
+                </td>
+                <td id="ethics-crit-3">
+                  Are the methods used monitored and communicated regularly
+                  alongside its outputs?
+                </td>
+                <td>
+                  <select class="select-answer ethics-answer" id="ethics-3" aria-labelledby="ethics-el-3 ethics-crit-3">
+                    <option value="">Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td><strong id="ethics-el-4">Privacy</strong></td>
+                <td>
+                  Protecting the privacy of respondents throughout the process is
+                  critical. Some examples of methods that can help include
+                  limiting access to confidential information to a need to know
+                  basis while limiting collection to strictly necessary
+                  information from fully consenting individuals. The privacy of
+                  respondents must be maintained during all the steps of the
+                  statistical process.
+                </td>
+                <td id="ethics-crit-4">Is the privacy of respondents respected?</td>
+                <td>
+                  <select class="select-answer ethics-answer" id="ethics-4" aria-labelledby="ethics-el-4 ethics-crit-4">
+                    <option value="">Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td><strong id="ethics-el-5">Confidentiality</strong></td>
+                <td>
+                  Ensuring that the data does not contain confidential
+                  information, such as personal information or identifying
+                  characteristics is critical to ensuring confidentiality. The
+                  data used to measure and report on Canada's progress must not
+                  include any confidential information. Furthermore, it must be
+                  impossible to connect individuals to the disseminated data.
+                </td>
+                <td id="ethics-crit-5">Is confidentiality maintained?</td>
+                <td>
+                  <select class="select-answer ethics-answer" id="ethics-5" aria-labelledby="ethics-el-5 ethics-crit-5">
+                    <option value="">Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="section-header">
+            Results of the Assessment Against Statistics Canada's core principles:
+          </div>
+          <div class="result-card" id="ethicsResult" style="display: none" role="status" aria-live="assertive"></div>
+
+          <div id="part1EvaluationControls" style="margin-top: 20px; text-align: center;">
+            <button id="evaluatePart1Btn">Evaluate</button>
+          </div>
+
+          <div id="part1ResultMessages" style="margin-top: 20px; font-style: italic; display: none; text-align: center;" role="status" aria-live="assertive">
+              <p id="part1Message" style="text-align: start;"></p>
+               <button id="nextToPart2Btn" style="display: none;">Next</button>
+               </div>
+        </div>
+
+        <div class="card">
+          <h2>Part 2 - Quality Dimension</h2>
+          <div class="intro-text">
+            <p>
+              The second part of the evaluation rests on five of the six
+              dimensions of quality developed and used by Statistics Canada. The
+              dimension evaluating the relevance is not included below as it is an
+              element evaluated by the benefit to Canadians core principle above.
+              A definition and a series of criteria are provided with each
+              dimension. Each dimension is evaluated and scored based on the
+              compliance to the criteria, and an aggregated pass/fail rating is
+              returned. Please evaluate each criterion to confirm whether the data
+              align with the principles or not.
+            </p>
+          </div>
+
+          <table id="qualityDimensionsTable">
+            <caption>Assessment of Quality Dimensions</caption>
+            <thead>
+              <tr>
+                <th scope="col">Elements</th>
+                <th scope="col">Definition</th>
+                <th scope="col">Criteria</th>
+                <th scope="col">
+                  Answer
+                  <span class="tooltip">
+                    <span class="icon" role="button" tabindex="0" aria-describedby="tooltip-points-info">?</span>
+                    <span class="tooltip-text" id="tooltip-points-info" role="tooltip">
+                      Points correspond to the number of criteria satisfied:
+                      <br />3 points = High (all criteria satisfied) <br />2
+                      points = Medium (2 criteria satisfied) <br />1 point = Low
+                      (1 criterion satisfied) <br />0 points = Not sufficient (no
+                      criteria satisfied)
+                    </span>
+                  </span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong id="quality-el-1">Accuracy and reliability</strong></td>
+                <td>
+                  The accuracy of statistical information is the degree to which
+                  the information correctly describes the phenomena it was
+                  designed to measure. Reliability reflects the degree to which
+                  statistical information correctly describes the phenomena it was
+                  designed to measure consistently over time. The data must
+                  accurately and reliably measure Canada's progress for a selected
+                  SDG indicator over time.
+                </td>
+                <td id="quality-crit-1">
+                  1. There are no or few missing values for the most important
+                  statistics<br />
+                  2. There are established verification rules for the data<br />
+                  3. Documented quality assurance processes were followed
+                </td>
+                <td>
+                  <div class="custom-select">
+                    <select
+                      class="select-answer quality-score-select"
+                      id="quality-1"
+                      data-quality-id="1"
+                      aria-labelledby="quality-el-1 quality-crit-1"
+                    >
+                      <option value="0">
+                        0 - Not sufficient (no criteria satisfied)
+                      </option>
+                      <option value="1">1 - Low (1 criterion satisfied)</option>
+                      <option value="2">2 - Medium (2 criteria satisfied)</option>
+                      <option value="3">3 - High (all criteria satisfied)</option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong id="quality-el-2">Timeliness and punctuality</strong></td>
+                <td>
+                  The timeliness of statistical information refers to the delay
+                  between the information reference period and the date on which
+                  the information becomes available and punctuality refers to the
+                  difference between planned and actual availability. The data
+                  must provide a measure of Canada's progress on the SDGs at
+                  planned and regular intervals through time covering the period
+                  of the Agenda 2030.
+                </td>
+                <td id="quality-crit-2">
+                  1. The data is available in a timely manner<br />
+                  2. The data is released at regular intervals<br />
+                  3. The data is published on planned dates
+                </td>
+                <td>
+                  <div class="custom-select">
+                    <select
+                      class="select-answer quality-score-select"
+                      id="quality-2"
+                      data-quality-id="2"
+                      aria-labelledby="quality-el-2 quality-crit-2"
+                    >
+                      <option value="0">
+                        0 - Not sufficient (no criteria satisfied)
+                      </option>
+                      <option value="1">1 - Low (1 criterion satisfied)</option>
+                      <option value="2">2 - Medium (2 criteria satisfied)</option>
+                      <option value="3">3 - High (all criteria satisfied)</option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong id="quality-el-3">Accessibility and clarity</strong></td>
+                <td>
+                  The accessibility and clarity of data and supporting information
+                  refer to the ease with which users can learn that the
+                  information exists, find it, view it and use it. The data and
+                  its supporting information must be easily accessible and
+                  harvested to facilitate its use in Canada's reporting on the
+                  SDGs.
+                </td>
+                <td id="quality-crit-3">
+                  1. The data and supporting information are easily accessible<br />
+                  2. The data and supporting information are provided in an
+                  easy-to-use format
+                </td>
+                <td>
+                  <div class="custom-select">
+                    <select
+                      class="select-answer quality-score-select"
+                      id="quality-3"
+                      data-quality-id="3"
+                      aria-labelledby="quality-el-3 quality-crit-3"
+                    >
+                      <option value="0">
+                        0 - Not sufficient (no criteria satisfied)
+                      </option>
+                      <option value="1">1 - Low (1 criterion satisfied)</option>
+                      <option value="3"> 3 - High (all criteria satisfied)
+                      </option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong id="quality-el-4">Interpretability</strong></td>
+                <td>
+                  The interpretability of statistical information refers to the
+                  availability of supplementary information and metadata needed to
+                  interpret the data and possibly reproduce it. This information
+                  normally covers the underlying concepts, the reference period of
+                  the data, the variables and classifications used, the
+                  methodology of the data collection and processing. The data and
+                  any relevant information (including the ref period) must be
+                  available to support Canada's reporting on the SDGs over the
+                  Agenda 2030 (2015-2030).
+                </td>
+                <td id="quality-crit-4">
+                  1. A description of the methods used to collect, process and
+                  analyze the data is available to users<br />
+                  2. The definition of all variables, code sets and
+                  classifications used is provided to the users<br />
+                  3. The reference period of the data is well defined and
+                  communicated
+                </td>
+                <td>
+                  <div class="custom-select">
+                    <select
+                      class="select-answer quality-score-select"
+                      id="quality-4"
+                      data-quality-id="4"
+                      aria-labelledby="quality-el-4 quality-crit-4"
+                    >
+                      <option value="0">
+                        0 - Not sufficient (no criteria satisfied)
+                      </option>
+                      <option value="1">1 - Low (1 criterion satisfied)</option>
+                      <option value="2">2 - Medium (2 criteria satisfied)</option>
+                      <option value="3">3 - High (all criteria satisfied)</option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong id="quality-el-5">Coherence and comparability</strong></td>
+                <td>
+                  The coherence and comparability of statistical information refer
+                  to the degree to which it can be reliably combined and compared
+                  with other statistical information and over time. The use of
+                  common concepts (e.g., terminology, classification, methodology
+                  etc.) and standards are critical to ensuring coherence and
+                  facilitate its use in Canada's reporting on the SDGs.
+                </td>
+                <td id="quality-crit-5">
+                  1. Standard concepts are used<br />
+                  2. Comparability is maintained over time and across regions<br />
+                  3. Any inconsistencies or break in the time series are explained
+                </td>
+                <td>
+                  <div class="custom-select">
+                    <select
+                      class="select-answer quality-score-select"
+                      id="quality-5"
+                      data-quality-id="5"
+                      aria-labelledby="quality-el-5 quality-crit-5"
+                    >
+                      <option value="0">
+                        0 - Not sufficient (no criteria satisfied)
+                      </option>
+                      <option value="1">1 - Low (1 criterion satisfied)</option>
+                      <option value="2">2 - Medium (2 criteria satisfied)</option>
+                      <option value="3">3 - High (all criteria satisfied)</option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="section-header">
+            Results of the Assessment Against Statistics Canada's 5 Dimensions of
+            Quality:
+          </div>
+          <div id="qualitySummary" role="region" aria-live="polite">
+            </div>
+
+          <div class="score-indicator">
+            <div><span>Total score: <span id="totalScore">0</span>/15</span></div>
+            <div
+              class="result-card"
+              id="qualityResult"
+              style="display: none;"
+              role="status"
+              aria-live="assertive"
+            ></div>
+            <div id="qualityInterpretation" style="margin-top: 10px; font-style: italic; display: none;" role="status" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 id="overall-assessment-title">Overall Assessment</h2>
+           <div id="combinedResults" role="region" aria-live="polite">
+             </div>
+          <div id="overallResult" role="status" aria-live="assertive">
+            </div>
+          <div
+            class="recommendations"
+            id="recommendations"
+            style="display: none"
+            role="region"
+            aria-live="polite"
+          >
+            </div>
+
+          <div class="buttons" id="overallAssessmentActionButtons" style="justify-content: space-evenly;">
+            <button id="resetBtn">Reset</button>
+            <button id="evaluateBtn">Evaluate</button>
+            <button id="exportBtn" aria-haspopup="true" aria-controls="exportModal">Export Results</button> </div>
+        </div>
+      </div>
+
+      <div id="license-tab-panel" class="tab-content" role="tabpanel" aria-labelledby="licenseInfoTab">
+        <div class="card">
+          <h2>License Information</h2>
+          <div class="intro-text">
+            <p>
+              This page contains information about the terms and conditions of use for the Data Quality Self Evaluation Tool.
+            </p>
+          </div>
+
+          <table id="licenseTable">
+            <caption>License Terms and Conditions</caption>
+            <thead>
+              <tr>
+                <th scope="col">Section</th>
+                <th scope="col">Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Terms and Conditions of Use</td>
+                <td>
+                  <p>Unless otherwise noted, program source code included in this software is covered under Crown Copyright, Government of Canada, and is distributed under the MIT License.</p>
+                  <p>The Canada wordmark and related graphics associated with this distribution are protected under trademark law and copyright law. No permission is granted to use them outside the parameters of the Government of Canada's corporate identity program. For more information, see <a href="https://www.canada.ca/en/treasury-board-secretariat/services/government-communications/federal-identity-program/manual.html" target="_blank" rel="noopener noreferrer">https://www.canada.ca/en/treasury-board-secretariat/services/government-communications/federal-identity-program/manual.html<span class="sr-only"> (opens in new window)</span></a>.</p>
+                  <p>Copyright title to all 3rd party software distributed with this software is held by the respective copyright holders as noted in those files. Users are asked to read the 3rd Party Licenses referenced with those assets.</p>
+                </td>
+              </tr>
+              <tr>
+                <td>MIT License</td>
+                <td>
+                  <p>Copyright © <span id="currentYear"></span> Government of Canada - Gouvernement du Canada</p>
+                  <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+                  <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+                  <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <div id="exportModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="exportModalTitle" style="display: none;">
+      <div class="modal-content">
+        <button class="modal-close-button export-close" aria-label="Close export dialog">&times;</button>
+        <h3 id="exportModalTitle">Export Results</h3>
+        <div class="export-option">
+          <label for="exportFormat">Format:</label>
+          <select id="exportFormat">
+            <option value="text">Text</option>
+            <option value="json">JSON</option>
+            <option value="csv">CSV</option>
+          </select>
+        </div>
+        <div class="export-content">
+          <label for="exportContent" class="sr-only">Results to be exported</label>
+          <textarea id="exportContent" readonly aria-live="polite"></textarea>
+        </div>
+        <button id="copyBtn" class="copy-btn">Copy to Clipboard</button>
+        <button id="downloadBtn" class="copy-btn">Download File</button>
+    </div>
+</div>
+
+    <div id="alertDialog" class="modal" role="alertdialog" aria-modal="true" aria-labelledby="alertDialogTitle" aria-describedby="alertMessage" style="display:none;">
+        <div class="modal-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+          <h3 id="alertDialogTitle" class="sr-only">Alert</h3>
+          <p id="alertMessage"></p>
+          <button class="alert-close button-as-link">OK</button> </div>
+    </div>
+
+
+    <footer role="contentinfo">
+      <p>© Statistics Canada - Data Quality Self Evaluation Tool. <span id="footerYear"></span></p>
+    </footer>
+
+    <script>
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+      document.getElementById('footerYear').textContent = "Current year: " + new Date().getFullYear();
+
+        // Function to handle tab switching
+        // Ensure your openTab function correctly updates aria-selected attributes
+        // and manages focus appropriately for keyboard users.
+        function openTab(evt, tabName) {
+          var i, tabContent, tabButtons;
+
+          tabContent = document.getElementsByClassName("tab-content");
+          for (i = 0; i < tabContent.length; i++) {
+            tabContent[i].style.display = "none";
+            // tabContent[i].setAttribute("aria-hidden", "true"); // Alternative to display:none for ARIA
+          }
+
+          tabButtons = document.getElementsByClassName("tab-button");
+          for (i = 0; i < tabButtons.length; i++) {
+            tabButtons[i].className = tabButtons[i].className.replace(" active", "");
+            tabButtons[i].setAttribute("aria-selected", "false");
+          }
+
+          const currentTabPanel = document.getElementById(tabName);
+          if (currentTabPanel) {
+            currentTabPanel.style.display = "block";
+            // currentTabPanel.removeAttribute("aria-hidden");
+          }
+          if (evt.currentTarget) {
+            evt.currentTarget.className += " active";
+            evt.currentTarget.setAttribute("aria-selected", "true");
+            // evt.currentTarget.focus(); // Optionally manage focus
+          }
+        }
+
+      document.addEventListener("DOMContentLoaded", function () {
+
+        // Hide all tab content initially except front page
+        document.querySelectorAll('.tab-content').forEach(function(content) {
+          if (content.id !== 'front-page') {
+            content.classList.remove('active');
+            content.style.display = 'none';
+            // content.setAttribute("aria-hidden", "true");
+          } else {
+            content.classList.add('active');
+            content.style.display = 'block';
+            // content.removeAttribute("aria-hidden");
+          }
+        });
+
+
+        // Hide the tabs navigation bar initially
+        const tabsNavigationBar = document.querySelector('.tabs');
+        if (tabsNavigationBar) {
+            tabsNavigationBar.style.display = 'none';
+        }
+
+        let part2Evaluated = false;
+
+        // Get all necessary elements
+        const ethicsAnswers = document.querySelectorAll(".ethics-answer");
+        const qualityScoreSelects = document.querySelectorAll(
+          ".quality-score-select"
+        );
+        const ethicsResult = document.getElementById("ethicsResult");
+        const qualityResult = document.getElementById("qualityResult");
+        const qualitySummary = document.getElementById("qualitySummary");
+        const totalScoreDisplay = document.getElementById("totalScore");
+        const overallResult = document.getElementById("overallResult");
+        const recommendations = document.getElementById("recommendations");
+        const evaluateBtn = document.getElementById("evaluateBtn");
+        const resetBtn = document.getElementById("resetBtn");
+        const exportBtn = document.getElementById("exportBtn");
+         const combinedResults = document.getElementById("combinedResults");
+        overallResult.innerHTML = "<p>Complete both assessments to see overall results.</p>";
+        const part1Card = document.querySelector('#assessment-tab-panel .card:nth-of-type(1)');
+        const part2Card = document.querySelector('#assessment-tab-panel .card:nth-of-type(2)');
+        const overallAssessmentCard = document.querySelector('#assessment-tab-panel .card:nth-of-type(3)');
+
+        const evaluatePart1Btn = document.getElementById('evaluatePart1Btn');
+        const part1ResultMessages = document.getElementById('part1ResultMessages');
+        const part1Message = document.getElementById('part1Message');
+        const nextToPart2Btn = document.getElementById('nextToPart2Btn');
+        // const returnToHomeBtnPart1 = document.getElementById('returnToHomeBtnPart1'); // This ID seems to be missing in HTML for a specific button, if needed add it
+         const overallAssessmentActionButtons = document.getElementById('overallAssessmentActionButtons');
+         const overallAssessmentNavButtons = document.getElementById('overallAssessmentNavButtons');
+         const returnToHomeBtnOverall = document.getElementById('returnToHomeBtnOverall');
+        const qualityInterpretation = document.getElementById("qualityInterpretation");
+
+
+        // Modal elements
+        const exportModal = document.getElementById("exportModal");
+        const exportCloseModal = document.querySelector(".export-close"); // Class changed for new button
+        const exportFormat = document.getElementById("exportFormat");
+        const exportContent = document.getElementById("exportContent");
+        const copyBtn = document.getElementById("copyBtn");
+
+        // Custom Alert Modal elements
+        const alertDialog = document.getElementById("alertDialog");
+        const alertCloseButton = alertDialog.querySelector(".alert-close"); // Query within alert dialog
+        const alertMessage = document.getElementById("alertMessage");
+
+        const siteTitle = document.getElementById('siteTitle');
+
+
+        const ethicsElements = [
+          "Benefit to Canadians",
+          "Fairness and do no harm",
+          "Transparency and accountability",
+          "Privacy",
+          "Confidentiality",
+        ];
+
+        let assessmentData = {
+          ethicsPrinciples: {},
+          qualityDimensions: {},
+          results: {
+            ethicsPass: false,
+            qualityPass: false,
+            overallPass: false,
+            totalQualityScore: 0,
+            date: new Date().toISOString().split("T")[0],
+            part1Message: ""
+          },
+        };
+
+        const qualityDimensionNames = {
+          1: "Accuracy and reliability",
+          2: "Timeliness and punctuality",
+          3: "Accessibility and clarity",
+          4: "Interpretability",
+          5: "Coherence and comparability",
+        };
+
+
+        const startButton = document.getElementById('startButton');
+        if (startButton) {
+            startButton.addEventListener('click', function() {
+                document.getElementById('front-page').style.display = 'none';
+                document.getElementById('front-page').classList.remove('active');
+
+                if (tabsNavigationBar) {
+                    tabsNavigationBar.style.display = 'flex';
+                }
+
+                const assessmentTabPanel = document.getElementById('assessment-tab-panel');
+                if (assessmentTabPanel) {
+                    assessmentTabPanel.style.display = 'block';
+                    assessmentTabPanel.classList.add('active');
+                    // assessmentTabPanel.removeAttribute("aria-hidden");
+                }
+                 // Ensure other main tab contents are hidden
+                const licenseTabPanel = document.getElementById('license-tab-panel');
+                if (licenseTabPanel) {
+                    licenseTabPanel.style.display = 'none';
+                    licenseTabPanel.classList.remove('active');
+                    // licenseTabPanel.setAttribute("aria-hidden", "true");
+                }
+
+
+                document.querySelectorAll('.tab-button').forEach(function(button) {
+                    if (button.id === 'assessmentToolTab') { // Check by ID
+                        button.classList.add('active');
+                        button.setAttribute('aria-selected', 'true');
+                        // button.focus(); // Optional: move focus to the active tab
+                    } else {
+                        button.classList.remove('active');
+                        button.setAttribute('aria-selected', 'false');
+                    }
+                });
+
+                if (part1Card) part1Card.style.display = 'block';
+                if (part2Card) part2Card.style.display = 'none';
+                if (overallAssessmentCard) overallAssessmentCard.style.display = 'none';
+
+                if (evaluatePart1Btn) evaluatePart1Btn.style.display = 'inline-block';
+                if (part1ResultMessages) part1ResultMessages.style.display = 'none';
+                const ethicsResultDisplay = document.getElementById("ethicsResult");
+                if (ethicsResultDisplay) ethicsResultDisplay.style.display = 'none';
+
+                 if (overallAssessmentActionButtons) overallAssessmentActionButtons.style.display = 'flex';
+                 if (overallAssessmentNavButtons) overallAssessmentNavButtons.style.display = 'none';
+            });
+        }
+
+        ethicsAnswers.forEach((select) => {
+          select.addEventListener("change", function () {
+            const id = this.id.split("-")[1];
+            assessmentData.ethicsPrinciples[id] = this.value;
+          });
+        });
+
+        qualityScoreSelects.forEach((select) => {
+          select.addEventListener("change", function () {
+            const id = this.dataset.qualityId;
+            const value = parseInt(this.value);
+            assessmentData.qualityDimensions[id] = value;
+            updateTotalScore();
+          });
+        });
+
+      function updateEthicsResult() {
+        let allEthicsAnswered = true;
+        let allYes = true;
+
+        ethicsAnswers.forEach((select) => {
+            if (!select.value) {
+                allEthicsAnswered = false;
+            } else if (select.value !== "Yes") {
+                allYes = false;
+            }
+        });
+
+        if (allEthicsAnswered) {
+            assessmentData.results.ethicsPass = allYes;
+            if (ethicsResult) {
+                 ethicsResult.textContent = allYes ? "Pass" : "Fail";
+                 ethicsResult.className = allYes ? "result-card pass" : "result-card fail";
+            }
+          } else {
+             assessmentData.results.ethicsPass = false;
+             if (ethicsResult) {
+                 ethicsResult.textContent = "";
+                 ethicsResult.className = "result-card";
+             }
+          }
+      }
+
+        function updateTotalScore() {
+          let score = 0;
+          qualityScoreSelects.forEach((select) => {
+            score += parseInt(select.value) || 0;
+          });
+          assessmentData.results.totalQualityScore = score;
+          totalScoreDisplay.textContent = score;
+        }
+
+        function updateQualityResult() {
+            const totalScore = assessmentData.results.totalQualityScore;
+            const qualityPass = totalScore >= 8;
+
+            assessmentData.results.qualityPass = qualityPass;
+            if (qualityResult) {
+                qualityResult.textContent = qualityPass ? "Pass" : "Fail";
+                qualityResult.className = qualityPass ? "result-card pass" : "result-card fail";
+            }
+
+            const interpretationTextElement = document.getElementById("qualityInterpretation");
+            if (interpretationTextElement) {
+                let message = "";
+                if (totalScore <= 7) {
+                    message = "The quality of the data as evaluated above is not considered fit for purpose, please consider addressing some of the evaluation criteria to improve its quality if possible.";
+                } else if (totalScore >= 8 && totalScore <= 10) {
+                    message = "The quality of the data as evaluated above is fit for purpose but could be improved, please consider addressing some of the evaluation criteria if possible.";
+                } else if (totalScore >= 11) {
+                    message = "The quality of the data as evaluated above is considered fit for purpose.";
+                }
+                interpretationTextElement.textContent = message;
+                interpretationTextElement.style.display = message ? 'block' : 'none'; // Show only if there's a message
+            }
+            generateQualitySummary();
+        }
+
+        function getQualityScoreText(score) {
+          if (score === 0) return "Not sufficient";
+          if (score === 1) return "Low";
+          if (score === 2) return "Medium";
+          if (score === 3) return "High";
+          return "";
+        }
+
+        function generateQualitySummaryHTML() {
+          let qualitySummaryHTML = '<table class="summary-table">';
+          qualitySummaryHTML += '<caption>Detailed Quality Dimensions Scores</caption>'; // Added caption
+          qualitySummaryHTML +=
+            "<tr><th scope=\"col\">Dimension</th><th scope=\"col\">Score</th><th scope=\"col\">Assessment</th></tr>";
+
+          for (let i = 1; i <= 5; i++) {
+            const score = assessmentData.qualityDimensions[i] || 0;
+            const assessment = getQualityScoreText(score);
+            const dimensionName = qualityDimensionNames[i];
+            const maxScore = 3; // Assuming max score is 3 for each dimension
+
+            qualitySummaryHTML += `<tr>
+                        <td>${dimensionName}</td>
+                        <td>${score}/${maxScore}</td>
+                        <td>${assessment}</td>
+                    </tr>`;
+          }
+
+          qualitySummaryHTML += "</table>";
+          return qualitySummaryHTML;
+        }
+
+
+        function generateQualitySummary() {
+           qualitySummary.innerHTML = generateQualitySummaryHTML();
+        }
+
+
+        function updateOverallResult() {
+          if (!part2Evaluated) {
+              overallResult.innerHTML = "<p>Complete Part 2 (Quality Dimensions) and then click 'Evaluate' below.</p>";
+              return;
+          }
+
+          const ethicsPass = assessmentData.results.ethicsPass;
+          const qualityPass = assessmentData.results.qualityPass;
+          const overallPass = ethicsPass && qualityPass;
+          assessmentData.results.overallPass = overallPass;
+
+          let resultClass = overallPass ? "pass" : "fail";
+          let resultText = overallPass ? "Pass" : "Fail";
+
+          if (ethicsPass && !qualityPass) {
+              resultClass = "warning";
+              resultText = "Warning";
+          }
+
+          overallResult.innerHTML = `
+              <div class="overall-summary ${resultClass}">
+                  Overall Assessment: ${resultText}
+              </div>
+              <p>Data Ethics Principles Assessment: ${ethicsPass ? "Pass" : "Fail"}</p>
+              <p>Quality Dimensions Assessment: ${qualityPass ? "Pass" : "Fail"} (Score: ${assessmentData.results.totalQualityScore}/15)</p>
+          `;
+
+          if (combinedResults) {
+               combinedResults.innerHTML = `
+                   <h3>Part 1 Ethics Assessment Result</h3>
+                   <div class="result-card ${assessmentData.results.ethicsPass ? 'pass' : 'fail'}">
+                       ${assessmentData.results.ethicsPass ? 'Pass' : 'Fail'}
+                   </div>
+                   <div style="margin-top: 10px; font-style: italic;">${assessmentData.results.part1Message}</div>
+                   <h3 style="margin-top: 20px;">Part 2 Quality Dimensions Assessment Result</h3>
+                   ${generateQualitySummaryHTML()}
+                   <div class="result-card ${assessmentData.results.qualityPass ? 'pass' : 'fail'}">
+                       ${assessmentData.results.qualityPass ? 'Pass' : 'Fail'}
+                   </div>
+                   <div style="margin-top: 10px; font-style: italic;">${document.getElementById("qualityInterpretation").textContent}</div> `;
+          }
+      }
+
+        function handleEvaluatePart1() {
+          let allYes = true;
+          let allAnswered = true;
+
+          ethicsAnswers.forEach((select) => {
+              if (!select.value) {
+                  allAnswered = false;
+              } else if (select.value !== "Yes") {
+                  allYes = false;
+              }
+          });
+
+          if (!allAnswered) {
+              showAlertDialog("Please complete Part 1 - Data Ethics Principles before evaluating.");
+              if (evaluatePart1Btn) evaluatePart1Btn.blur();
+              return;
+          }
+
+          updateEthicsResult();
+
+          const ethicsResultDisplay = document.getElementById("ethicsResult");
+
+          if (assessmentData.results.ethicsPass) {
+              assessmentData.results.part1Message = "The data complies with the criteria outlined in the data ethics assessment.";
+          } else {
+              assessmentData.results.part1Message = "The data currently does not satisfy the requirements of the data ethics assessment and is therefore not suitable for SDG reporting. Please review the data and ensure that all relevant data ethics principles are appropriately addressed.";
+          }
+           part1Message.textContent = assessmentData.results.part1Message;
+
+          if (ethicsResultDisplay) ethicsResultDisplay.style.display = 'block';
+          if (part1ResultMessages) part1ResultMessages.style.display = 'block';
+
+          if (evaluatePart1Btn) evaluatePart1Btn.style.display = 'none';
+
+          if (assessmentData.results.ethicsPass) {
+               if (nextToPart2Btn) nextToPart2Btn.style.display = 'inline-block';
+               // if (returnToHomeBtnPart1) returnToHomeBtnPart1.style.display = 'none';
+          } else {
+               if (nextToPart2Btn) nextToPart2Btn.style.display = 'inline-block'; // Show next even on fail to allow user to proceed if they wish, or add specific "Return Home"
+               // if (returnToHomeBtnPart1) returnToHomeBtnPart1.style.display = 'inline-block';
+          }
+      }
+
+        function handleNextToPart2() {
+            part2Evaluated = false;
+
+            if (ethicsResult) ethicsResult.style.display = 'block';
+
+            if (nextToPart2Btn) nextToPart2Btn.style.display = 'none';
+            // if (returnToHomeBtnPart1) returnToHomeBtnPart1.style.display = 'none';
+
+
+            qualityScoreSelects.forEach((select) => { select.value = "0"; });
+             assessmentData.qualityDimensions = {};
+             assessmentData.results.totalQualityScore = 0;
+             assessmentData.results.qualityPass = false;
+             assessmentData.results.overallPass = false;
+
+            if (qualityResult) qualityResult.style.display = 'none';
+             if (qualityInterpretation) {
+                 qualityInterpretation.style.display = 'none';
+            }
+            if (totalScoreDisplay) totalScoreDisplay.textContent = "0";
+            if (qualitySummary) qualitySummary.innerHTML = "";
+
+
+            if (overallResult) {
+                 overallResult.innerHTML = "<p>Complete Part 2 (Quality Dimensions) and then click 'Evaluate' below.</p>";
+            }
+             if (combinedResults) combinedResults.innerHTML = "";
+
+
+            if (part2Card) part2Card.style.display = 'block';
+            if (overallAssessmentCard) overallAssessmentCard.style.display = 'block';
+
+            if (evaluateBtn) evaluateBtn.style.display = 'inline-block';
+            if (resetBtn) resetBtn.style.display = 'inline-block';
+            if (exportBtn) exportBtn.style.display = 'inline-block';
+             if (overallAssessmentNavButtons) overallAssessmentNavButtons.style.display = 'none';
+        }
+
+
+        function handleReturnToHome() {
+            window.location.reload();
+        }
+
+
+        function exportResults() {
+          const format = exportFormat.value;
+          let content = "";
+
+           const part1ResultText = `Part 1 Ethics Assessment Result: ${assessmentData.results.ethicsPass ? "Pass" : "Fail"}\nPart 1 Message: ${assessmentData.results.part1Message}\n`;
+           const qualityInterpretationTextValue = document.getElementById("qualityInterpretation").textContent || "N/A";
+           const qualityResultText = `Part 2 Quality Dimensions Assessment Result: ${assessmentData.results.qualityPass ? "Pass" : "Fail"} (Score: ${assessmentData.results.totalQualityScore}/15)\nQuality Interpretation: ${qualityInterpretationTextValue}\n`;
+           const overallResultText = `Overall Assessment: ${assessmentData.results.overallPass ? "PASS" : "FAIL"}\n`;
+
+
+          if (format === "text") {
+            content = `Data Quality Self Evaluation Tool - Results\n`;
+            content += "Date: " + assessmentData.results.date + "\n\n";
+            content += `PART 1 - DATA ETHICS PRINCIPLES\n`;
+             content += part1ResultText + "\n";
+            content += `Elements:\n`;
+            for (let i = 1; i <= 5; i++) {
+              content += "- " + ethicsElements[i - 1] + ": " +
+                  (assessmentData.ethicsPrinciples[i] || "Not evaluated") + "\n";
+            }
+            content += `\nPART 2 - QUALITY DIMENSIONS\n`;
+             content += qualityResultText + "\n";
+            content += `Dimensions:\n`;
+            for (let i = 1; i <= 5; i++) {
+                const score = assessmentData.qualityDimensions[i] || 0;
+                const assessment = getQualityScoreText(score);
+                content += "- " + qualityDimensionNames[i] + ": " + score + " - " + assessment + "\n";
+              }
+            content += "\n" + overallResultText;
+          }
+          else if (format === "json") {
+            content = JSON.stringify(assessmentData, null, 2);
+          }
+          else if (format === "csv") {
+            content = "Data Quality Self Evaluation Tool - Results\r\n\r\n";
+            content += "SUMMARY\r\n";
+            content += "Category,Result\r\n";
+            content += `Date,${assessmentData.results.date}\r\n`;
+            content += `Data Ethics Assessment,${assessmentData.results.ethicsPass ? "Pass" : "Fail"}\r\n`;
+            content += `Part 1 Message,"${assessmentData.results.part1Message.replace(/"/g, '""')}"\r\n`;
+            content += `Quality Dimensions Assessment,${assessmentData.results.qualityPass ? "Pass" : "Fail"}\r\n`;
+             content += `Quality Interpretation,"${qualityInterpretationTextValue.replace(/"/g, '""')}"\r\n`;
+            content += `Quality Dimensions Score,${assessmentData.results.totalQualityScore}/15\r\n`;
+            content += `Overall Result,${assessmentData.results.overallPass ? "PASS" : "FAIL"}\r\n\r\n`;
+            content += "DATA ETHICS PRINCIPLES\r\n";
+            content += "Data Ethics Principle,Evaluation\r\n";
+            for (let i = 1; i <= 5; i++) {
+              content += "\"" + ethicsElements[i - 1] + "\",\"" +
+                  (assessmentData.ethicsPrinciples[i] || "Not evaluated") + "\"\r\n";
+            }
+            content += "\r\n";
+            content += "QUALITY DIMENSIONS\r\n";
+            content += "Quality Dimension,Score,Assessment\r\n";
+            for (let i = 1; i <= 5; i++) {
+              const score = assessmentData.qualityDimensions[i] || 0;
+              const assessment = getQualityScoreText(score);
+              content += "\"" + qualityDimensionNames[i] + "\"," + score + ",\"" + assessment + "\"\r\n";
+            }
+          }
+          exportContent.value = content;
+        }
+
+        function showAlertDialog(message) {
+            alertMessage.textContent = message;
+            alertDialog.style.display = "block";
+            alertCloseButton.focus(); // Set focus to OK button
+        }
+
+        function hideAlertDialog() {
+            alertDialog.style.display = "none";
+            // Potentially return focus to the element that triggered the alert, if known
+        }
+
+        alertCloseButton.addEventListener("click", hideAlertDialog);
+
+        window.addEventListener("click", function (event) {
+          if (event.target === alertDialog) {
+            hideAlertDialog();
+          }
+          if (event.target === exportModal) {
+            exportModal.style.display = "none";
+          }
+        });
+        // Add keyboard (Esc) support for modals
+        window.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                if (alertDialog.style.display === 'block') {
+                    hideAlertDialog();
+                }
+                if (exportModal.style.display === 'block') {
+                    exportModal.style.display = 'none';
+                }
+            }
+        });
+
+
+        if (evaluatePart1Btn) {
+             evaluatePart1Btn.addEventListener('click', handleEvaluatePart1);
+        }
+        if (nextToPart2Btn) {
+             nextToPart2Btn.addEventListener('click', handleNextToPart2);
+        }
+
+        if (evaluateBtn) {
+          evaluateBtn.addEventListener("click", function () {
+            let allQualityAnswered = true;
+            qualityScoreSelects.forEach((select) => {
+                if (assessmentData.qualityDimensions[select.dataset.qualityId] === undefined) { // Check if answered
+                    allQualityAnswered = false;
+                }
+            });
+
+            part2Evaluated = true;
+            updateTotalScore();
+            updateQualityResult();
+            updateOverallResult();
+
+            if (qualityResult) qualityResult.style.display = "block";
+             if (qualityInterpretation) {
+                qualityInterpretation.style.display = 'block';
+             }
+
+            if (evaluateBtn) evaluateBtn.style.display = 'inline-block';
+            if (resetBtn) resetBtn.style.display = 'inline-block';
+            if (exportBtn) exportBtn.style.display = 'inline-block';
+            if (overallAssessmentNavButtons) overallAssessmentNavButtons.style.display = 'none';
+          });
+        }
+
+        if (resetBtn) {
+        resetBtn.addEventListener("click", function () {
+            part2Evaluated = false;
+            ethicsAnswers.forEach((select) => { select.value = ""; });
+            assessmentData.ethicsPrinciples = {};
+             assessmentData.results.ethicsPass = false;
+             assessmentData.results.part1Message = "";
+
+            qualityScoreSelects.forEach((select) => { select.value = "0"; });
+            assessmentData.qualityDimensions = {};
+             assessmentData.results.totalQualityScore = 0;
+             assessmentData.results.qualityPass = false;
+             assessmentData.results.overallPass = false;
+
+            if (ethicsResult) {
+                ethicsResult.style.display = "none";
+                ethicsResult.textContent = "";
+                ethicsResult.className = "result-card";
+            }
+            if (qualityResult) {
+                qualityResult.style.display = "none";
+                qualityResult.textContent = "";
+                qualityResult.className = "result-card";
+            }
+             if (qualityInterpretation) {
+                qualityInterpretation.style.display = 'none';
+                qualityInterpretation.textContent = "";
+            }
+            if (totalScoreDisplay) totalScoreDisplay.textContent = "0";
+            if (qualitySummary) qualitySummary.innerHTML = "";
+
+            if (overallResult) {
+                overallResult.innerHTML = "<p>Complete both assessments to see overall results.</p>";
+            }
+             if (combinedResults) combinedResults.innerHTML = "";
+
+            if (part1ResultMessages) part1ResultMessages.style.display = 'none';
+             part1Message.textContent = "";
+            if (evaluatePart1Btn) evaluatePart1Btn.style.display = 'inline-block';
+
+            if (part2Card) part2Card.style.display = 'none';
+            if (overallAssessmentCard) overallAssessmentCard.style.display = 'none';
+
+             if (overallAssessmentActionButtons) overallAssessmentActionButtons.style.display = 'flex';
+             if (overallAssessmentNavButtons) overallAssessmentNavButtons.style.display = 'none';
+
+             if (nextToPart2Btn) nextToPart2Btn.style.display = 'none';
+             // if (returnToHomeBtnPart1) returnToHomeBtnPart1.style.display = 'none';
+        });
+    }
+        exportBtn.addEventListener("click", function () {
+          exportResults(); // Populate content first
+          exportModal.style.display = "block";
+          exportFormat.focus(); // Focus on an element within the modal
+        });
+
+        if (exportCloseModal) { // Check if the new close button exists
+            exportCloseModal.addEventListener("click", function () {
+              exportModal.style.display = "none";
+              exportBtn.focus(); // Return focus to the export button
+            });
+        }
+
+
+        exportFormat.addEventListener("change", function () {
+          exportResults();
+        });
+
+        copyBtn.addEventListener("click", function () {
+          exportContent.select();
+          try {
+            document.execCommand("copy");
+            copyBtn.textContent = "Copied!";
+          } catch (err) {
+            copyBtn.textContent = "Copy Failed";
+             console.error('Failed to copy text: ', err);
+          }
+          setTimeout(function () {
+            copyBtn.textContent = "Copy to Clipboard";
+          }, 2000);
+        });
+
+        document.getElementById("downloadBtn").addEventListener("click", function() {
+          const format = exportFormat.value;
+          const content = exportContent.value;
+          const date = new Date().toISOString().split("T")[0];
+          let fileName = `data-quality-assessment-${date}`;
+          let mimeType = "";
+
+          if (format === "text") {
+            fileName += ".txt";
+            mimeType = "text/plain;charset=utf-8";
+          } else if (format === "json") {
+            fileName += ".json";
+            mimeType = "application/json;charset=utf-8";
+          } else if (format === "csv") {
+            fileName += ".csv";
+            mimeType = "text/csv;charset=utf-8";
+          }
+
+          const blob = new Blob([content], { type: mimeType });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = fileName;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        });
+
+
+        if (returnToHomeBtnOverall) {
+             returnToHomeBtnOverall.addEventListener('click', handleReturnToHome);
+        }
+
+
+        if (siteTitle) {
+            siteTitle.addEventListener('click', function() {
+                if (resetBtn) resetBtn.click();
+                document.getElementById('front-page').style.display = 'block';
+                document.getElementById('front-page').classList.add('active');
+
+                const assessmentTabPanel = document.getElementById('assessment-tab-panel');
+                if(assessmentTabPanel) {
+                    assessmentTabPanel.style.display = 'none';
+                    assessmentTabPanel.classList.remove('active');
+                }
+                const licenseTabPanel = document.getElementById('license-tab-panel');
+                 if(licenseTabPanel) {
+                    licenseTabPanel.style.display = 'none';
+                    licenseTabPanel.classList.remove('active');
+                }
+                 if (tabsNavigationBar) tabsNavigationBar.style.display = 'none';
+            });
+        }
+      });
+    </script>
+  </body>
+</html>

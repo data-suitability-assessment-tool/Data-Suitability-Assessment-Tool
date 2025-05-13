@@ -1,0 +1,289 @@
+{
+  "header": {
+    "beta": "BETA: This is a tool in development. We welcome your feedback.",
+    "title": "Data Quality Self Evaluation Tool",
+    "switchToFrench": "Français",
+    "switchToEnglish": "English"
+  },
+  "footer": {
+    "copyright": "© Statistics Canada - Data Quality Self Evaluation Tool."
+  },
+  "frontPage": {
+    "title": "Welcome to the Data Quality Self Evaluation Tool",
+    "intro": "The Data Quality Self Evaluation Tool is designed to assess the fitness-for-use of citizen-generated data in accordance with Statistics Canada's data ethics principles and quality dimensions. This tool is designed to improve reporting on the Sustainable Development Goals (SDGs) and assist in addressing data gaps.",
+    "assessmentInfo": "By using this tool, you will be able to assess your data against:",
+    "bulletPoints": {
+      "item1": "Statistics Canada's core principles for data collection, editing, and dissemination",
+      "item2": "Five of the six dimensions of quality developed and used by Statistics Canada to ensure data quality"
+    },
+    "usage": "Anyone who wants to contribute data to help with SDG reporting should use this tool to evaluate the quality and ethical standards of their data before submission.",
+    "contactInfo": "If you wish to submit your data or contact an analyst after completing your evaluation, please reach out to us at:",
+    "email": "statcan.sdg-odd.statcan@statcan.gc.ca",
+    "startButton": "Start Assessment"
+  },
+  "mainContent": {
+    "tabs": {
+      "assessment": "Data Quality Self Evaluation Tool",
+      "license": "License"
+    }
+  },
+  "license": {
+    "title": "License Information",
+    "intro": "This page contains information about the terms and conditions of use for the Data Quality Self Evaluation Tool.",
+    "table": {
+      "headers": {
+        "section": "Section",
+        "details": "Details"
+      },
+      "termsSection": "Terms and Conditions of Use",
+      "termsDetails": {
+        "part1": "Unless otherwise noted, program source code included in this software is covered under Crown Copyright, Government of Canada, and is distributed under the MIT License.",
+        "part2": "The Canada wordmark and related graphics associated with this distribution are protected under trademark law and copyright law. No permission is granted to use them outside the parameters of the Government of Canada's corporate identity program.",
+        "part3": "Copyright title to all 3rd party software distributed with this software is held by the respective copyright holders as noted in those files. Users are asked to read the 3rd Party Licenses referenced with those assets."
+      },
+      "licenseSection": "MIT License",
+      "licenseDetails": {
+        "copyright": "Copyright © {{year}} Government of Canada - Gouvernement du Canada",
+        "part1": "Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:",
+        "part2": "The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.",
+        "part3": "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+      }
+    }
+  },
+  "assessment": {
+    "ethics": {
+      "title": "Part 1 - Data Ethics Principles",
+      "intro": {
+        "part1": "This first part is an assessment of the data against Statistics Canada core principles for data collection, editing and dissemination.",
+        "part2": "Please evaluate each element to confirm whether the data align with the principles or not."
+      },
+      "table": {
+        "caption": "Assessment of Data Ethics Principles",
+        "headers": {
+          "elements": "Elements",
+          "explanation": "Explanation",
+          "criteria": "Criteria",
+          "answer": "Answer"
+        },
+        "answers": {
+          "select": "Select",
+          "yes": "Yes",
+          "no": "No"
+        }
+      },
+      "results": {
+        "title": "Results of the Assessment Against Statistics Canada's core principles:",
+        "pass": "Pass",
+        "fail": "Fail",
+        "passMessage": "The data is consistent with Statistics Canada's core principles. You may proceed to the next step to evaluate the quality dimensions of your data.",
+        "failMessage": "The data is not consistent with Statistics Canada's core principles. Please reconsider your data, ensuring all core principles are met before resubmitting for a more comprehensive assessment."
+      },
+      "actions": {
+        "continue": "Continue",
+        "evaluate": "Evaluate"
+      },
+      "alerts": {
+        "answerAll": "Please provide answers for all ethics principles."
+      }
+    },
+    "quality": {
+      "title": "Part 2 - Quality Dimension",
+      "intro": "The second part of the evaluation rests on five of the six dimensions of quality developed and used by Statistics Canada. The dimension evaluating the relevance is not included below as it is an element evaluated by the benefit to Canadians core principle above. A definition and a series of criteria are provided with each dimension. Each dimension is evaluated and scored based on the compliance to the criteria, and an aggregated pass/fail rating is returned. Please evaluate each criterion to confirm whether the data align with the principles or not.",
+      "table": {
+        "caption": "Assessment of Quality Dimensions",
+        "headers": {
+          "elements": "Elements",
+          "definition": "Definition",
+          "criteria": "Criteria",
+          "answer": "Answer"
+        },
+        "tooltip": {
+          "title": "Points correspond to the number of criteria satisfied:",
+          "high": "3 points = High (all criteria satisfied)",
+          "medium": "2 points = Medium (2 criteria satisfied)",
+          "low": "1 point = Low (1 criterion satisfied)",
+          "notSufficient": "0 points = Not sufficient (no criteria satisfied)"
+        },
+        "options": {
+          "notSufficient": "0 - Not sufficient (no criteria satisfied)",
+          "low": "1 - Low (1 criterion satisfied)",
+          "medium": "2 - Medium (2 criteria satisfied)",
+          "high": "3 - High (all criteria satisfied)"
+        }
+      },
+      "summary": {
+        "title": "Results of the Assessment Against Statistics Canada's 5 Dimensions of Quality:",
+        "tableCaption": "Detailed Quality Dimensions Scores",
+        "tableHeaders": {
+          "dimension": "Dimension",
+          "score": "Score",
+          "assessment": "Assessment"
+        },
+        "totalScore": "Total score:",
+        "scoreDisplay": "{{score}}/{{maxScore}}",
+        "pass": "Pass",
+        "fail": "Fail"
+      },
+      "scoreText": {
+        "notSufficient": "Not sufficient",
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High"
+      },
+      "interpretation": {
+        "low": "The quality of the data as evaluated above is not considered fit for purpose, please consider addressing some of the evaluation criteria to improve its quality if possible.",
+        "medium": "The quality of the data as evaluated above is fit for purpose but could be improved, please consider addressing some of the evaluation criteria if possible.",
+        "high": "The quality of the data as evaluated above is considered fit for purpose."
+      },
+      "actions": {
+        "evaluate": "Evaluate",
+        "continue": "Continue"
+      }
+    },
+    "overall": {
+      "title": "Overall Assessment",
+      "summary": {
+        "title": "Summary",
+        "ethicsResults": "Part 1 - Ethics Assessment:",
+        "qualityResults": "Part 2 - Quality Assessment:",
+        "overallResults": "Overall Assessment Result:",
+        "pass": "Pass",
+        "fail": "Fail",
+        "warning": "Warning",
+        "score": "Score: {{score}}/15",
+        "totalScore": "Total score out of 15"
+      },
+      "messages": {
+        "bothPass": "The data passed both assessments and is fit-for-use for SDG reporting.",
+        "ethicsFailQualityPass": "The data does not meet the ethical standards and is not considered fit-for-use. The data must meet all data ethics principles to be suitable for SDG reporting.",
+        "ethicsPassQualityFail": "The data meets all data ethics principles, but does not meet the number of data quality criteria required. It is not considered fit-for-use for SDG reporting.",
+        "bothFail": "The data does not meet the ethical and quality standards, so it is not suitable for SDG reporting."
+      },
+      "qualitySummary": {
+        "title": "Quality Dimensions Summary",
+        "tableHeaders": {
+          "dimension": "Dimension",
+          "score": "Score",
+          "assessment": "Assessment"
+        }
+      },
+      "export": {
+        "title": "Export Assessment",
+        "formatLabel": "Export Format:",
+        "formats": {
+          "text": "Text",
+          "json": "JSON",
+          "csv": "CSV"
+        },
+        "buttons": {
+          "export": "Export Results",
+          "copy": "Copy to Clipboard",
+          "download": "Download",
+          "close": "Close"
+        },
+        "dialogTitle": "Export Assessment Results",
+        "preview": "Preview",
+        "summaryHeader": "SUMMARY",
+        "date": "Date",
+        "ethicsAssessment": "Data Ethics Assessment",
+        "message": "Part 1 Message",
+        "qualityAssessment": "Quality Dimensions Assessment",
+        "interpretation": "Quality Interpretation",
+        "score": "Quality Dimensions Score",
+        "result": "Overall Result",
+        "category": "Category",
+        "ethicsPrinciples": "DATA ETHICS PRINCIPLES",
+        "ethicsPrinciplesList": "Ethics Principles",
+        "ethicsPrinciple": "Data Ethics Principle",
+        "evaluation": "Evaluation",
+        "qualityDimensions": "QUALITY DIMENSIONS",
+        "qualityDimensionsList": "Quality Dimensions",
+        "qualityDimension": "Quality Dimension",
+        "scoreHeader": "Score",
+        "assessment": "Assessment",
+        "notEvaluated": "Not evaluated"
+      },
+      "actions": {
+        "reset": "Reset Assessment",
+        "home": "Return Home"
+      }
+    }
+  },
+  "ethicsPrinciples": {
+    "principle1": {
+      "element": "Benefit to Canadians",
+      "explanation": "The information acquired and utilized must provide a clear and easily communicated benefit to Canadians. The data must support Canada's reporting on the Sustainable Development Goals (SDGs) by enabling the measurement of an unreported indicator or by providing data allowing for more granular reporting of a reported indicator.",
+      "criteria": "Does the information provide a clear benefit to Canadians?"
+    },
+    "principle2": {
+      "element": "Fairness and do no harm",
+      "explanation": "If the disseminated data include potentially sensitive topics, it is important to have a plan in place to alleviate any potential harm, unfairness or risk of amplifying stereotypes and stigma on groups featured in the data. Additionally, the appropriate partners should be consulted throughout the process to discuss any potential fairness and harm issues. The data must use the appropriate terminology and categories to describe the various population groups featured.",
+      "criteria": "Are potentially sensitive topics handled in a way that ensures fairness and causes no harm?"
+    },
+    "principle3": {
+      "element": "Transparency and accountability",
+      "explanation": "The methods used to transform the information to produce statistics must be communicated clearly to ensure transparency. The methodology used must be documented and continually monitored alongside its outputs to ensure continued robustness and relevance for the reporting.",
+      "criteria": "Are the methods used monitored and communicated regularly alongside its outputs?"
+    },
+    "principle4": {
+      "element": "Privacy",
+      "explanation": "Protecting the privacy of respondents throughout the process is critical. Some examples of methods that can help include limiting access to confidential information to a need to know basis while limiting collection to strictly necessary information from fully consenting individuals. The privacy of respondents must be maintained during all the steps of the statistical process.",
+      "criteria": "Is the privacy of respondents respected?"
+    },
+    "principle5": {
+      "element": "Confidentiality",
+      "explanation": "Ensuring that the data does not contain confidential information, such as personal information or identifying characteristics is critical to ensuring confidentiality. The data used to measure and report on Canada's progress must not include any confidential information. Furthermore, it must be impossible to connect individuals to the disseminated data.",
+      "criteria": "Is confidentiality maintained?"
+    }
+  },
+  "qualityDimensions": {
+    "dimension1": {
+      "element": "Accuracy and reliability",
+      "definition": "The accuracy of statistical information is the degree to which the information correctly describes the phenomena it was designed to measure. Reliability reflects the degree to which statistical information correctly describes the phenomena it was designed to measure consistently over time. The data must accurately and reliably measure Canada's progress for a selected SDG indicator over time.",
+      "criteria": [
+        "There are no or few missing values for the most important statistics",
+        "There are established verification rules for the data",
+        "Documented quality assurance processes were followed"
+      ]
+    },
+    "dimension2": {
+      "element": "Timeliness and punctuality",
+      "definition": "The timeliness of statistical information refers to the delay between the information reference period and the date on which the information becomes available and punctuality refers to the difference between planned and actual availability. The data must provide a measure of Canada's progress on the SDGs at planned and regular intervals through time covering the period of the Agenda 2030.",
+      "criteria": [
+        "The data is available in a timely manner",
+        "The data is released at regular intervals",
+        "The data is published on planned dates"
+      ]
+    },
+    "dimension3": {
+      "element": "Accessibility and clarity",
+      "definition": "The accessibility and clarity of data and supporting information refer to the ease with which users can learn that the information exists, find it, view it and use it. The data and its supporting information must be easily accessible and harvested to facilitate its use in Canada's reporting on the SDGs.",
+      "criteria": [
+        "The data and supporting information are easily accessible",
+        "The data and supporting information are provided in an easy-to-use format"
+      ]
+    },
+    "dimension4": {
+      "element": "Interpretability",
+      "definition": "The interpretability of statistical information refers to the availability of supplementary information and metadata needed to interpret the data and possibly reproduce it. This information normally covers the underlying concepts, the reference period of the data, the variables and classifications used, the methodology of the data collection and processing. The data and any relevant information (including the ref period) must be available to support Canada's reporting on the SDGs over the Agenda 2030 (2015-2030).",
+      "criteria": [
+        "A description of the methods used to collect, process and analyze the data is available to users",
+        "The definition of all variables, code sets and classifications used is provided to the users",
+        "The reference period of the data is well defined and communicated"
+      ]
+    },
+    "dimension5": {
+      "element": "Coherence and comparability",
+      "definition": "The coherence and comparability of statistical information refer to the degree to which it can be reliably combined and compared with other statistical information and over time. The use of common concepts (e.g., terminology, classification, methodology etc.) and standards are critical to ensuring coherence and facilitate its use in Canada's reporting on the SDGs.",
+      "criteria": [
+        "Standard concepts are used",
+        "Comparability is maintained over time and across regions",
+        "Any inconsistencies or break in the time series are explained"
+      ]
+    }
+  },
+  "alerts": {
+    "title": "Alert",
+    "ok": "OK"
+  }
+} 
