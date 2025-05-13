@@ -88,7 +88,10 @@
     },
     "quality": {
       "title": "Partie 2 - Dimension de qualité",
-      "intro": "La deuxième partie de l'évaluation repose sur cinq des six dimensions de qualité développées et utilisées par Statistique Canada. La dimension évaluant la pertinence n'est pas incluse ci-dessous car c'est un élément évalué par le principe fondamental des avantages pour les Canadiens ci-dessus. Une définition et une série de critères sont fournis avec chaque dimension. Chaque dimension est évaluée et notée en fonction de la conformité aux critères, et une notation globale réussite/échec est retournée. Veuillez évaluer chaque critère pour confirmer si les données sont alignées avec les principes ou non.",
+      "intro": {
+        "part1": "La deuxième partie de l'évaluation repose sur cinq des six dimensions de qualité développées et utilisées par Statistique Canada. La dimension évaluant la pertinence n'est pas incluse ci-dessous car c'est un élément évalué par le principe fondamental des avantages pour les Canadiens ci-dessus. Une définition et une série de critères sont fournis avec chaque dimension. Chaque dimension est évaluée et notée en fonction de la conformité aux critères, et une notation globale réussite/échec est retournée.",
+        "part2": "Veuillez évaluer chaque critère pour confirmer si les données sont alignées avec les principes ou non."
+      },
       "table": {
         "caption": "Évaluation des dimensions de qualité",
         "headers": {
