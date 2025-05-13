@@ -31,7 +31,7 @@ const License = ({ currentYear }: { currentYear: number }) => {
       </CardHeader>
       
       <CardContent>
-        <p className="text-[var(--text-color)] mx-auto mb-6">
+        <p className="text-[var(--text-color)] mx-auto mb-6 text-lg">
           {t('license.intro')}
         </p>
         
@@ -41,13 +41,13 @@ const License = ({ currentYear }: { currentYear: number }) => {
             <TableHeader className="text-lg">
               <TableRow>
                 <TableHead 
-                  className="bg-[var(--primary-color)] text-lg font-medium p-4 w-1/3 text-white"
+                  className="bg-[var(--primary-color)] text-lg font-bold p-4 w-1/3 text-white"
                   scope="col"
                 >
                   {t('license.table.headers.section')}
                 </TableHead>
                 <TableHead 
-                  className="bg-[var(--primary-color)] text-lg font-medium p-4 w-2/3 text-white"
+                  className="bg-[var(--primary-color)] text-lg font-bold p-4 w-2/3 text-white"
                   scope="col"
                 >
                   {t('license.table.headers.details')}
