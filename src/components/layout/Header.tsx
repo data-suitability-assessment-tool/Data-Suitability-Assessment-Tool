@@ -31,7 +31,7 @@ const Header = ({ onTitleClick }: HeaderProps) => {
         <div className="flex flex-col items-center mb-4 sm:mb-0">
           <h1 
             id="siteTitle" 
-            className="text-2xl font-bold cursor-pointer hover:text-white/90 transition-colors"
+            className="text-3xl mb-2 mt-4 font-bold cursor-pointer hover:text-white/90 transition-colors"
             onClick={onTitleClick}
             tabIndex={0}
             role="button"
