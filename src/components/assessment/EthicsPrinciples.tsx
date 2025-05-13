@@ -121,11 +121,12 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
       </CardHeader>
 
       <CardContent>
-        <div className="mb-5 text-[var(--text-color)]">
+        <div className="mb-6 text-[var(--text-color)]">
           <p className="text-lg">
             {t('assessment.ethics.intro.part1')}
           </p>
-          <p className="mt-3 text-[var(--text-color)] opacity-80">
+          <br></br>
+          <p className="text-lg">
             {t('assessment.ethics.intro.part2')}
           </p>
         </div>
@@ -148,25 +149,48 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
                   className={index % 2 === 1 ? "bg-[var(--light-blue)]" : "bg-white"}
                 >
                   <TableCell className="font-medium">
-                    <strong id={`ethics-el-${principle.id}`} className="text-[var(--primary-color)]">{t(`ethicsPrinciples.principle${principle.id}.element`)}</strong>
+                    <strong id={`ethics-el-${principle.id}`} className="text-[var(--primary-color)] text-base">{t(`ethicsPrinciples.principle${principle.id}.element`)}</strong>
                   </TableCell>
-                  <TableCell>{t(`ethicsPrinciples.principle${principle.id}.explanation`)}</TableCell>
-                  <TableCell id={`ethics-crit-${principle.id}`}>{t(`ethicsPrinciples.principle${principle.id}.criteria`)}</TableCell>
+                  <TableCell className="text-base">{t(`ethicsPrinciples.principle${principle.id}.explanation`)}</TableCell>
+                  <TableCell id={`ethics-crit-${principle.id}`} className="text-base">{t(`ethicsPrinciples.principle${principle.id}.criteria`)}</TableCell>
                   <TableCell>
                     <Select
                       value={ethicsAnswers[principle.id] || ""}
                       onValueChange={(value) => handleAnswerChange(principle.id, value)}
                     >
                       <SelectTrigger 
-                        className="w-full shadow-sm transition-all hover:border-[var(--secondary-color)]" 
+                        className="w-full shadow-sm transition-all hover:border-[var(--secondary-color)] text-base" 
                         aria-labelledby={`ethics-el-${principle.id} ethics-crit-${principle.id}`}
+                        style={{ fontSize: '1rem' }}
                       >
-                        <SelectValue placeholder={t('assessment.ethics.table.answers.select')} />
+                        <SelectValue 
+                          placeholder={t('assessment.ethics.table.answers.select')} 
+                          className="text-base"
+                          style={{ fontSize: '1rem' }}
+                        />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="unselected">{t('assessment.ethics.table.answers.select')}</SelectItem>
-                        <SelectItem value="Yes">{t('assessment.ethics.table.answers.yes')}</SelectItem>
-                        <SelectItem value="No">{t('assessment.ethics.table.answers.no')}</SelectItem>
+                        <SelectItem 
+                          value="unselected" 
+                          className="text-base py-3"
+                          style={{ fontSize: '1rem' }}
+                        >
+                          <span style={{ fontSize: '1rem' }}>{t('assessment.ethics.table.answers.select')}</span>
+                        </SelectItem>
+                        <SelectItem 
+                          value="Yes" 
+                          className="text-base py-3"
+                          style={{ fontSize: '1rem' }}
+                        >
+                          <span style={{ fontSize: '1rem' }}>{t('assessment.ethics.table.answers.yes')}</span>
+                        </SelectItem>
+                        <SelectItem 
+                          value="No" 
+                          className="text-base py-3"
+                          style={{ fontSize: '1rem' }}
+                        >
+                          <span style={{ fontSize: '1rem' }}>{t('assessment.ethics.table.answers.no')}</span>
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                   </TableCell>
