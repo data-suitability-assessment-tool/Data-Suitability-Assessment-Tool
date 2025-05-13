@@ -1,6 +1,6 @@
-# Data Quality Assessment Tool
+# Data Quality Self Evaluation Tool
 
-This tool helps assess the quality and ethical aspects of data.
+The Data Quality Self Evaluation Tool is designed to assess the fitness-for-use of citizen-generated data in accordance with Statistics Canada's data ethics principles and quality dimensions. This tool is designed to improve reporting on the Sustainable Development Goals (SDGs) and assist in addressing data gaps.
 
 ## Development
 
