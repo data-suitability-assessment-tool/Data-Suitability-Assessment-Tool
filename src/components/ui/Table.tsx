@@ -70,7 +70,7 @@ const TableHead = React.forwardRef<HTMLTableCellElement, TableHeadProps>(
   ({ className, scope = "col", ...props }, ref) => (
     <th
       ref={ref}
-      className={`bg-[var(--primary-color)] text-white p-3 text-left align-middle font-medium ${className}`}
+      className={`bg-[var(--primary-color)] text-white p-3 text-left align-middle font-bold ${className}`}
       scope={scope}
       role="columnheader"
       {...props}
