@@ -183,7 +183,7 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
                     {dimension.criteria.map((_, idx) => (
                       <React.Fragment key={idx}>
                         {idx + 1}. {t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}
-                        {idx < dimension.criteria.length - 1 && <br />}
+                        <br /> <br />
                       </React.Fragment>
                     ))}
                   </TableCell>
