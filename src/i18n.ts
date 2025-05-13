@@ -6,6 +6,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import enTranslation from './locales/en.json';
 import frTranslation from './locales/fr.json';
 
+// Initialize i18next
 i18n
   // detect user language
   .use(LanguageDetector)
@@ -22,6 +23,7 @@ i18n
       }
     },
     fallbackLng: 'en',
+    lng: localStorage.getItem('i18nextLng') || navigator.language?.substring(0, 2) === 'fr' ? 'fr' : 'en',
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
       format: function(value, format) {
@@ -35,12 +37,20 @@ i18n
     detection: {
       order: ['localStorage', 'navigator'],
       caches: ['localStorage'],
-    }
+      lookupLocalStorage: 'i18nextLng'
+    },
+    debug: false // Only enable this in development if needed
   });
 
 // Log when i18n is initialized
 i18n.on('initialized', () => {
-  console.log('i18n initialized successfully');
+  console.log('i18n initialized successfully with language:', i18n.language);
+});
+
+// Handle language changes
+i18n.on('languageChanged', (lng) => {
+  console.log('Language changed to:', lng);
+  document.documentElement.lang = lng;
 });
 
 export default i18n; 
