@@ -22,10 +22,9 @@ i18n
       }
     },
     fallbackLng: 'en',
-    debug: process.env.NODE_ENV === 'development',
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
-      format: function(value, format, lng) {
+      format: function(value, format) {
         // Special formatting for year to ensure it's treated as a number
         if (format === 'year' && typeof value === 'number') {
           return value.toString();
