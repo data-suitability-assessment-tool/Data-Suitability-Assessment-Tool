@@ -6,6 +6,22 @@ import { Button } from '../ui/Button';
 import ResultCard from '../ui/ResultCard';
 import TooltipInfo from '../ui/TooltipInfo';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/Card';
+import { 
+  Table, 
+  TableHeader, 
+  TableBody, 
+  TableHead, 
+  TableRow, 
+  TableCell,
+  TableCaption 
+} from '../ui/Table';
+import { 
+  Select, 
+  SelectTrigger, 
+  SelectValue, 
+  SelectContent, 
+  SelectItem 
+} from '../ui/Select';
 
 interface QualityDimensionsProps {
   qualityScores: Record<string, number>;
@@ -55,31 +71,30 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
   const generateQualitySummary = () => {
     return (
       <div className="overflow-hidden rounded-lg shadow-md">
-        <table className="w-full border-collapse my-5" aria-labelledby="quality-summary-title">
-          <caption className="text-left font-bold mb-2 text-[var(--primary-color)]">{t('assessment.quality.summary.tableCaption')}</caption>
-          <thead>
-            <tr>
-              <th scope="col" className="bg-[var(--primary-color)] text-white p-3 text-left">{t('assessment.quality.summary.tableHeaders.dimension')}</th>
-              <th scope="col" className="bg-[var(--primary-color)] text-white p-3 text-center">{t('assessment.quality.summary.tableHeaders.score')}</th>
-              <th scope="col" className="bg-[var(--primary-color)] text-white p-3 text-left">{t('assessment.quality.summary.tableHeaders.assessment')}</th>
-            </tr>
-          </thead>
-          <tbody>
+        <Table aria-labelledby="quality-summary-title">
+          <TableHeader>
+            <TableRow>
+              <TableHead>{t('assessment.quality.summary.tableHeaders.dimension')}</TableHead>
+              <TableHead className="text-center">{t('assessment.quality.summary.tableHeaders.score')}</TableHead>
+              <TableHead>{t('assessment.quality.summary.tableHeaders.assessment')}</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {QUALITY_DIMENSIONS.map((dimension, index) => {
               const score = qualityScores[dimension.id] || 0;
               const assessment = getQualityScoreText(score);
               return (
-                <tr key={dimension.id} className={index % 2 === 0 ? "bg-white" : "bg-[var(--light-blue)]"}>
-                  <th scope="row" className="p-3 border border-[var(--border-color)] font-medium text-left text-[var(--primary-color)]">{t(`qualityDimensions.dimension${dimension.id}.element`)}</th>
-                  <td className="p-3 border border-[var(--border-color)] text-center font-semibold">
+                <TableRow key={dimension.id} className={index % 2 === 0 ? "bg-white" : "bg-[var(--light-blue)]"}>
+                  <TableCell className="font-bold text-[var(--primary-color)]">{t(`qualityDimensions.dimension${dimension.id}.element`)}</TableCell>
+                  <TableCell className="text-start font-semibold">
                     {t('assessment.quality.summary.scoreDisplay', { score: score, maxScore: dimension.maxScore })}
-                  </td>
-                  <td className="p-3 border border-[var(--border-color)]">{assessment}</td>
-                </tr>
+                  </TableCell>
+                  <TableCell>{assessment}</TableCell>
+                </TableRow>
               );
             })}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
     );
   };
@@ -121,120 +136,185 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
   return (
     <Card className="backdrop-blur-sm bg-white/90 shadow-lg border border-[var(--border-color)] p-6 rounded-lg transition-all hover:shadow-xl">
       <CardHeader>
-      <CardTitle id="quality-dimensions-title">
-        {t('assessment.quality.title')}
-      </CardTitle>
+        <CardTitle id="quality-dimensions-title">
+          {t('assessment.quality.title')}
+        </CardTitle>
       </CardHeader>
 
-    <CardContent>
-      <div className="intro-text mb-6">
-        <p className="text-lg">
-          {t('assessment.quality.intro')}
-        </p>
-      </div>
+      <CardContent>
+        <div className="intro-text mb-6">
+          <p className="text-lg">
+            {t('assessment.quality.intro.part1')}
+          </p>
+          <br></br>
+          <p className="text-lg">
+            {t('assessment.quality.intro.part2')}
+          </p>
+        </div>
 
-      <div className="overflow-hidden rounded-lg shadow-md mb-8">
-        <table className="w-full border-collapse" aria-labelledby="quality-dimensions-title">
-          <caption className="sr-only">{t('assessment.quality.table.caption')}</caption>
-          <thead className="text-lg">
-            <tr>
-              <th scope="col" className="bg-[var(--primary-color)] text-white p-4 text-left">{t('assessment.quality.table.headers.elements')}</th>
-              <th scope="col" className="bg-[var(--primary-color)] text-white p-4 text-left">{t('assessment.quality.table.headers.definition')}</th>
-              <th scope="col" className="bg-[var(--primary-color)] text-white p-4 text-left">{t('assessment.quality.table.headers.criteria')}</th>
-              <th scope="col" className="bg-[var(--primary-color)] text-white p-4 text-left">
-                {t('assessment.quality.table.headers.answer')}
-                <TooltipInfo id="tooltip-points-info">
-                  {t('assessment.quality.table.tooltip.title')}<br />
-                  {t('assessment.quality.table.tooltip.high')}<br />
-                  {t('assessment.quality.table.tooltip.medium')}<br />
-                  {t('assessment.quality.table.tooltip.low')}<br />
-                  {t('assessment.quality.table.tooltip.notSufficient')}
-                </TooltipInfo>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {QUALITY_DIMENSIONS.map((dimension, index) => (
-              <tr key={dimension.id} className={index % 2 === 0 ? "bg-white" : "bg-[var(--light-blue)]"}>
-                <th scope="row" className="p-4 border-b border-[var(--border-color)] font-bold text-left text-[var(--primary-color)]">
-                  <span id={`quality-el-${dimension.id}`}>{t(`qualityDimensions.dimension${dimension.id}.element`)}</span>
-                </th>
-                <td className="p-4 border-b border-[var(--border-color)]">{t(`qualityDimensions.dimension${dimension.id}.definition`)}</td>
-                <td className="p-4 border-b border-[var(--border-color)]" id={`quality-crit-${dimension.id}`}>
-                  {dimension.criteria.map((_, idx) => (
-                    <React.Fragment key={idx}>
-                      {idx + 1}. {t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}
-                      {idx < dimension.criteria.length - 1 && <br />}
-                    </React.Fragment>
-                  ))}
-                </td>
-                <td className="p-4 border-b border-[var(--border-color)]">
-                  <div className="relative w-full">
-                    <select
-                      className="w-full p-3 border border-[var(--border-color)] rounded-md shadow-sm appearance-none bg-white transition-all hover:border-[var(--secondary-color)] focus:outline-none focus:ring-2 focus:ring-[var(--secondary-color)] focus:border-[var(--secondary-color)]"
-                      value={qualityScores[dimension.id] || 0}
-                      onChange={(e) => handleScoreChange(dimension.id, parseInt(e.target.value))}
-                      aria-labelledby={`quality-el-${dimension.id} quality-crit-${dimension.id}`}
+        <div className="overflow-hidden rounded-lg shadow-md mb-8">
+          <Table aria-labelledby="quality-dimensions-title">
+            <TableCaption className="sr-only">{t('assessment.quality.table.caption')}</TableCaption>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="text-lg">{t('assessment.quality.table.headers.elements')}</TableHead>
+                <TableHead className="text-lg">{t('assessment.quality.table.headers.definition')}</TableHead>
+                <TableHead className="text-lg">{t('assessment.quality.table.headers.criteria')}</TableHead>
+                <TableHead className="text-lg">
+                  {t('assessment.quality.table.headers.answer')}
+                  <TooltipInfo id="tooltip-points-info">
+                    {t('assessment.quality.table.tooltip.title')}<br />
+                    {t('assessment.quality.table.tooltip.high')}<br />
+                    {t('assessment.quality.table.tooltip.medium')}<br />
+                    {t('assessment.quality.table.tooltip.low')}<br />
+                    {t('assessment.quality.table.tooltip.notSufficient')}
+                  </TooltipInfo>
+                </TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {QUALITY_DIMENSIONS.map((dimension, index) => (
+                <TableRow key={dimension.id} className={index % 2 === 0 ? "bg-white" : "bg-[var(--light-blue)]"}>
+                  <TableCell className="text-base font-bold text-[var(--primary-color)]">
+                    <span id={`quality-el-${dimension.id}`}>{t(`qualityDimensions.dimension${dimension.id}.element`)}</span>
+                  </TableCell>
+                  <TableCell className="text-base">{t(`qualityDimensions.dimension${dimension.id}.definition`)}</TableCell>
+                  <TableCell id={`quality-crit-${dimension.id}`} className="text-base">
+                    {dimension.criteria.map((_, idx) => (
+                      <React.Fragment key={idx}>
+                        {idx + 1}. {t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}
+                        {idx < dimension.criteria.length - 1 && <br />}
+                      </React.Fragment>
+                    ))}
+                  </TableCell>
+                  <TableCell>
+                    <Select
+                      value={qualityScores[dimension.id]?.toString() || "0"}
+                      onValueChange={(value) => handleScoreChange(dimension.id, parseInt(value))}
                     >
-                      <option value={0}>
-                        {t('assessment.quality.table.options.notSufficient')}
-                      </option>
-                      <option value={1}>{t('assessment.quality.table.options.low')}</option>
-                      <option value={2}>{t('assessment.quality.table.options.medium')}</option>
-                      <option value={3}>{t('assessment.quality.table.options.high')}</option>
-                    </select>
-                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                      <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                      </svg>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+                      <SelectTrigger 
+                        className="w-full shadow-sm transition-all hover:border-[var(--secondary-color)]" 
+                        aria-labelledby={`quality-el-${dimension.id} quality-crit-${dimension.id}`}
+                        style={{ fontSize: '1rem' }}
+                      >
+                        <SelectValue 
+                          placeholder={t('assessment.quality.table.options.select')} 
+                          className="text-base"
+                          style={{ fontSize: '1rem' }}
+                        />
+                      </SelectTrigger>
+                      {dimension.id === "3" ? (
+                        <SelectContent 
+                          position="popper"
+                          sideOffset={5}
+                          align="start"
+                        >
+                          <SelectItem 
+                            value="0"
+                            className="text-base py-3"
+                            style={{ fontSize: '1rem' }}
+                          >
+                            <span style={{ fontSize: '1rem' }}>0 - {t('assessment.quality.scoreText.notSufficient')}</span>
+                          </SelectItem>
+                          <SelectItem 
+                            value="1"
+                            className="text-base py-3"
+                            style={{ fontSize: '1rem' }}
+                          >
+                            <span style={{ fontSize: '1rem' }}>1 - {t('assessment.quality.scoreText.low')}</span>
+                          </SelectItem>
+                          <SelectItem 
+                            value="3"
+                            className="text-base py-3"
+                            style={{ fontSize: '1rem' }}
+                          >
+                            <span style={{ fontSize: '1rem' }}>3 - {t('assessment.quality.scoreText.high')}</span>
+                          </SelectItem>
+                        </SelectContent>
+                      ) : (
+                        <SelectContent 
+                          position="popper"
+                          sideOffset={5}
+                          align="start"
+                        >
+                          <SelectItem 
+                            value="0"
+                            className="text-base py-3"
+                            style={{ fontSize: '1rem' }}
+                          >
+                            <span style={{ fontSize: '1rem' }}>0 - {t('assessment.quality.scoreText.notSufficient')}</span>
+                          </SelectItem>
+                          <SelectItem 
+                            value="1"
+                            className="text-base py-3"
+                            style={{ fontSize: '1rem' }}
+                          >
+                            <span style={{ fontSize: '1rem' }}>1 - {t('assessment.quality.scoreText.low')}</span>
+                          </SelectItem>
+                          <SelectItem 
+                            value="2"
+                            className="text-base py-3"
+                            style={{ fontSize: '1rem' }}
+                          >
+                            <span style={{ fontSize: '1rem' }}>2 - {t('assessment.quality.scoreText.medium')}</span>
+                          </SelectItem>
+                          <SelectItem 
+                            value="3"
+                            className="text-base py-3"
+                            style={{ fontSize: '1rem' }}
+                          >
+                            <span style={{ fontSize: '1rem' }}>3 - {t('assessment.quality.scoreText.high')}</span>
+                          </SelectItem>
+                        </SelectContent>
+                      )}
+                    </Select>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
 
-      <div 
-        className="section-header font-bold mt-8 mb-4 text-xl"
-        id="quality-summary-title"
-      >
-        {t('assessment.quality.summary.title')}
-      </div>
-      
-      <div 
-        ref={resultRef}
-        tabIndex={-1}
-        aria-labelledby="quality-summary-title"
-        className="transition-all"
-      >
-        {showResult && qualitySummary}
-        
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-6 bg-[var(--light-blue)]/30 p-4 rounded-lg">
-          <div>
-            <span className="text-lg">
-              {t('assessment.quality.summary.totalScore')} <span className="font-bold text-[var(--primary-color)]">
-                {t('assessment.quality.summary.scoreDisplay', { score: totalScore, maxScore: 15 })}
-              </span>
-            </span>
-          </div>
+        <div 
+          className="section-header font-bold mt-8 mb-4 text-xl"
+          id="quality-summary-title"
+        >
+          {t('assessment.quality.summary.title')}
         </div>
         
-        {showResult && qualityPass !== null && (
-          <div className="mt-5 transform transition-all text-center">
-            <ResultCard result={qualityPass ? 'pass' : 'fail'}>
-              <span className="block text-center">{qualityPass ? t('assessment.quality.summary.pass') : t('assessment.quality.summary.fail')}</span>
-            </ResultCard>
+        <div 
+          ref={resultRef}
+          tabIndex={-1}
+          aria-labelledby="quality-summary-title"
+          className="transition-all"
+        >
+          {showResult && qualitySummary}
+          
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-6 bg-[var(--light-blue)]/30 p-4 rounded-lg">
+            <div>
+              <span className="text-lg">
+                {t('assessment.quality.summary.totalScore')} <span className="font-bold text-[var(--primary-color)]">
+                  {t('assessment.quality.summary.scoreDisplay', { score: totalScore, maxScore: 15 })}
+                </span>
+              </span>
+            </div>
           </div>
-        )}
-        
-        {showResult && qualityInterpretation && (
-          <div className="mt-4 italic bg-[var(--light-blue)]/50 p-4 rounded-lg shadow-sm" role="status" aria-live="polite">
-            {qualityInterpretation}
-          </div>
-        )}
-      </div>
+          
+          {showResult && qualityPass !== null && (
+            <div className="mt-5 transform transition-all text-center">
+              <ResultCard result={qualityPass ? 'pass' : 'fail'}>
+                <span className="block text-center">{qualityPass ? t('assessment.quality.summary.pass') : t('assessment.quality.summary.fail')}</span>
+              </ResultCard>
+            </div>
+          )}
+          
+          {showResult && qualityInterpretation && (
+            <div className="mt-4 italic bg-[var(--light-blue)]/50 p-4 rounded-lg shadow-sm" role="status" aria-live="polite">
+              {qualityInterpretation}
+            </div>
+          )}
+        </div>
+      </CardContent>
       
       <CardFooter className="text-center gap-3">
         {!showResult ? (
@@ -255,7 +335,6 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
           </Button>
         )}
       </CardFooter>
-    </CardContent>
     </Card>
   );
 };
