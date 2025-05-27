@@ -48,6 +48,27 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
   const [showResult, setShowResult] = React.useState(false);
   const resultRef = useRef<HTMLDivElement>(null);
 
+  // Initialize dimensions with default values if not done already
+  React.useEffect(() => {
+    // Check if we need to initialize
+    const needsInitialization = QUALITY_DIMENSIONS.some(dimension => 
+      qualityScores[dimension.id] === undefined
+    );
+    
+    if (needsInitialization) {
+      const initialScores = { ...qualityScores };
+      
+      // Set default value of 0 for any uninitialized dimension
+      QUALITY_DIMENSIONS.forEach(dimension => {
+        if (initialScores[dimension.id] === undefined) {
+          initialScores[dimension.id] = 0;
+        }
+      });
+      
+      setQualityScores(initialScores);
+    }
+  }, []);
+
   const getQualityScoreText = (score: number) => {
     if (score === 0) return t('assessment.quality.scoreText.notSufficient');
     if (score === 1) return t('assessment.quality.scoreText.low');
@@ -100,11 +121,19 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
   };
 
   const updateQualityResult = () => {
-    const isQualityPass = totalScore >= 8;
+    // Check if any dimension has a score of 0
+    const hasZeroScore = QUALITY_DIMENSIONS.some(dimension => 
+      qualityScores[dimension.id] === 0
+    );
+    
+    // Fail if any score is 0 or if total score is less than 8
+    const isQualityPass = !hasZeroScore && totalScore >= 8;
     setQualityPass(isQualityPass);
     
     let message = '';
-    if (totalScore <= 7) {
+    if (hasZeroScore) {
+      message = t('assessment.quality.interpretation.fail');
+    } else if (totalScore <= 7) {
       message = t('assessment.quality.interpretation.low');
     } else if (totalScore >= 8 && totalScore <= 10) {
       message = t('assessment.quality.interpretation.medium');
