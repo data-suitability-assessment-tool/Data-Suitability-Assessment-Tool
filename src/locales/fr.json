@@ -17,6 +17,7 @@
       "item2": "Cinq des six dimensions de qualité développées et utilisées par Statistique Canada pour assurer la qualité des données"
     },
     "usage": "Toute personne qui souhaite contribuer des données pour aider à la production de rapports sur les ODD devrait utiliser cet outil pour évaluer la qualité et les normes éthiques de ses données avant de les soumettre.",
+    "noteToUsers": "Veuillez noter que l'outil d'auto-évaluation de la qualité des données n'est pas suffisant pour évaluer si les données répondent aux normes officielles de la statistique.",
     "contactInfo": "Si vous souhaitez soumettre vos données ou contacter un analyste après avoir terminé votre évaluation, veuillez nous contacter à :",
     "email": "statcan.sdg-odd.statcan@statcan.gc.ca",
     "startButton": "Commencer l'évaluation"
@@ -41,6 +42,8 @@
         "part2": "Le mot-symbole Canada et les graphiques associés à cette distribution sont protégés par le droit des marques et le droit d'auteur. Aucune autorisation n'est accordée pour les utiliser en dehors des paramètres du programme d'identité visuelle du gouvernement du Canada.",
         "part3": "Le titre de droit d'auteur de tous les logiciels tiers distribués avec ce logiciel est détenu par les détenteurs de droits d'auteur respectifs, comme indiqué dans ces fichiers. Les utilisateurs sont invités à lire les licences tierces référencées avec ces actifs."
       },
+      "privacySection": "Confidentialité et stockage des données",
+      "privacyDetails": "Cet outil ne stocke, ne collecte ni ne transmet aucune donnée d'entrée utilisateur ou d'évaluation. Toutes les évaluations sont effectuées localement dans votre navigateur et aucune information n'est envoyée à des serveurs externes ou stockée par Statistique Canada.",
       "licenseSection": "Licence MIT",
       "licenseDetails": {
         "copyright": "Copyright © {{year}} Gouvernement du Canada - Government of Canada",
@@ -75,8 +78,8 @@
         "title": "Résultats de l'évaluation par rapport aux principes fondamentaux de Statistique Canada :",
         "pass": "Réussite",
         "fail": "Échec",
-        "passMessage": "Les données sont conformes aux principes fondamentaux de Statistique Canada. Vous pouvez passer à l'étape suivante pour évaluer les dimensions de qualité de vos données.",
-        "failMessage": "Les données ne sont pas conformes aux principes fondamentaux de Statistique Canada. Veuillez reconsidérer vos données, en vous assurant que tous les principes fondamentaux sont respectés avant de les soumettre à nouveau pour une évaluation plus complète."
+        "passMessage": "Les données sont conformes aux principes fondamentaux de Statistique Canada et sont considérées comme apte à l'emploi pour les rapports sur les ODD de la perspective de l'éthique des données.",
+        "failMessage": "Les données ne sont pas conformes aux principes fondamentaux de Statistique Canada. Veuillez réviser vos données pour s'assurer que tous les principes fondamentaux sont respectés pour être considérées comme apte à l'emploi pour les rapports sur les ODD de la perspective de l'éthique des données."
       },
       "actions": {
         "continue": "Continuer",
@@ -115,7 +118,7 @@
         }
       },
       "summary": {
-        "title": "Résultats de l'évaluation par rapport aux 5 dimensions de qualité de Statistique Canada :",
+        "title": "Résultats de l'évaluation par rapport aux dimensions de qualité de Statistique Canada :",
         "tableCaption": "Scores détaillés des dimensions de qualité",
         "tableHeaders": {
           "dimension": "Dimension",
@@ -134,9 +137,10 @@
         "high": "Élevé"
       },
       "interpretation": {
-        "low": "La qualité des données telle qu'évaluée ci-dessus n'est pas considérée comme adaptée à l'usage prévu. Veuillez envisager de répondre à certains des critères d'évaluation pour améliorer sa qualité si possible.",
-        "medium": "La qualité des données telle qu'évaluée ci-dessus est adaptée à l'usage prévu mais pourrait être améliorée. Veuillez envisager de répondre à certains des critères d'évaluation si possible.",
-        "high": "La qualité des données telle qu'évaluée ci-dessus est considérée comme adaptée à l'usage prévu."
+        "low": "La qualité des données telle qu'évaluée ci-dessus n'est pas considérée comme apte à l'emploi pour les rapports sur les ODD. Veuillez envisager de répondre à certains des critères d'évaluation pour améliorer sa qualité si possible.",
+        "medium": "La qualité des données telle qu'évaluée ci-dessus est apte à l'emploi pour les rapports sur les ODD mais pourrait être améliorée. Veuillez envisager de répondre à certains des critères d'évaluation si possible.",
+        "high": "La qualité des données telle qu'évaluée ci-dessus est apte à l'emploi pour les rapports sur les ODD.",
+        "fail": "La qualité des données telle qu'évaluée ci-dessus a au moins une dimension de qualité qui n'est pas suffisante et n'est donc pas apte à l'emploi pour les rapports sur les ODD. Veuillez envisager de répondre à certains des critères d'évaluation pour améliorer sa qualité si possible."
       },
       "actions": {
         "evaluate": "Évaluer",
@@ -147,8 +151,8 @@
       "title": "Évaluation globale",
       "summary": {
         "title": "Résumé",
-        "ethicsResults": "Partie 1 - Évaluation éthique :",
-        "qualityResults": "Partie 2 - Évaluation de la qualité :",
+        "ethicsResults": "Partie 1 - Évaluation des principes d'éthique des données :",
+        "qualityResults": "Partie 2 - Évaluation des dimensions de qualité :",
         "overallResults": "Résultat global de l'évaluation :",
         "pass": "Réussite",
         "fail": "Échec",
@@ -157,10 +161,10 @@
         "totalScore": "Score total sur 15"
       },
       "messages": {
-        "bothPass": "Les données ont réussi les deux évaluations et sont adaptées à l'usage pour les rapports sur les ODD.",
-        "ethicsFailQualityPass": "Les données ne répondent pas aux normes éthiques et ne sont pas considérées comme adaptées à l'usage. Les données doivent respecter tous les principes d'éthique des données pour être adaptées aux rapports sur les ODD.",
-        "ethicsPassQualityFail": "Les données respectent tous les principes d'éthique des données, mais ne répondent pas au nombre requis de critères de qualité des données. Elles ne sont pas considérées comme adaptées à l'usage pour les rapports sur les ODD.",
-        "bothFail": "Les données ne répondent pas aux normes éthiques et de qualité, elles ne sont donc pas adaptées aux rapports sur les ODD."
+        "bothPass": "Les données ont réussi les deux évaluations et sont apte à l'emploi pour les rapports sur les ODD.",
+        "ethicsFailQualityPass": "Les données ne répondent pas aux normes éthiques et ne sont pas considérées comme apte à l'emploi pour les rapports sur les ODD. Les données doivent respecter tous les principes d'éthique des données pour être apte à l'emploi pour les rapports sur les ODD.",
+        "ethicsPassQualityFail": "Les données respectent tous les principes d'éthique des données, mais ne répondent pas au nombre requis de critères de qualité des données. Elles ne sont pas considérées comme apte à l'emploi pour les rapports sur les ODD.",
+        "bothFail": "Les données ne répondent pas aux normes éthiques et de qualité, elles ne sont donc pas apte à l'emploi pour les rapports sur les ODD."
       },
       "qualitySummary": {
         "title": "Résumé des dimensions de qualité",
@@ -213,7 +217,7 @@
   },
   "ethicsPrinciples": {
     "principle1": {
-      "element": "Avantages pour les Canadiens",
+      "element": "Avantages pour la population canadienne",
       "explanation": "Les informations acquises et utilisées doivent procurer un avantage clair et facilement communicable aux Canadiens. Les données doivent soutenir les rapports du Canada sur les Objectifs de développement durable (ODD) en permettant la mesure d'un indicateur non signalé ou en fournissant des données permettant une déclaration plus granulaire d'un indicateur rapporté.",
       "criteria": "Les informations procurent-elles un avantage clair aux Canadiens ?"
     },
