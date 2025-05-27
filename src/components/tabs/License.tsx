@@ -68,6 +68,14 @@ const License = ({ currentYear }: { currentYear: number }) => {
                 </TableCell>
               </TableRow>
               <TableRow className="bg-[var(--light-blue)] hover:bg-[var(--light-blue)]/70 transition-colors">
+                <TableCell className="font-bold text-[var(--primary-color)] p-4 border-b border-[var(--border-color)] align-top">
+                  {t('license.table.privacySection')}
+                </TableCell>
+                <TableCell className="p-4 border-b border-[var(--border-color)]">
+                  <p>{t('license.table.privacyDetails')}</p>
+                </TableCell>
+              </TableRow>
+              <TableRow className="bg-white hover:bg-[var(--light-blue)]/30 transition-colors">
                 <TableCell className="font-bold text-[var(--primary-color)] p-4 align-top">
                   {t('license.table.licenseSection')}
                 </TableCell>
