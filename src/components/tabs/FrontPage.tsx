@@ -39,6 +39,7 @@ const FrontPage: React.FC<FrontPageProps> = ({ onStartAssessment }) => {
               </ul>
               
               <p className="text-lg">{t('frontPage.usage')}</p>
+              <p className="mt-4 text-lg">{t('frontPage.noteToUsers')}</p>
             </div>
           </div>
         </div>
