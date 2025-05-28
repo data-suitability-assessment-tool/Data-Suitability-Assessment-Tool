@@ -30,7 +30,7 @@
   },
   "license": {
     "title": "Informations de licence",
-    "intro": "Cette page contient des informations sur les conditions d'utilisation de l'outil d'auto-évaluation de la qualité des données.",
+    "intro": "Cette page contient des informations sur les conditions d'utilisation, la confidentialité et le stockage des données, et la licence pour l'outil d'auto-évaluation de la qualité des données.",
     "table": {
       "headers": {
         "section": "Section",
@@ -86,17 +86,17 @@
         "evaluate": "Évaluer"
       },
       "alerts": {
-        "answerAll": "Veuillez fournir des réponses pour tous les principes d'éthique."
+        "answerAll": "Veuillez fournir des réponses pour tous les principes fondamentaux."
       }
     },
     "quality": {
-      "title": "Partie 2 - Dimension de qualité",
+      "title": "Partie 2 - Dimensions de qualité",
       "intro": {
         "part1": "La deuxième partie de l'évaluation repose sur cinq des six dimensions de qualité développées et utilisées par Statistique Canada. La dimension évaluant la pertinence n'est pas incluse ci-dessous car c'est un élément évalué par le principe fondamental des avantages pour les Canadiens ci-dessus. Une définition et une série de critères sont fournis avec chaque dimension. Chaque dimension est évaluée et notée en fonction de la conformité aux critères, et une notation globale réussite/échec est retournée.",
         "part2": "Veuillez évaluer chaque critère pour confirmer si les données sont alignées avec les principes ou non."
       },
       "table": {
-        "caption": "Évaluation des dimensions de qualité",
+        "caption": "Évaluation des Dimensions de qualité",
         "headers": {
           "elements": "Éléments",
           "definition": "Définition",
@@ -118,8 +118,8 @@
         }
       },
       "summary": {
-        "title": "Résultats de l'évaluation par rapport aux dimensions de qualité de Statistique Canada :",
-        "tableCaption": "Scores détaillés des dimensions de qualité",
+        "title": "Résultats de l'évaluation par rapport aux Dimensions de qualité de Statistique Canada :",
+        "tableCaption": "Scores détaillés des Dimensions de qualité",
         "tableHeaders": {
           "dimension": "Dimension",
           "score": "Score",
@@ -152,7 +152,7 @@
       "summary": {
         "title": "Résumé",
         "ethicsResults": "Partie 1 - Évaluation des principes d'éthique des données :",
-        "qualityResults": "Partie 2 - Évaluation des dimensions de qualité :",
+        "qualityResults": "Partie 2 - Évaluation des Dimensions de qualité :",
         "overallResults": "Résultat global de l'évaluation :",
         "pass": "Réussite",
         "fail": "Échec",
@@ -167,7 +167,7 @@
         "bothFail": "Les données ne répondent pas aux normes éthiques et de qualité, elles ne sont donc pas apte à l'emploi pour les rapports sur les ODD."
       },
       "qualitySummary": {
-        "title": "Résumé des dimensions de qualité",
+        "title": "Résumé des Dimensions de qualité",
         "tableHeaders": {
           "dimension": "Dimension",
           "score": "Score",
@@ -193,9 +193,9 @@
         "date": "Date",
         "ethicsAssessment": "Évaluation d'éthique des données",
         "message": "Message partie 1",
-        "qualityAssessment": "Évaluation des dimensions de qualité",
+        "qualityAssessment": "Évaluation des Dimensions de qualité",
         "interpretation": "Interprétation de la qualité",
-        "score": "Score des dimensions de qualité",
+        "score": "Score des Dimensions de qualité",
         "result": "Résultat global",
         "category": "Catégorie",
         "ethicsPrinciples": "PRINCIPES D'ÉTHIQUE DES DONNÉES",
@@ -203,8 +203,8 @@
         "ethicsPrinciplesList": "Principes d'éthique des données",
         "evaluation": "Évaluation",
         "qualityDimensions": "DIMENSIONS DE QUALITÉ",
-        "qualityDimension": "Dimension de qualité",
-        "qualityDimensionsList": "Dimensions de qualité",
+        "qualityDimension": "Dimension de Qualité",
+        "qualityDimensionsList": "Dimensions de Qualité",
         "scoreHeader": "Score",
         "assessment": "Évaluation",
         "notEvaluated": "Non évalué"

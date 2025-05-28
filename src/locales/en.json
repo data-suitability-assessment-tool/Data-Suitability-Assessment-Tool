@@ -1,36 +1,36 @@
 {
   "header": {
     "beta": "BETA: This is a tool in development. We welcome your feedback.",
-    "title": "Data Quality Self Evaluation Tool",
+    "title": "Data Quality Self-Evaluation Tool",
     "switchToFrench": "Français",
     "switchToEnglish": "English"
   },
   "footer": {
-    "copyright": "© Statistics Canada - Data Quality Self Evaluation Tool."
+    "copyright": "© Statistics Canada - Data Quality Self-Evaluation Tool."
   },
   "frontPage": {
-    "title": "Welcome to the Data Quality Self Evaluation Tool",
-    "intro": "The Data Quality Self Evaluation Tool is designed to assess the fitness-for-use of citizen-generated data in accordance with Statistics Canada's data ethics principles and quality dimensions. This tool is designed to improve reporting on the Sustainable Development Goals (SDGs) and assist in addressing data gaps.",
+    "title": "Welcome to the Data Quality Self-Evaluation Tool",
+    "intro": "The Data Quality Self-Evaluation Tool is designed to assess the fitness-for-use of citizen-generated data in accordance with Statistics Canada's data ethics principles and quality dimensions. This tool is designed to improve reporting on the Sustainable Development Goals (SDGs) and assist in addressing data gaps.",
     "assessmentInfo": "By using this tool, you will be able to assess your data against:",
     "bulletPoints": {
       "item1": "Statistics Canada's core data ethics principles for data collection, editing, and dissemination",
       "item2": "Five of the six dimensions of quality developed and used by Statistics Canada to ensure data quality"
     },
     "usage": "Anyone who wants to contribute data to help with SDG reporting should use this tool to evaluate the quality and ethical standards of their data before submission.",
-    "noteToUsers": "Please note that the Data Quality Self Evaluation Tool is not sufficient to assess if the data meets official statistics standards.",
+    "noteToUsers": "Please note that the Data Quality Self-Evaluation Tool is not sufficient to assess if the data meets official statistics standards.",
     "contactInfo": "If you wish to submit your data or contact an analyst after completing your evaluation, please reach out to us at:",
     "email": "statcan.sdg-odd.statcan@statcan.gc.ca",
     "startButton": "Start Assessment"
   },
   "mainContent": {
     "tabs": {
-      "assessment": "Data Quality Self Evaluation Tool",
+      "assessment": "Data Quality Self-Evaluation Tool",
       "license": "License"
     }
   },
   "license": {
     "title": "License Information",
-    "intro": "This page contains information about the terms and conditions of use for the Data Quality Self Evaluation Tool.",
+    "intro": "This page contains information about the terms and conditions of use, the privacy and data storage policies, and the license for the Data Quality Self-Evaluation Tool.",
     "table": {
       "headers": {
         "section": "Section",
@@ -75,7 +75,7 @@
         }
       },
       "results": {
-        "title": "Results of the Assessment Against Statistics Canada's core principles:",
+        "title": "Results of the Assessment Against Statistics Canada's Core Principles:",
         "pass": "Pass",
         "fail": "Fail",
         "passMessage": "The data is consistent with Statistics Canada's core principles and is considered fit-for-use for SDG reporting from a data ethics perspective.",
@@ -86,17 +86,17 @@
         "evaluate": "Evaluate"
       },
       "alerts": {
-        "answerAll": "Please provide answers for all ethics principles."
+        "answerAll": "Please provide answers for all core principles."
       }
     },
     "quality": {
-      "title": "Part 2 - Quality Dimension",
+      "title": "Part 2 - Dimensions of Quality",
       "intro": {
         "part1": "The second part of the evaluation rests on five of the six dimensions of quality developed and used by Statistics Canada. The dimension evaluating the relevance is not included below as it is an element evaluated by the benefit to Canadians core principle above. A definition and a series of criteria are provided with each dimension. Each dimension is evaluated and scored based on the compliance to the criteria, and an aggregated pass/fail rating is returned.",
         "part2": "Please evaluate each criterion to confirm whether the data align with the principles or not."
       },
       "table": {
-        "caption": "Assessment of Quality Dimensions",
+        "caption": "Assessment of Dimensions of Quality",
         "headers": {
           "elements": "Elements",
           "definition": "Definition",
@@ -119,7 +119,7 @@
       },
       "summary": {
         "title": "Results of the Assessment Against Statistics Canada's Dimensions of Quality:",
-        "tableCaption": "Detailed Quality Dimensions Scores",
+        "tableCaption": "Detailed Dimensions of Quality Scores",
         "tableHeaders": {
           "dimension": "Dimension",
           "score": "Score",
@@ -162,12 +162,12 @@
       },
       "messages": {
         "bothPass": "The data passed both assessments and is fit-for-use for SDG reporting.",
-        "ethicsFailQualityPass": "The data does not meet the ethical standards and is not considered fit-for-use for SDG reporting. The data must meet all data ethics principles to be suitable for SDG reporting.",
-        "ethicsPassQualityFail": "The data meets all data ethics principles, but does not meet the number of data quality criteria required. It is not considered fit-for-use for SDG reporting.",
-        "bothFail": "The data does not meet the ethical and quality standards, so it is not fit-for-use for SDG reporting."
+        "ethicsFailQualityPass": "The data does not meet the core data ethics principles and is not considered fit-for-use for SDG reporting. The data must meet all core data ethics principles to be suitable for SDG reporting.",
+        "ethicsPassQualityFail": "The data meets all core data ethics principles, but does not meet the number of dimensions of quality criteria required. It is not considered fit-for-use for SDG reporting.",
+        "bothFail": "The data does not meet the core data ethics principles and the dimensions of quality criteria, so it is not fit-for-use for SDG reporting."
       },
       "qualitySummary": {
-        "title": "Quality Dimensions Summary",
+        "title": "Dimensions of Quality Summary",
         "tableHeaders": {
           "dimension": "Dimension",
           "score": "Score",
@@ -194,7 +194,7 @@
         "date": "Date",
         "ethicsAssessment": "Data Ethics Assessment",
         "message": "Part 1 Message",
-        "qualityAssessment": "Quality Dimensions Assessment",
+        "qualityAssessment": "Dimensions of Quality Assessment",
         "interpretation": "Quality Interpretation",
         "score": "Quality Dimensions Score",
         "result": "Overall Result",
@@ -203,9 +203,9 @@
         "ethicsPrinciplesList": "Ethics Principles",
         "ethicsPrinciple": "Data Ethics Principle",
         "evaluation": "Evaluation",
-        "qualityDimensions": "QUALITY DIMENSIONS",
-        "qualityDimensionsList": "Quality Dimensions",
-        "qualityDimension": "Quality Dimension",
+        "qualityDimensions": "DIMENSIONS OF QUALITY",
+        "qualityDimensionsList": "Dimensions of Quality",
+        "qualityDimension": "Dimension of Quality",
         "scoreHeader": "Score",
         "assessment": "Assessment",
         "notEvaluated": "Not evaluated"
