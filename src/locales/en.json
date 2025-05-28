@@ -93,7 +93,7 @@
       "title": "Part 2 - Dimensions of Quality",
       "intro": {
         "part1": "The second part of the evaluation rests on five of the six dimensions of quality developed and used by Statistics Canada. The dimension evaluating the relevance is not included below as it is an element evaluated by the benefit to Canadians core principle above. A definition and a series of criteria are provided with each dimension. Each dimension is evaluated and scored based on the compliance to the criteria, and an aggregated pass/fail rating is returned.",
-        "part2": "Please evaluate each criterion to confirm whether the data align with the principles or not."
+        "part2": "Please evaluate each criterion to confirm whether the data align with the principles or not by selecting the checkbox next to the criterion. An unselected criterion will be considered as not met."
       },
       "table": {
         "caption": "Assessment of Dimensions of Quality",
