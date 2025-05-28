@@ -220,14 +220,16 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
                 <TableHead className="text-lg">{t('assessment.quality.table.headers.definition')}</TableHead>
                 <TableHead className="text-lg">{t('assessment.quality.table.headers.criteria')}</TableHead>
                 <TableHead className="text-lg">
-                  {t('assessment.quality.table.headers.answer')}
-                  <TooltipInfo id="tooltip-points-info">
-                    {t('assessment.quality.table.tooltip.title')}<br />
-                    {t('assessment.quality.table.tooltip.high')}<br />
-                    {t('assessment.quality.table.tooltip.medium')}<br />
-                    {t('assessment.quality.table.tooltip.low')}<br />
-                    {t('assessment.quality.table.tooltip.notSufficient')}
-                  </TooltipInfo>
+                  <div className="flex items-center">
+                    {t('assessment.quality.table.headers.answer')}
+                    <TooltipInfo id="tooltip-points-info">
+                      {t('assessment.quality.table.tooltip.title')}<br />
+                      {t('assessment.quality.table.tooltip.high')}<br />
+                      {t('assessment.quality.table.tooltip.medium')}<br />
+                      {t('assessment.quality.table.tooltip.low')}<br />
+                      {t('assessment.quality.table.tooltip.notSufficient')}
+                    </TooltipInfo>
+                  </div>
                 </TableHead>
               </TableRow>
             </TableHeader>
