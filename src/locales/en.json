@@ -10,13 +10,13 @@
   },
   "frontPage": {
     "title": "Welcome to the Data Quality Self-Evaluation Tool",
-    "intro": "The Data Quality Self-Evaluation Tool is designed to assess the fitness-for-use of citizen-generated data in accordance with Statistics Canada's data ethics principles and quality dimensions. This tool is designed to improve reporting on the Sustainable Development Goals (SDGs) and assist in addressing data gaps.",
+    "intro": "The Data Quality Self-Evaluation Tool is designed to assess the fitness-for-use of citizen-generated data in accordance with Statistics Canada's data ethics principles and dimensions of quality. This tool is designed to improve reporting on the Sustainable Development Goals (SDGs) and assist in addressing data gaps to ensure that no one is left behind.",
     "assessmentInfo": "By using this tool, you will be able to assess your data against:",
     "bulletPoints": {
       "item1": "Statistics Canada's core data ethics principles for data collection, editing, and dissemination",
       "item2": "Five of the six dimensions of quality developed and used by Statistics Canada to ensure data quality"
     },
-    "usage": "Anyone who wants to contribute data to help with SDG reporting should use this tool to evaluate the quality and ethical standards of their data before submission.",
+    "usage": "Anyone who wishes to contribute data to help with SDG reporting should use this tool to evaluate the quality and ethical standards of their data before submission.",
     "noteToUsers": "Please note that the Data Quality Self-Evaluation Tool is not sufficient to assess if the data meets official statistics standards.",
     "contactInfo": "If you wish to submit your data or contact an analyst after completing your evaluation, please reach out to us at:",
     "email": "statcan.sdg-odd.statcan@statcan.gc.ca",
