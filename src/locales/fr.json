@@ -57,8 +57,8 @@
     "ethics": {
       "title": "Partie 1 - Principes d'éthique des données",
       "intro": {
-        "part1": "Cette première partie est une évaluation des données par rapport aux principes fondamentaux de Statistique Canada pour la collecte, l'édition et la diffusion des données.",
-        "part2": "Veuillez évaluer chaque élément pour confirmer si les données sont alignées avec les principes ou non."
+        "part1": "La première partie consiste en une évaluation des données par rapport aux principes fondamentaux de Statistique Canada en matière de collecte, de vérification et de diffusion des données.",
+        "part2": "Veuillez évaluer chaque élément pour vérifier si les données s’harmonisent avec les principes ou non."
       },
       "table": {
         "caption": "Évaluation des principes d'éthique des données",
@@ -90,13 +90,13 @@
       }
     },
     "quality": {
-      "title": "Partie 2 - Dimensions de la qualité des données",
+      "title": "Partie 2 - Dimensions de la qualité",
       "intro": {
-        "part1": "La deuxième partie de l'évaluation repose sur cinq des six dimensions de qualité développées et utilisées par Statistique Canada. La dimension évaluant la pertinence n'est pas incluse ci-dessous car c'est un élément évalué par le principe fondamental des avantages pour les Canadiens ci-dessus. Une définition et une série de critères sont fournis avec chaque dimension. Chaque dimension est évaluée et notée en fonction de la conformité aux critères, et une notation globale réussite/échec est retournée.",
-        "part2": "Veuillez évaluer chaque critère pour confirmer si les données sont alignées avec les principes ou non en sélectionnant la case à cocher à côté du critère. Un critère non sélectionné sera considéré comme non satisfait."
+        "part1": "La deuxième partie de l’évaluation repose sur cinq des six dimensions de la qualité élaborées et utilisées par Statistique Canada. La dimension qui permet d’évaluer la pertinence n’est pas incluse ci-dessous, car il s’agit d’un élément évalué en fonction de l’avantage pour la population canadienne par rapport aux principes fondamentaux ci-dessus. Une définition et une série de critères sont fournies pour chaque dimension. Chaque dimension est évaluée et reçoit une note en fonction de sa conformité aux critères. Elle obtient ainsi une note agrégée de réussite ou d’échec.",
+        "part2": "Veuillez évaluer chaque critère pour confirmer si les données s’harmonisent ou non avec les principes en sélectionnant la case à cocher à côté du critère. Un critère non sélectionné sera considéré comme non satisfait."
       },
       "table": {
-        "caption": "Évaluation des dimensions de la qualité des données",
+        "caption": "Évaluation des dimensions de la qualité",
         "headers": {
           "elements": "Éléments",
           "definition": "Définition",
@@ -118,8 +118,8 @@
         }
       },
       "summary": {
-        "title": "Résultats de l'évaluation par rapport aux dimensions de la qualité des données de Statistique Canada :",
-        "tableCaption": "Scores détaillés des dimensions de la qualité des données",
+        "title": "Résultats de l'évaluation par rapport aux dimensions de la qualité de Statistique Canada :",
+        "tableCaption": "Scores détaillés des dimensions de la qualité",
         "tableHeaders": {
           "dimension": "Dimension",
           "score": "Score",
@@ -137,10 +137,10 @@
         "high": "Élevé"
       },
       "interpretation": {
-        "low": "La qualité des données telle qu'évaluée ci-dessus n'est pas considérée comme apte à l'emploi pour les rapports sur les ODD. Veuillez envisager de répondre à certains des critères d'évaluation pour améliorer sa qualité si possible.",
+        "low": "La qualité des données telle qu'évaluée ci-dessus n'est pas considérée comme apte à l'emploi pour les rapports sur les ODD. Veuillez envisager de répondre à certains des critères d'évaluation pour en améliorer la qualité, si possible.",
         "medium": "La qualité des données telle qu'évaluée ci-dessus est apte à l'emploi pour les rapports sur les ODD mais pourrait être améliorée. Veuillez envisager de répondre à certains des critères d'évaluation si possible.",
         "high": "La qualité des données telle qu'évaluée ci-dessus est apte à l'emploi pour les rapports sur les ODD.",
-        "fail": "La qualité des données telle qu'évaluée ci-dessus a au moins une dimension de qualité qui n'est pas suffisante et n'est donc pas apte à l'emploi pour les rapports sur les ODD. Veuillez envisager de répondre à certains des critères d'évaluation pour améliorer sa qualité si possible."
+        "fail": "La qualité des données telle qu'évaluée ci-dessus a au moins une dimension de qualité qui n'est pas suffisante et n'est donc pas apte à l'emploi pour les rapports sur les ODD. Veuillez envisager de répondre à certains des critères d'évaluation pour en améliorer la qualité, si possible."
       },
       "actions": {
         "evaluate": "Évaluer",
@@ -167,7 +167,7 @@
         "bothFail": "Les données ne répondent pas aux normes éthiques et de qualité, elles ne sont donc pas apte à l'emploi pour les rapports sur les ODD. Veuillez réviser vos données et corriger les principes d'éthique des données et les critères de qualité des données qui ne sont pas respectés pour que les données soient apte à l'emploi pour les rapports sur les ODD."
       },
       "qualitySummary": {
-        "title": "Résumé des dimensions de la qualité des données",
+        "title": "Résumé des dimensions de la qualité",
         "tableHeaders": {
           "dimension": "Dimension",
           "score": "Score",
@@ -196,18 +196,18 @@
         "date": "Date",
         "ethicsAssessment": "Évaluation d'éthique des données",
         "message": "Détails de l'évaluation des principes d'éthique des données",
-        "qualityAssessment": "Évaluation des dimensions de la qualité des données",
-        "interpretation": "Détails de l'évaluation des dimensions de la qualité des données",
-        "score": "Score des dimensions de la qualité des données",
+        "qualityAssessment": "Évaluation des dimensions de la qualité",
+        "interpretation": "Détails de l'évaluation des dimensions de la qualité",
+        "score": "Score des dimensions de la qualité",
         "result": "Résultat global",
         "category": "Catégorie",
         "ethicsPrinciples": "PRINCIPES D'ÉTHIQUE DES DONNÉES",
         "ethicsPrinciple": "Principe d'éthique des données",
         "ethicsPrinciplesList": "Principes d'éthique des données",
         "evaluation": "Évaluation",
-        "qualityDimensions": "DIMENSIONS DE LA QUALITÉ DES DONNÉES",
-        "qualityDimension": "Dimension de la qualité des données",
-        "qualityDimensionsList": "Dimensions de la qualité des données",
+        "qualityDimensions": "DIMENSIONS DE LA QUALITÉ",
+        "qualityDimension": "Dimension de la qualité",
+        "qualityDimensionsList": "Dimensions de la qualité",
         "scoreHeader": "Score",
         "assessment": "Évaluation",
         "notEvaluated": "Non évalué",
@@ -232,73 +232,73 @@
   "ethicsPrinciples": {
     "principle1": {
       "element": "Avantages pour la population canadienne",
-      "explanation": "Les informations acquises et utilisées doivent procurer un avantage clair et facilement communicable aux Canadiens. Les données doivent soutenir les rapports du Canada sur les Objectifs de développement durable (ODD) en permettant la mesure d'un indicateur non signalé ou en fournissant des données permettant une déclaration plus granulaire d'un indicateur rapporté.",
-      "criteria": "Les informations procurent-elles un avantage clair aux Canadiens ?"
+      "explanation": "Les renseignements obtenus et utilisés doivent fournir à la population canadienne un avantage clair et facile à communiquer. Les données doivent appuyer les rapports du Canada sur les objectifs de développement durable (ODD) en permettant la mesure d’un indicateur non présenté ou en fournissant des données permettant de produire des rapports plus détaillés à propos d’un indicateur présenté.",
+      "criteria": "Les renseignements fournissent-ils un avantage clair à la population canadienne?"
     },
     "principle2": {
-      "element": "Équité et ne pas nuire",
-      "explanation": "Si les données diffusées incluent des sujets potentiellement sensibles, il est important d'avoir un plan en place pour atténuer tout préjudice potentiel, l'iniquité ou le risque d'amplifier les stéréotypes et la stigmatisation sur les groupes présentés dans les données. De plus, les partenaires appropriés doivent être consultés tout au long du processus pour discuter de tout problème potentiel d'équité et de préjudice. Les données doivent utiliser la terminologie et les catégories appropriées pour décrire les différents groupes de population présentés.",
-      "criteria": "Les sujets potentiellement sensibles sont-ils traités de manière à garantir l'équité et à ne pas nuire ?"
+      "element": "Équité et absence de préjudice",
+      "explanation": "Si les données diffusées portent sur des questions pouvant être de nature délicate, il est important d’avoir un plan en place pour atténuer tout risque de préjudice, d’injustice ou d’amplification des stéréotypes et de la stigmatisation à l’égard des groupes présentés dans les données. De plus, les partenaires concernés doivent être consultés tout au long du processus pour discuter de tout risque en matière d’équité et de préjudice. Les données doivent reposer sur la terminologie et les catégories appropriées permettant de décrire les différents groupes de population représenté.",
+      "criteria": "Les questions pouvant être de nature délicate sont-elles traitées de façon à assurer l’équité et à ne pas causer de préjudice?"
     },
     "principle3": {
-      "element": "Transparence et responsabilité",
-      "explanation": "Les méthodes utilisées pour transformer les informations afin de produire des statistiques doivent être communiquées clairement pour assurer la transparence. La méthodologie utilisée doit être documentée et surveillée continuellement avec ses résultats pour assurer sa robustesse et sa pertinence continues pour les rapports.",
-      "criteria": "Les méthodes utilisées sont-elles surveillées et communiquées régulièrement avec leurs résultats ?"
+      "element": "Transparence et responsabilisation",
+      "explanation": "Les méthodes employées pour transformer les renseignements afin de produire des statistiques doivent être communiquées clairement afin d’assurer la transparence. La méthodologie utilisée doit être documentée et faire l’objet d’un suivi régulier, tout comme les résultats, afin d’assurer la robustesse et la pertinence continues des rapports.",
+      "criteria": "Les méthodes employées font-elles l’objet d’un suivi et d’une communication périodique, tout comme les résultats obtenus?"
     },
     "principle4": {
       "element": "Protection de la vie privée",
-      "explanation": "La protection de la vie privée des répondants tout au long du processus est cruciale. Quelques exemples de méthodes qui peuvent aider comprennent la limitation de l'accès aux informations confidentielles uniquement aux personnes qui en ont besoin tout en limitant la collecte aux informations strictement nécessaires provenant de personnes pleinement consentantes. La confidentialité des répondants doit être maintenue pendant toutes les étapes du processus statistique.",
-      "criteria": "La vie privée des répondants est-elle respectée ?"
+      "explanation": "Il est essentiel de protéger la vie privée des répondants et des répondantes tout au long du processus. Quelques exemples de méthodes qui peuvent aider comprennent de limiter l’accès aux renseignements confidentiels selon le principe du « besoin de savoir » tout en limitant la collecte aux renseignements strictement nécessaires, auprès de personnes pleinement consentantes. La vie privée des répondants et des répondantes doit être protégée à toutes les étapes du processus statistique.",
+      "criteria": "La vie privée des répondants et des répondantes est-elle respectée?"
     },
     "principle5": {
       "element": "Confidentialité",
-      "explanation": "S'assurer que les données ne contiennent pas d'informations confidentielles, telles que des informations personnelles ou des caractéristiques d'identification, est essentiel pour garantir la confidentialité. Les données utilisées pour mesurer et rapporter les progrès du Canada ne doivent pas inclure d'informations confidentielles. De plus, il doit être impossible de relier des individus aux données diffusées.",
-      "criteria": "La confidentialité est-elle maintenue ?"
+      "explanation": "Pour assurer la confidentialité, il est essentiel de s’assurer que les données ne contiennent pas de renseignements confidentiels, comme des renseignements personnels ou des caractéristiques permettant d’identifier une personne. Les données utilisées pour mesurer les progrès au Canada et en faire rapport ne doivent inclure aucun renseignement confidentiel. De plus, il ne doit pas être possible d’associer des personnes aux données diffusées.",
+      "criteria": "La confidentialité est-elle maintenue?"
     }
   },
   "qualityDimensions": {
     "dimension1": {
       "element": "Exactitude et fiabilité",
-      "definition": "L'exactitude des informations statistiques est le degré auquel les informations décrivent correctement les phénomènes qu'elles sont censées mesurer. La fiabilité reflète le degré auquel les informations statistiques décrivent correctement et de manière cohérente dans le temps les phénomènes qu'elles sont censées mesurer. Les données doivent mesurer avec précision et de manière fiable les progrès du Canada pour un indicateur ODD sélectionné au fil du temps.",
+      "definition": "L’exactitude des renseignements statistiques désigne la mesure dans laquelle les renseignements décrivent correctement le phénomène qu’ils sont censés mesurer. La fiabilité correspond à la mesure dans laquelle les renseignements statistiques décrivent correctement, et de façon constante au fil du temps, le phénomène qu’ils sont censés mesurer. Les données doivent mesurer, avec exactitude et fiabilité, les progrès accomplis par le Canada à l’égard d’un indicateur choisi des ODD.",
       "criteria": [
-        "Il n'y a pas ou peu de valeurs manquantes pour les statistiques les plus importantes",
-        "Il existe des règles de vérification établies pour les données",
-        "Des processus documentés d'assurance qualité ont été suivis"
+        "Il n’y a pas ou peu de valeurs manquantes pour les statistiques les plus importantes.",
+        "Des règles de vérification sont établies pour les données.",
+        "Des processus d’assurance de la qualité documentés ont été suivis."
       ]
     },
     "dimension2": {
-      "element": "Rapidité et ponctualité",
-      "definition": "La rapidité des informations statistiques fait référence au délai entre la période de référence des informations et la date à laquelle les informations deviennent disponibles, et la ponctualité fait référence à la différence entre la disponibilité prévue et réelle. Les données doivent fournir une mesure des progrès du Canada sur les ODD à des intervalles planifiés et réguliers dans le temps couvrant la période de l'Agenda 2030.",
+      "element": "Actualité et ponctualité",
+      "definition": "L’actualité des données statistiques désigne le délai entre la période de référence des renseignements et la date à laquelle les données sont disponibles. La ponctualité se définit comme la différence entre le moment planifié pour la disponibilité des données et leur disponibilité réelle. Les données doivent permettre de mesurer les progrès réalisés au Canada en matière d’ODD à des intervalles prévus et réguliers couvrant la période du Programme de développement durable à l’horizon 2030.",
       "criteria": [
-        "Les données sont disponibles en temps opportun",
-        "Les données sont publiées à intervalles réguliers",
-        "Les données sont publiées aux dates prévues"
+        "Les données sont disponibles en temps opportun.",
+        "Les données sont diffusées à des intervalles réguliers.",
+        "Les données sont publiées aux dates prévues."
       ]
     },
     "dimension3": {
       "element": "Accessibilité et clarté",
-      "definition": "L'accessibilité et la clarté des données et des informations de support font référence à la facilité avec laquelle les utilisateurs peuvent apprendre que les informations existent, les trouver, les consulter et les utiliser. Les données et leurs informations de support doivent être facilement accessibles et récoltées pour faciliter leur utilisation dans les rapports du Canada sur les ODD.",
+      "definition": "L’accessibilité et la clarté des données et des renseignements à l’appui font référence à la facilité avec laquelle les utilisateurs et les utilisatrices savent que les renseignements existent, qu’ils sont en mesure de les trouver, de les consulter et de les utiliser. Les données et les renseignements à l’appui doivent être facilement accessibles et recueillis afin de faciliter leur utilisation dans les rapports du Canada sur les ODD.",
       "criteria": [
-        "Les données et les informations de support sont facilement accessibles",
-        "Les données et les informations de support sont fournies dans un format facile à utiliser"
+        "Les données et les renseignements à l’appui sont facilement accessibles.",
+        "Les données et les renseignements à l’appui sont fournis dans un format convivial."
       ]
     },
     "dimension4": {
-      "element": "Interprétabilité",
-      "definition": "L'interprétabilité des informations statistiques fait référence à la disponibilité d'informations supplémentaires et de métadonnées nécessaires pour interpréter les données et éventuellement les reproduire. Ces informations couvrent normalement les concepts sous-jacents, la période de référence des données, les variables et classifications utilisées, la méthodologie de collecte et de traitement des données. Les données et toutes les informations pertinentes (y compris la période de référence) doivent être disponibles pour soutenir les rapports du Canada sur les ODD sur l'Agenda 2030 (2015-2030).",
+      "element": "Intelligibilité",
+      "definition": "L’intelligibilité des renseignements statistiques désigne la disponibilité des renseignements et des métadonnées supplémentaires qui sont nécessaires pour interpréter les données et, possiblement, les reproduire. Ces renseignements comprennent normalement les concepts sous-jacents, la période de référence des données, les variables et les classifications utilisées, ainsi que la méthodologie de collecte et de traitement des données. Les données et tout renseignement pertinent (y compris la période de référence) doivent être disponibles pour appuyer les rapports du Canada sur les ODD dans le cadre du Programme de développement durable à l’horizon 2030 (2015 à 2030).",
       "criteria": [
-        "Une description des méthodes utilisées pour collecter, traiter et analyser les données est mise à la disposition des utilisateurs",
-        "La définition de toutes les variables, des ensembles de codes et des classifications utilisés est fournie aux utilisateurs",
-        "La période de référence des données est bien définie et communiquée"
+        "Les utilisateurs et les utilisatrices ont accès à une description des méthodes utilisées pour recueillir, traiter et analyser les données.",
+        "Les utilisateurs et les utilisatrices ont accès aux définitions de l’ensemble des variables, des ensembles de codes et des classifications utilisés.",
+        "La période de référence des données est bien définie et communiquée."
       ]
     },
     "dimension5": {
       "element": "Cohérence et comparabilité",
-      "definition": "La cohérence et la comparabilité des informations statistiques font référence au degré auquel elles peuvent être combinées et comparées de manière fiable avec d'autres informations statistiques et dans le temps. L'utilisation de concepts communs (par exemple, terminologie, classification, méthodologie, etc.) et de normes est essentielle pour assurer la cohérence et faciliter son utilisation dans les rapports du Canada sur les ODD.",
+      "definition": "La cohérence et la comparabilité des données statistiques désignent la mesure dans laquelle ces données peuvent être combinées et comparées de manière fiable à d’autres renseignements statistiques dans un vaste cadre analytique au fil du temps. L’utilisation de normes et de concepts communs (p. ex. terminologie, classification, méthodologie, etc.) est essentielle pour assurer la cohérence des données et de tout renseignement pertinent et pour en faciliter l’utilisation dans les rapports du Canada sur les ODD.",
       "criteria": [
-        "Des concepts standard sont utilisés",
-        "La comparabilité est maintenue dans le temps et entre les régions",
-        "Toutes les incohérences ou ruptures dans les séries chronologiques sont expliquées"
+        "Des concepts normalisés sont utilisés",
+        "La comparabilité est maintenue au fil du temps et d’une région à l’autre.",
+        "Toute incohérence ou rupture dans la série chronologique est expliquée."
       ]
     }
   },
