@@ -1,5 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+import { Document, Packer, Paragraph, TextRun, Table as DocxTable, TableRow as DocxTableRow, TableCell as DocxTableCell, WidthType, AlignmentType, HeadingLevel } from 'docx';
 import { Button } from '../ui/Button';
 import { 
   Card, 
@@ -47,7 +50,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
 }) => {
   const { t } = useTranslation();
   const [exportDialogOpen, setExportDialogOpen] = React.useState(false);
-  const [exportFormat, setExportFormat] = React.useState<'text' | 'json' | 'csv'>('text');
+  const [exportFormat, setExportFormat] = React.useState<'text' | 'json' | 'csv' | 'pdf' | 'word'>('text');
   const [exportContent, setExportContent] = React.useState('');
   const resultSummaryRef = useRef<HTMLDivElement>(null);
   
@@ -261,6 +264,309 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
     setExportContent(content);
   };
   
+  const generatePDFExport = async () => {
+    const pdf = new jsPDF();
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const margin = 20;
+    let yPosition = margin;
+    
+    // Title
+    pdf.setFontSize(16);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text(`${t('mainContent.tabs.assessment')} - ${t('assessment.overall.title')}`, margin, yPosition);
+    yPosition += 15;
+    
+    // Date
+    pdf.setFontSize(12);
+    pdf.setFont('helvetica', 'normal');
+    const date = new Date().toISOString().split('T')[0];
+    pdf.text(`${t('assessment.overall.export.date')}: ${date}`, margin, yPosition);
+    yPosition += 20;
+    
+    // Overall Result
+    pdf.setFontSize(14);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text(`${t('assessment.overall.export.overallResult')}: ${overallPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail')}`, margin, yPosition);
+    yPosition += 15;
+    
+    // Overall Message
+    pdf.setFontSize(10);
+    pdf.setFont('helvetica', 'normal');
+    const overallMessage = overallPass 
+      ? t('assessment.overall.messages.bothPass')
+      : ethicsPass && !qualityPass
+        ? t('assessment.overall.messages.ethicsPassQualityFail')
+        : !ethicsPass && qualityPass
+          ? t('assessment.overall.messages.ethicsFailQualityPass')
+          : t('assessment.overall.messages.bothFail');
+    
+    const splitMessage = pdf.splitTextToSize(overallMessage, pageWidth - 2 * margin);
+    pdf.text(splitMessage, margin, yPosition);
+    yPosition += splitMessage.length * 5 + 10;
+    
+    // Ethics Principles Section
+    pdf.setFontSize(12);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text(t('assessment.overall.export.ethicsPrinciples'), margin, yPosition);
+    yPosition += 10;
+    
+    pdf.setFontSize(10);
+    pdf.setFont('helvetica', 'normal');
+    const part1Message = part1MessageKey ? t(part1MessageKey) : '';
+    const ethicsResult = `${t('assessment.overall.export.ethicsAssessment')}: ${ethicsPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail')}`;
+    pdf.text(ethicsResult, margin, yPosition);
+    yPosition += 8;
+    
+    const splitPart1Message = pdf.splitTextToSize(part1Message, pageWidth - 2 * margin);
+    pdf.text(splitPart1Message, margin, yPosition);
+    yPosition += splitPart1Message.length * 5 + 10;
+    
+    // Quality Dimensions Section
+    if (yPosition > 250) {
+      pdf.addPage();
+      yPosition = margin;
+    }
+    
+    pdf.setFontSize(12);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text(t('assessment.overall.export.qualityDimensions'), margin, yPosition);
+    yPosition += 10;
+    
+    pdf.setFontSize(10);
+    pdf.setFont('helvetica', 'normal');
+    const qualityInterpretation = qualityInterpretationKey ? t(qualityInterpretationKey) : '';
+    const qualityResult = `${t('assessment.overall.export.qualityAssessment')}: ${qualityPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail')} (${t('assessment.overall.export.score')}: ${totalQualityScore}/15)`;
+    pdf.text(qualityResult, margin, yPosition);
+    yPosition += 8;
+    
+    const splitQualityMessage = pdf.splitTextToSize(qualityInterpretation, pageWidth - 2 * margin);
+    pdf.text(splitQualityMessage, margin, yPosition);
+    yPosition += splitQualityMessage.length * 5 + 10;
+    
+    // Quality Dimensions Details
+    for (const dimension of QUALITY_DIMENSIONS) {
+      if (yPosition > 240) {
+        pdf.addPage();
+        yPosition = margin;
+      }
+      
+      const score = assessmentData.qualityDimensions[dimension.id] || 0;
+      const assessment = getQualityScoreText(Number(score));
+      
+      pdf.setFont('helvetica', 'bold');
+      pdf.text(`${t(`qualityDimensions.dimension${dimension.id}.element`)}: ${score}/3 - ${assessment}`, margin, yPosition);
+      yPosition += 8;
+      
+      pdf.setFont('helvetica', 'normal');
+      dimension.criteria.forEach((_, idx) => {
+        const criteriaSatisfied = dimension.id === "3" ? (score === 3 || (score >= 1 && idx < score)) : (idx < score);
+        const status = criteriaSatisfied ? t('assessment.overall.export.criteriaStatus.satisfied') : t('assessment.overall.export.criteriaStatus.notSatisfied');
+        const criteriaText = `  ${idx + 1}. ${t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}: ${status}`;
+        const splitCriteria = pdf.splitTextToSize(criteriaText, pageWidth - 2 * margin);
+        pdf.text(splitCriteria, margin, yPosition);
+        yPosition += splitCriteria.length * 4;
+      });
+      yPosition += 5;
+    }
+    
+    return pdf;
+  };
+
+  const generateWordExport = () => {
+    const date = new Date().toISOString().split('T')[0];
+    const part1Message = part1MessageKey ? t(part1MessageKey) : '';
+    const qualityInterpretation = qualityInterpretationKey ? t(qualityInterpretationKey) : '';
+    
+    const overallMessage = overallPass 
+      ? t('assessment.overall.messages.bothPass')
+      : ethicsPass && !qualityPass
+        ? t('assessment.overall.messages.ethicsPassQualityFail')
+        : !ethicsPass && qualityPass
+          ? t('assessment.overall.messages.ethicsFailQualityPass')
+          : t('assessment.overall.messages.bothFail');
+
+    const children = [
+      // Title
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: `${t('mainContent.tabs.assessment')} - ${t('assessment.overall.title')}`,
+            bold: true,
+            size: 32,
+          }),
+        ],
+        heading: HeadingLevel.TITLE,
+        alignment: AlignmentType.CENTER,
+      }),
+      
+      // Date
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: `${t('assessment.overall.export.date')}: ${date}`,
+            size: 24,
+          }),
+        ],
+        spacing: { after: 200 },
+      }),
+      
+      // Overall Result
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: `${t('assessment.overall.export.overallResult')}: `,
+            bold: true,
+            size: 28,
+          }),
+          new TextRun({
+            text: overallPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail'),
+            bold: true,
+            size: 28,
+            color: overallPass ? "00AA00" : "AA0000",
+          }),
+        ],
+        spacing: { after: 200 },
+      }),
+      
+      // Overall Message
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: overallMessage,
+            size: 22,
+          }),
+        ],
+        spacing: { after: 300 },
+      }),
+      
+      // Ethics Principles Section
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: t('assessment.overall.export.ethicsPrinciples'),
+            bold: true,
+            size: 26,
+          }),
+        ],
+        heading: HeadingLevel.HEADING_1,
+        spacing: { after: 200 },
+      }),
+      
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: `${t('assessment.overall.export.ethicsAssessment')}: ${ethicsPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail')}`,
+            size: 22,
+          }),
+        ],
+        spacing: { after: 100 },
+      }),
+      
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: part1Message,
+            size: 22,
+          }),
+        ],
+        spacing: { after: 300 },
+      }),
+      
+      // Quality Dimensions Section
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: t('assessment.overall.export.qualityDimensions'),
+            bold: true,
+            size: 26,
+          }),
+        ],
+        heading: HeadingLevel.HEADING_1,
+        spacing: { after: 200 },
+      }),
+      
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: `${t('assessment.overall.export.qualityAssessment')}: ${qualityPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail')} (${t('assessment.overall.export.score')}: ${totalQualityScore}/15)`,
+            size: 22,
+          }),
+        ],
+        spacing: { after: 100 },
+      }),
+      
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: qualityInterpretation,
+            size: 22,
+          }),
+        ],
+        spacing: { after: 300 },
+      }),
+    ];
+
+    // Add quality dimensions details
+    QUALITY_DIMENSIONS.forEach(dimension => {
+      const score = assessmentData.qualityDimensions[dimension.id] || 0;
+      const assessment = getQualityScoreText(Number(score));
+      
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: `${t(`qualityDimensions.dimension${dimension.id}.element`)}: ${score}/3 - ${assessment}`,
+              bold: true,
+              size: 24,
+            }),
+          ],
+          spacing: { after: 100 },
+        })
+      );
+      
+      dimension.criteria.forEach((_, idx) => {
+        const criteriaSatisfied = dimension.id === "3" ? (score === 3 || (score >= 1 && idx < score)) : (idx < score);
+        const status = criteriaSatisfied ? t('assessment.overall.export.criteriaStatus.satisfied') : t('assessment.overall.export.criteriaStatus.notSatisfied');
+        
+        children.push(
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: `  ${idx + 1}. ${t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}: `,
+                size: 20,
+              }),
+              new TextRun({
+                text: status,
+                size: 20,
+                bold: true,
+                color: criteriaSatisfied ? "00AA00" : "AA0000",
+              }),
+            ],
+            spacing: { after: 50 },
+          })
+        );
+      });
+      
+      children.push(
+        new Paragraph({
+          children: [new TextRun({ text: "", size: 20 })],
+          spacing: { after: 200 },
+        })
+      );
+    });
+
+    const doc = new Document({
+      sections: [
+        {
+          properties: {},
+          children: children,
+        },
+      ],
+    });
+
+    return doc;
+  };
+  
   // Use useEffect to update the export content whenever the format changes
   useEffect(() => {
     if (exportDialogOpen) {
@@ -286,31 +592,52 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
       });
   };
   
-  const handleDownload = () => {
+  const handleDownload = async () => {
     const date = new Date().toISOString().split('T')[0];
     let fileName = `data-quality-assessment-${date}`;
-    let mimeType = "";
     
     if (exportFormat === "text") {
       fileName += ".txt";
-      mimeType = "text/plain";
+      const blob = new Blob([exportContent], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = fileName;
+      link.click();
+      URL.revokeObjectURL(url);
     } else if (exportFormat === "json") {
       fileName += ".json";
-      mimeType = "application/json";
+      const blob = new Blob([exportContent], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = fileName;
+      link.click();
+      URL.revokeObjectURL(url);
     } else if (exportFormat === "csv") {
       fileName += ".csv";
-      mimeType = "text/csv";
+      const blob = new Blob([exportContent], { type: "text/csv" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = fileName;
+      link.click();
+      URL.revokeObjectURL(url);
+    } else if (exportFormat === "pdf") {
+      fileName += ".pdf";
+      const pdf = await generatePDFExport();
+      pdf.save(fileName);
+    } else if (exportFormat === "word") {
+      fileName += ".docx";
+      const doc = generateWordExport();
+      const blob = await Packer.toBlob(doc);
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = fileName;
+      link.click();
+      URL.revokeObjectURL(url);
     }
-    
-    const blob = new Blob([exportContent], { type: mimeType });
-    const url = URL.createObjectURL(blob);
-    
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = fileName;
-    link.click();
-    
-    URL.revokeObjectURL(url);
   };
   
   const renderEthicsPrinciplesSummary = () => {
@@ -510,7 +837,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
               <label htmlFor="export-format" className="block text-sm font-medium text-[var(--text-color)]">
                 {t('assessment.overall.export.formatLabel')}
               </label>
-              <div className="mt-2 flex gap-4">
+              <div className="mt-2 flex gap-4 flex-wrap">
                 <label className="inline-flex items-center">
                   <input
                     type="radio"
@@ -544,22 +871,59 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                   />
                   <span className="ml-2">{t('assessment.overall.export.formats.csv')}</span>
                 </label>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    className="form-radio text-[var(--primary-color)]"
+                    name="export-format"
+                    value="pdf"
+                    checked={exportFormat === 'pdf'}
+                    onChange={() => setExportFormat('pdf')}
+                  />
+                  <span className="ml-2">{t('assessment.overall.export.formats.pdf')}</span>
+                </label>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    className="form-radio text-[var(--primary-color)]"
+                    name="export-format"
+                    value="word"
+                    checked={exportFormat === 'word'}
+                    onChange={() => setExportFormat('word')}
+                  />
+                  <span className="ml-2">{t('assessment.overall.export.formats.word')}</span>
+                </label>
               </div>
             </div>
             
-            <div className="mt-4">
-              <label htmlFor="export-content" className="block text-sm font-medium text-[var(--text-color)]">
-                {t('assessment.overall.export.preview', 'Preview')}
-              </label>
-              <div className="mt-2">
-                <textarea
-                  id="export-content"
-                  className="w-full h-64 p-3 border border-[var(--border-color)] rounded-md shadow-sm bg-gray-50 font-mono text-sm"
-                  value={exportContent}
-                  readOnly
-                />
+            {(exportFormat === 'text' || exportFormat === 'json' || exportFormat === 'csv') && (
+              <div className="mt-4">
+                <label htmlFor="export-content" className="block text-sm font-medium text-[var(--text-color)]">
+                  {t('assessment.overall.export.preview', 'Preview')}
+                </label>
+                <div className="mt-2">
+                  <textarea
+                    id="export-content"
+                    className="w-full h-64 p-3 border border-[var(--border-color)] rounded-md shadow-sm bg-gray-50 font-mono text-sm"
+                    value={exportContent}
+                    readOnly
+                  />
+                </div>
               </div>
-            </div>
+            )}
+            
+            {(exportFormat === 'pdf' || exportFormat === 'word') && (
+              <div className="mt-4">
+                <div className="p-4 bg-blue-50 border border-blue-200 rounded-md">
+                  <p className="text-sm text-blue-800">
+                    {exportFormat === 'pdf' 
+                      ? t('assessment.overall.export.pdfPreview', 'PDF will be generated when you click Download.')
+                      : t('assessment.overall.export.wordPreview', 'Word document will be generated when you click Download.')
+                    }
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
           
           <AlertDialogFooter className="flex justify-end gap-3 mt-6 pt-4 border-t border-[var(--border-color)]">
@@ -567,6 +931,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
               onClick={handleCopyToClipboard}
               variant="secondary"
               className="transform transition-transform hover:scale-105"
+              disabled={exportFormat === 'pdf' || exportFormat === 'word'}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" />
