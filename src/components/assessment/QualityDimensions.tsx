@@ -1,5 +1,5 @@
 // src/components/assessment/QualityDimensions.tsx
-import React, { type JSX, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { QUALITY_DIMENSIONS } from '../../types/assessment';
 import { Button } from '../ui/Button';
