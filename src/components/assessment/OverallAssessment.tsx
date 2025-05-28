@@ -833,66 +833,21 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
           
           <div className="my-4">
             <div className="mb-4">
-              <label htmlFor="export-format" className="block text-sm font-medium text-[var(--text-color)]">
+              <label htmlFor="export-format" className="block text-sm font-medium text-[var(--text-color)] mb-2">
                 {t('assessment.overall.export.formatLabel')}
               </label>
-              <div className="mt-2 flex gap-4 flex-wrap">
-                <label className="inline-flex items-center">
-                  <input
-                    type="radio"
-                    className="form-radio text-[var(--primary-color)]"
-                    name="export-format"
-                    value="text"
-                    checked={exportFormat === 'text'}
-                    onChange={() => setExportFormat('text')}
-                  />
-                  <span className="ml-2">{t('assessment.overall.export.formats.text')}</span>
-                </label>
-                <label className="inline-flex items-center">
-                  <input
-                    type="radio"
-                    className="form-radio text-[var(--primary-color)]"
-                    name="export-format"
-                    value="json"
-                    checked={exportFormat === 'json'}
-                    onChange={() => setExportFormat('json')}
-                  />
-                  <span className="ml-2">{t('assessment.overall.export.formats.json')}</span>
-                </label>
-                <label className="inline-flex items-center">
-                  <input
-                    type="radio"
-                    className="form-radio text-[var(--primary-color)]"
-                    name="export-format"
-                    value="csv"
-                    checked={exportFormat === 'csv'}
-                    onChange={() => setExportFormat('csv')}
-                  />
-                  <span className="ml-2">{t('assessment.overall.export.formats.csv')}</span>
-                </label>
-                <label className="inline-flex items-center">
-                  <input
-                    type="radio"
-                    className="form-radio text-[var(--primary-color)]"
-                    name="export-format"
-                    value="pdf"
-                    checked={exportFormat === 'pdf'}
-                    onChange={() => setExportFormat('pdf')}
-                  />
-                  <span className="ml-2">{t('assessment.overall.export.formats.pdf')}</span>
-                </label>
-                <label className="inline-flex items-center">
-                  <input
-                    type="radio"
-                    className="form-radio text-[var(--primary-color)]"
-                    name="export-format"
-                    value="word"
-                    checked={exportFormat === 'word'}
-                    onChange={() => setExportFormat('word')}
-                  />
-                  <span className="ml-2">{t('assessment.overall.export.formats.word')}</span>
-                </label>
-              </div>
+              <select
+                id="export-format"
+                className="w-full p-2 border border-[var(--border-color)] rounded-md shadow-sm bg-white text-[var(--text-color)] focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)]"
+                value={exportFormat}
+                onChange={(e) => setExportFormat(e.target.value as 'text' | 'json' | 'csv' | 'pdf' | 'word')}
+              >
+                <option value="text">{t('assessment.overall.export.formats.text')}</option>
+                <option value="json">{t('assessment.overall.export.formats.json')}</option>
+                <option value="csv">{t('assessment.overall.export.formats.csv')}</option>
+                <option value="pdf">{t('assessment.overall.export.formats.pdf')}</option>
+                <option value="word">{t('assessment.overall.export.formats.word')}</option>
+              </select>
             </div>
             
             {(exportFormat === 'text' || exportFormat === 'json' || exportFormat === 'csv') && (
