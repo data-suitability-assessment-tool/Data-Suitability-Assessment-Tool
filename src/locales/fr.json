@@ -13,7 +13,7 @@
     "intro": "L'outil d'auto-évaluation de la qualité des données est conçu pour évaluer l'adéquation des données générées par les citoyens conformément aux principes d'éthique des données et aux dimensions de qualité de Statistique Canada. Cet outil est conçu pour améliorer les rapports sur les Objectifs de développement durable (ODD) et aider à combler les lacunes en matière de données.",
     "assessmentInfo": "En utilisant cet outil, vous pourrez évaluer vos données par rapport à :",
     "bulletPoints": {
-      "item1": "Les principes fondamentaux de Statistique Canada pour la collecte, l'édition et la diffusion des données",
+      "item1": "Les principes fondamentaux de l'éthique des données de Statistique Canada pour la collecte, l'édition et la diffusion des données",
       "item2": "Cinq des six dimensions de qualité développées et utilisées par Statistique Canada pour assurer la qualité des données"
     },
     "usage": "Toute personne qui souhaite contribuer des données pour aider à la production de rapports sur les ODD devrait utiliser cet outil pour évaluer la qualité et les normes éthiques de ses données avant de les soumettre.",
