@@ -57,7 +57,7 @@
     "ethics": {
       "title": "Part 1 - Data Ethics Principles",
       "intro": {
-        "part1": "This first part is an assessment of the data against Statistics Canada core principles for data collection, editing and dissemination.",
+        "part1": "This first part is an assessment of the data against Statistics Canada's core principles for data collection, editing and dissemination.",
         "part2": "Please evaluate each element to confirm whether the data align with the principles or not."
       },
       "table": {
@@ -90,13 +90,13 @@
       }
     },
     "quality": {
-      "title": "Part 2 - Dimensions of Data Quality",
+      "title": "Part 2 - Dimensions of Quality",
       "intro": {
-        "part1": "The second part of the evaluation rests on five of the six dimensions of quality developed and used by Statistics Canada. The dimension evaluating the relevance is not included below as it is an element evaluated by the benefit to Canadians core principle above. A definition and a series of criteria are provided with each dimension. Each dimension is evaluated and scored based on the compliance to the criteria, and an aggregated pass/fail rating is returned.",
+        "part1": "The second part of the evaluation rests on five of the six dimensions of quality developed and used by Statistics Canada. The dimension evaluating the relevance is not included below as it is an element evaluated by the Benefit to Canadians core principle. A definition and a series of criteria are provided with each dimension. Each dimension is evaluated and scored based on the compliance to the criteria, and an aggregated pass/fail rating is returned.",
         "part2": "Please evaluate each criterion to confirm whether the data align with the principles or not by selecting the checkbox next to the criterion. An unselected criterion will be considered as not met."
       },
       "table": {
-        "caption": "Assessment of Dimensions of Data Quality",
+        "caption": "Assessment of Dimensions of Quality",
         "headers": {
           "elements": "Elements",
           "definition": "Definition",
@@ -118,7 +118,7 @@
         }
       },
       "summary": {
-        "title": "Results of the Assessment Against Statistics Canada's Dimensions of Data Quality:",
+        "title": "Results of the Assessment Against Statistics Canada's Dimensions of Quality:",
         "tableCaption": "Detailed Dimensions of Data Quality Scores",
         "tableHeaders": {
           "dimension": "Dimension",
@@ -152,7 +152,7 @@
       "summary": {
         "title": "Summary",
         "ethicsResults": "Part 1 - Data Ethics Principles Assessment:",
-        "qualityResults": "Part 2 - Dimensions of Data Quality Assessment:",
+        "qualityResults": "Part 2 - Dimensions of Quality Assessment:",
         "overallResults": "Overall Assessment Result:",
         "pass": "Pass",
         "fail": "Fail",
@@ -199,18 +199,18 @@
         "date": "Date",
         "ethicsAssessment": "Data Ethics Principles Assessment",
         "message": "Data Ethics Principles Assessment Details",
-        "qualityAssessment": "Dimensions of Data Quality Assessment",
-        "interpretation": "Dimensions of Data Quality Assessment Details",
-        "score": "Dimensions of Data Quality Score",
+        "qualityAssessment": "Dimensions of Quality Assessment",
+        "interpretation": "Dimensions of Quality Assessment Details",
+        "score": "Dimensions of Quality Score",
         "result": "Overall Result",
         "category": "Category",
         "ethicsPrinciples": "DATA ETHICS PRINCIPLES",
         "ethicsPrinciplesList": "Data Ethics Principles",
         "ethicsPrinciple": "Data Ethics Principle",
         "evaluation": "Evaluation",
-        "qualityDimensions": "DIMENSIONS OF DATA QUALITY",
-        "qualityDimensionsList": "Dimensions of Data Quality",
-        "qualityDimension": "Dimension of Data Quality",
+        "qualityDimensions": "DIMENSIONS OF QUALITY",
+        "qualityDimensionsList": "Dimensions of Quality",
+        "qualityDimension": "Dimension of Quality",
         "scoreHeader": "Score",
         "assessment": "Assessment",
         "notEvaluated": "Not evaluated",
