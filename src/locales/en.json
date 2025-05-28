@@ -78,8 +78,8 @@
         "title": "Results of the Assessment Against Statistics Canada's Core Principles:",
         "pass": "Pass",
         "fail": "Fail",
-        "passMessage": "The data is consistent with Statistics Canada's core principles and is considered fit-for-use for SDG reporting from a data ethics perspective.",
-        "failMessage": "The data is not consistent with Statistics Canada's core principles. Please revise your data to ensure that all core principles are met to be considered fit-for-use for SDG reporting from a data ethics perspective."
+        "passMessage": "The data meets Statistics Canada's core principles and is considered fit-for-use for SDG reporting from a data ethics perspective.",
+        "failMessage": "The data does not meet Statistics Canada's core principles. Please revise your data to ensure that all core principles are met to be considered fit-for-use for SDG reporting from a data ethics perspective."
       },
       "actions": {
         "continue": "Continue",
@@ -162,9 +162,9 @@
       },
       "messages": {
         "bothPass": "The data passed both assessments and is fit-for-use for SDG reporting.",
-        "ethicsFailQualityPass": "The data does not meet the core data ethics principles and is not considered fit-for-use for SDG reporting. The data must meet all core data ethics principles to be suitable for SDG reporting.",
-        "ethicsPassQualityFail": "The data meets all core data ethics principles, but does not meet the number of dimensions of quality criteria required. It is not considered fit-for-use for SDG reporting.",
-        "bothFail": "The data does not meet the core data ethics principles and the dimensions of quality criteria, so it is not fit-for-use for SDG reporting."
+        "ethicsFailQualityPass": "The data does not meet the core data ethics principles and is not considered fit-for-use for SDG reporting. The data must meet all core data ethics principles to be suitable for SDG reporting. Please review your data and address any missing core data ethics principles to ensure that the data is fit-for-use for SDG reporting.",
+        "ethicsPassQualityFail": "The data meets all core data ethics principles; however, it does not meet the number of dimensions of quality criteria required. As a result, it is not deemed suitable for SDG reporting at this time. Please review your data and address any missing dimensions of quality criteria to ensure that the data is fit-for-use for SDG reporting.",
+        "bothFail": "The data does not meet the core data ethics principles and the dimensions of quality criteria, and therefore, is not fit-for-use for SDG reporting. Please review your data to ensure that all core data ethics principles and dimensions of quality criteria are met to be considered fit-for-use for SDG reporting."
       },
       "qualitySummary": {
         "title": "Dimensions of Quality Summary",
@@ -190,6 +190,7 @@
           "download": "Download",
           "close": "Close"
         },
+        "generating": "Generating...",
         "dialogTitle": "Export Assessment Results",
         "preview": "Preview",
         "pdfPreview": "A PDF report will be generated when you click Download.",

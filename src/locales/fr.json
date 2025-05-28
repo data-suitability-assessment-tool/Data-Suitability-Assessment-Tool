@@ -78,8 +78,8 @@
         "title": "Résultats de l'évaluation par rapport aux principes fondamentaux de Statistique Canada :",
         "pass": "Réussite",
         "fail": "Échec",
-        "passMessage": "Les données sont conformes aux principes fondamentaux de Statistique Canada et sont considérées comme apte à l'emploi pour les rapports sur les ODD de la perspective de l'éthique des données.",
-        "failMessage": "Les données ne sont pas conformes aux principes fondamentaux de Statistique Canada. Veuillez réviser vos données pour s'assurer que tous les principes fondamentaux sont respectés pour être considérées comme apte à l'emploi pour les rapports sur les ODD de la perspective de l'éthique des données."
+        "passMessage": "Les données respectent les principes fondamentaux de Statistique Canada et sont considérées comme apte à l'emploi pour les rapports sur les ODD de la perspective de l'éthique des données.",
+        "failMessage": "Les données ne respectent pas les principes fondamentaux de Statistique Canada. Veuillez réviser vos données pour s'assurer que tous les principes fondamentaux sont respectés pour être considérées comme apte à l'emploi pour les rapports sur les ODD de la perspective de l'éthique des données."
       },
       "actions": {
         "continue": "Continuer",
@@ -162,9 +162,9 @@
       },
       "messages": {
         "bothPass": "Les données ont réussi les deux évaluations et sont apte à l'emploi pour les rapports sur les ODD.",
-        "ethicsFailQualityPass": "Les données ne répondent pas aux normes éthiques et ne sont pas considérées comme apte à l'emploi pour les rapports sur les ODD. Les données doivent respecter tous les principes d'éthique des données pour être apte à l'emploi pour les rapports sur les ODD.",
-        "ethicsPassQualityFail": "Les données respectent tous les principes d'éthique des données, mais ne répondent pas au nombre requis de critères de qualité des données. Elles ne sont pas considérées comme apte à l'emploi pour les rapports sur les ODD.",
-        "bothFail": "Les données ne répondent pas aux normes éthiques et de qualité, elles ne sont donc pas apte à l'emploi pour les rapports sur les ODD."
+        "ethicsFailQualityPass": "Les données ne répondent pas aux normes éthiques et ne sont pas considérées comme apte à l'emploi pour les rapports sur les ODD. Les données doivent respecter tous les principes d'éthique des données pour être apte à l'emploi pour les rapports sur les ODD. Veuillez réviser vos données et corriger les principes d'éthique des données qui ne sont pas respectés pour que les données soient apte à l'emploi pour les rapports sur les ODD.",
+        "ethicsPassQualityFail": "Les données respectent tous les principes d'éthique des données, mais ne répondent pas au nombre requis de critères de qualité des données. Elles ne sont pas considérées comme apte à l'emploi pour les rapports sur les ODD. Veuillez réviser vos données et corriger les critères de qualité des données qui ne sont pas respectés pour que les données soient apte à l'emploi pour les rapports sur les ODD.",
+        "bothFail": "Les données ne répondent pas aux normes éthiques et de qualité, elles ne sont donc pas apte à l'emploi pour les rapports sur les ODD. Veuillez réviser vos données et corriger les principes d'éthique des données et les critères de qualité des données qui ne sont pas respectés pour que les données soient apte à l'emploi pour les rapports sur les ODD."
       },
       "qualitySummary": {
         "title": "Résumé des dimensions de la qualité des données",
@@ -190,6 +190,7 @@
           "download": "Télécharger",
           "close": "Fermer"
         },
+        "generating": "Génération en cours...",
         "dialogTitle": "Exporter les résultats d'évaluation",
         "summaryHeader": "SOMMAIRE",
         "date": "Date",
