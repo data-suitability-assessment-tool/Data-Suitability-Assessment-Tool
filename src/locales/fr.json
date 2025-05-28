@@ -180,7 +180,9 @@
         "formats": {
           "text": "Texte",
           "json": "JSON",
-          "csv": "CSV"
+          "csv": "CSV",
+          "pdf": "PDF",
+          "word": "Document Word"
         },
         "buttons": {
           "export": "Exporter les résultats",
@@ -192,9 +194,9 @@
         "summaryHeader": "SOMMAIRE",
         "date": "Date",
         "ethicsAssessment": "Évaluation d'éthique des données",
-        "message": "Évaluation des principes d'éthique des données",
-        "qualityAssessment": "Évaluation des dimensions de qualité",
-        "interpretation": "Évaluation des dimensions de qualité",
+        "message": "Détails de l'évaluation des principes d'éthique des données",
+        "qualityAssessment": "Évaluation des dimensions de la qualité des données",
+        "interpretation": "Détails de l'évaluation des dimensions de la qualité des données",
         "score": "Score des dimensions de la qualité des données",
         "result": "Résultat global",
         "category": "Catégorie",
@@ -213,8 +215,11 @@
           "notSatisfied": "NON SATISFAIT"
         },
         "overallResult": "Résultat global",
-        "overallMessage": "Message global",
-        "criteriaDetails": "Détails des critères"
+        "overallMessage": "Détails de l'évaluation globale",
+        "criteriaDetails": "Détails des critères",
+        "preview": "Aperçu",
+        "pdfPreview": "Un rapport PDF sera généré lorsque vous cliquez sur Télécharger.",
+        "wordPreview": "Un rapport Word sera généré lorsque vous cliquez sur Télécharger."
       },
       "criteriaSatisfied": "Critères satisfaits",
       "actions": {

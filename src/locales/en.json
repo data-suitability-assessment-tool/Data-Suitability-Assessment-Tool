@@ -180,7 +180,9 @@
         "formats": {
           "text": "Text",
           "json": "JSON",
-          "csv": "CSV"
+          "csv": "CSV",
+          "pdf": "PDF",
+          "word": "DOCX"
         },
         "buttons": {
           "export": "Export Results",
@@ -190,12 +192,14 @@
         },
         "dialogTitle": "Export Assessment Results",
         "preview": "Preview",
+        "pdfPreview": "A PDF report will be generated when you click Download.",
+        "wordPreview": "A Word document report will be generated when you click Download.",
         "summaryHeader": "SUMMARY",
         "date": "Date",
         "ethicsAssessment": "Data Ethics Principles Assessment",
-        "message": "Assessment of the Data Ethics Principles",
+        "message": "Data Ethics Principles Assessment Details",
         "qualityAssessment": "Dimensions of Data Quality Assessment",
-        "interpretation": "Assessment of the Dimensions of Data Quality",
+        "interpretation": "Dimensions of Data Quality Assessment Details",
         "score": "Dimensions of Data Quality Score",
         "result": "Overall Result",
         "category": "Category",
@@ -214,7 +218,7 @@
           "notSatisfied": "NOT SATISFIED"
         },
         "overallResult": "Overall Result",
-        "overallMessage": "Overall Message",
+        "overallMessage": "Overall Assessment Details",
         "criteriaDetails": "Criteria Details",
         "tableHeaders": {
           "score": "Score",
