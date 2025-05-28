@@ -31,8 +31,8 @@ interface EthicsPrinciplesProps {
   setEthicsAnswers: (value: Record<string, string>) => void;
   ethicsPass: boolean | null;
   setEthicsPass: (value: boolean) => void;
-  part1Message: string;
-  setPart1Message: (value: string) => void;
+  part1MessageKey: string;
+  setPart1MessageKey: (value: string) => void;
   onShowAlert: (message: string) => void;
   onNextStep: () => void;
 }
@@ -42,8 +42,8 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
   setEthicsAnswers,
   ethicsPass,
   setEthicsPass,
-  part1Message,
-  setPart1Message,
+  part1MessageKey,
+  setPart1MessageKey,
   onShowAlert,
   onNextStep,
 }) => {
@@ -79,11 +79,11 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
     const isPass = noAnswers === 0;
     setEthicsPass(isPass);
     
-    // Set message based on result using translation keys
+    // Set message key based on result
     if (isPass) {
-      setPart1Message(t('assessment.ethics.results.passMessage'));
+      setPart1MessageKey('assessment.ethics.results.passMessage');
     } else {
-      setPart1Message(t('assessment.ethics.results.failMessage'));
+      setPart1MessageKey('assessment.ethics.results.failMessage');
     }
     
     setShowResult(true);
@@ -229,7 +229,7 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
 
           {showResult && (
             <div className="mt-5 italic bg-[var(--light-blue)]/50 p-4 rounded-lg" role="status" aria-live="polite">
-              <p>{part1Message}</p>
+              <p>{t(part1MessageKey)}</p>
             </div>
           )}
         </div>
