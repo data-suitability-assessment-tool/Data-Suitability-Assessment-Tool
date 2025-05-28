@@ -1,7 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import jsPDF from 'jspdf';
-import { Document, Packer, Paragraph, TextRun, AlignmentType, HeadingLevel } from 'docx';
 import { Button } from '../ui/Button';
 import { 
   Card, 
@@ -51,6 +49,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
   const [exportDialogOpen, setExportDialogOpen] = React.useState(false);
   const [exportFormat, setExportFormat] = React.useState<'text' | 'json' | 'csv' | 'pdf' | 'word'>('text');
   const [exportContent, setExportContent] = React.useState('');
+  const [isGenerating, setIsGenerating] = React.useState(false);
   const resultSummaryRef = useRef<HTMLDivElement>(null);
   
   const overallPass = ethicsPass && qualityPass;
@@ -264,306 +263,322 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
   };
   
   const generatePDFExport = async () => {
-    const pdf = new jsPDF();
-    const pageWidth = pdf.internal.pageSize.getWidth();
-    const margin = 20;
-    let yPosition = margin;
-    
-    // Title
-    pdf.setFontSize(16);
-    pdf.setFont('helvetica', 'bold');
-    pdf.text(`${t('mainContent.tabs.assessment')} - ${t('assessment.overall.title')}`, margin, yPosition);
-    yPosition += 15;
-    
-    // Date
-    pdf.setFontSize(12);
-    pdf.setFont('helvetica', 'normal');
-    const date = new Date().toISOString().split('T')[0];
-    pdf.text(`${t('assessment.overall.export.date')}: ${date}`, margin, yPosition);
-    yPosition += 20;
-    
-    // Overall Result
-    pdf.setFontSize(14);
-    pdf.setFont('helvetica', 'bold');
-    pdf.text(`${t('assessment.overall.export.overallResult')}: ${overallPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail')}`, margin, yPosition);
-    yPosition += 15;
-    
-    // Overall Message
-    pdf.setFontSize(10);
-    pdf.setFont('helvetica', 'normal');
-    const overallMessage = overallPass 
-      ? t('assessment.overall.messages.bothPass')
-      : ethicsPass && !qualityPass
-        ? t('assessment.overall.messages.ethicsPassQualityFail')
-        : !ethicsPass && qualityPass
-          ? t('assessment.overall.messages.ethicsFailQualityPass')
-          : t('assessment.overall.messages.bothFail');
-    
-    const splitMessage = pdf.splitTextToSize(overallMessage, pageWidth - 2 * margin);
-    pdf.text(splitMessage, margin, yPosition);
-    yPosition += splitMessage.length * 5 + 10;
-    
-    // Ethics Principles Section
-    pdf.setFontSize(12);
-    pdf.setFont('helvetica', 'bold');
-    pdf.text(t('assessment.overall.export.ethicsPrinciples'), margin, yPosition);
-    yPosition += 10;
-    
-    pdf.setFontSize(10);
-    pdf.setFont('helvetica', 'normal');
-    const part1Message = part1MessageKey ? t(part1MessageKey) : '';
-    const ethicsResult = `${t('assessment.overall.export.ethicsAssessment')}: ${ethicsPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail')}`;
-    pdf.text(ethicsResult, margin, yPosition);
-    yPosition += 8;
-    
-    const splitPart1Message = pdf.splitTextToSize(part1Message, pageWidth - 2 * margin);
-    pdf.text(splitPart1Message, margin, yPosition);
-    yPosition += splitPart1Message.length * 5 + 10;
-    
-    // Quality Dimensions Section
-    if (yPosition > 250) {
-      pdf.addPage();
-      yPosition = margin;
-    }
-    
-    pdf.setFontSize(12);
-    pdf.setFont('helvetica', 'bold');
-    pdf.text(t('assessment.overall.export.qualityDimensions'), margin, yPosition);
-    yPosition += 10;
-    
-    pdf.setFontSize(10);
-    pdf.setFont('helvetica', 'normal');
-    const qualityInterpretation = qualityInterpretationKey ? t(qualityInterpretationKey) : '';
-    const qualityResult = `${t('assessment.overall.export.qualityAssessment')}: ${qualityPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail')} (${t('assessment.overall.export.score')}: ${totalQualityScore}/15)`;
-    pdf.text(qualityResult, margin, yPosition);
-    yPosition += 8;
-    
-    const splitQualityMessage = pdf.splitTextToSize(qualityInterpretation, pageWidth - 2 * margin);
-    pdf.text(splitQualityMessage, margin, yPosition);
-    yPosition += splitQualityMessage.length * 5 + 10;
-    
-    // Quality Dimensions Details
-    for (const dimension of QUALITY_DIMENSIONS) {
-      if (yPosition > 240) {
+    setIsGenerating(true);
+    try {
+      // Dynamically import jsPDF
+      const { default: jsPDF } = await import('jspdf');
+      
+      const pdf = new jsPDF();
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const margin = 20;
+      let yPosition = margin;
+      
+      // Title
+      pdf.setFontSize(16);
+      pdf.setFont('helvetica', 'bold');
+      pdf.text(`${t('mainContent.tabs.assessment')} - ${t('assessment.overall.title')}`, margin, yPosition);
+      yPosition += 15;
+      
+      // Date
+      pdf.setFontSize(12);
+      pdf.setFont('helvetica', 'normal');
+      const date = new Date().toISOString().split('T')[0];
+      pdf.text(`${t('assessment.overall.export.date')}: ${date}`, margin, yPosition);
+      yPosition += 20;
+      
+      // Overall Result
+      pdf.setFontSize(14);
+      pdf.setFont('helvetica', 'bold');
+      pdf.text(`${t('assessment.overall.export.overallResult')}: ${overallPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail')}`, margin, yPosition);
+      yPosition += 15;
+      
+      // Overall Message
+      pdf.setFontSize(10);
+      pdf.setFont('helvetica', 'normal');
+      const overallMessage = overallPass 
+        ? t('assessment.overall.messages.bothPass')
+        : ethicsPass && !qualityPass
+          ? t('assessment.overall.messages.ethicsPassQualityFail')
+          : !ethicsPass && qualityPass
+            ? t('assessment.overall.messages.ethicsFailQualityPass')
+            : t('assessment.overall.messages.bothFail');
+      
+      const splitMessage = pdf.splitTextToSize(overallMessage, pageWidth - 2 * margin);
+      pdf.text(splitMessage, margin, yPosition);
+      yPosition += splitMessage.length * 5 + 10;
+      
+      // Ethics Principles Section
+      pdf.setFontSize(12);
+      pdf.setFont('helvetica', 'bold');
+      pdf.text(t('assessment.overall.export.ethicsPrinciples'), margin, yPosition);
+      yPosition += 10;
+      
+      pdf.setFontSize(10);
+      pdf.setFont('helvetica', 'normal');
+      const part1Message = part1MessageKey ? t(part1MessageKey) : '';
+      const ethicsResult = `${t('assessment.overall.export.ethicsAssessment')}: ${ethicsPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail')}`;
+      pdf.text(ethicsResult, margin, yPosition);
+      yPosition += 8;
+      
+      const splitPart1Message = pdf.splitTextToSize(part1Message, pageWidth - 2 * margin);
+      pdf.text(splitPart1Message, margin, yPosition);
+      yPosition += splitPart1Message.length * 5 + 10;
+      
+      // Quality Dimensions Section
+      if (yPosition > 250) {
         pdf.addPage();
         yPosition = margin;
       }
       
-      const score = assessmentData.qualityDimensions[dimension.id] || 0;
-      const assessment = getQualityScoreText(Number(score));
-      
+      pdf.setFontSize(12);
       pdf.setFont('helvetica', 'bold');
-      pdf.text(`${t(`qualityDimensions.dimension${dimension.id}.element`)}: ${score}/3 - ${assessment}`, margin, yPosition);
+      pdf.text(t('assessment.overall.export.qualityDimensions'), margin, yPosition);
+      yPosition += 10;
+      
+      pdf.setFontSize(10);
+      pdf.setFont('helvetica', 'normal');
+      const qualityInterpretation = qualityInterpretationKey ? t(qualityInterpretationKey) : '';
+      const qualityResult = `${t('assessment.overall.export.qualityAssessment')}: ${qualityPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail')} (${t('assessment.overall.export.score')}: ${totalQualityScore}/15)`;
+      pdf.text(qualityResult, margin, yPosition);
       yPosition += 8;
       
-      pdf.setFont('helvetica', 'normal');
-      dimension.criteria.forEach((_, idx) => {
-        const criteriaSatisfied = dimension.id === "3" ? (score === 3 || (score >= 1 && idx < score)) : (idx < score);
-        const status = criteriaSatisfied ? t('assessment.overall.export.criteriaStatus.satisfied') : t('assessment.overall.export.criteriaStatus.notSatisfied');
-        const criteriaText = `  ${idx + 1}. ${t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}: ${status}`;
-        const splitCriteria = pdf.splitTextToSize(criteriaText, pageWidth - 2 * margin);
-        pdf.text(splitCriteria, margin, yPosition);
-        yPosition += splitCriteria.length * 4;
-      });
-      yPosition += 5;
+      const splitQualityMessage = pdf.splitTextToSize(qualityInterpretation, pageWidth - 2 * margin);
+      pdf.text(splitQualityMessage, margin, yPosition);
+      yPosition += splitQualityMessage.length * 5 + 10;
+      
+      // Quality Dimensions Details
+      for (const dimension of QUALITY_DIMENSIONS) {
+        if (yPosition > 240) {
+          pdf.addPage();
+          yPosition = margin;
+        }
+        
+        const score = assessmentData.qualityDimensions[dimension.id] || 0;
+        const assessment = getQualityScoreText(Number(score));
+        
+        pdf.setFont('helvetica', 'bold');
+        pdf.text(`${t(`qualityDimensions.dimension${dimension.id}.element`)}: ${score}/3 - ${assessment}`, margin, yPosition);
+        yPosition += 8;
+        
+        pdf.setFont('helvetica', 'normal');
+        dimension.criteria.forEach((_, idx) => {
+          const criteriaSatisfied = dimension.id === "3" ? (score === 3 || (score >= 1 && idx < score)) : (idx < score);
+          const status = criteriaSatisfied ? t('assessment.overall.export.criteriaStatus.satisfied') : t('assessment.overall.export.criteriaStatus.notSatisfied');
+          const criteriaText = `  ${idx + 1}. ${t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}: ${status}`;
+          const splitCriteria = pdf.splitTextToSize(criteriaText, pageWidth - 2 * margin);
+          pdf.text(splitCriteria, margin, yPosition);
+          yPosition += splitCriteria.length * 4;
+        });
+        yPosition += 5;
+      }
+      
+      return pdf;
+    } finally {
+      setIsGenerating(false);
     }
-    
-    return pdf;
   };
 
-  const generateWordExport = () => {
-    const date = new Date().toISOString().split('T')[0];
-    const part1Message = part1MessageKey ? t(part1MessageKey) : '';
-    const qualityInterpretation = qualityInterpretationKey ? t(qualityInterpretationKey) : '';
-    
-    const overallMessage = overallPass 
-      ? t('assessment.overall.messages.bothPass')
-      : ethicsPass && !qualityPass
-        ? t('assessment.overall.messages.ethicsPassQualityFail')
-        : !ethicsPass && qualityPass
-          ? t('assessment.overall.messages.ethicsFailQualityPass')
-          : t('assessment.overall.messages.bothFail');
+  const generateWordExport = async () => {
+    setIsGenerating(true);
+    try {
+      // Dynamically import docx
+      const { Document, Paragraph, TextRun, AlignmentType, HeadingLevel } = await import('docx');
+      
+      const date = new Date().toISOString().split('T')[0];
+      const part1Message = part1MessageKey ? t(part1MessageKey) : '';
+      const qualityInterpretation = qualityInterpretationKey ? t(qualityInterpretationKey) : '';
+      
+      const overallMessage = overallPass 
+        ? t('assessment.overall.messages.bothPass')
+        : ethicsPass && !qualityPass
+          ? t('assessment.overall.messages.ethicsPassQualityFail')
+          : !ethicsPass && qualityPass
+            ? t('assessment.overall.messages.ethicsFailQualityPass')
+            : t('assessment.overall.messages.bothFail');
 
-    const children = [
-      // Title
-      new Paragraph({
-        children: [
-          new TextRun({
-            text: `${t('mainContent.tabs.assessment')} - ${t('assessment.overall.title')}`,
-            bold: true,
-            size: 32,
-          }),
-        ],
-        heading: HeadingLevel.TITLE,
-        alignment: AlignmentType.CENTER,
-      }),
-      
-      // Date
-      new Paragraph({
-        children: [
-          new TextRun({
-            text: `${t('assessment.overall.export.date')}: ${date}`,
-            size: 24,
-          }),
-        ],
-        spacing: { after: 200 },
-      }),
-      
-      // Overall Result
-      new Paragraph({
-        children: [
-          new TextRun({
-            text: `${t('assessment.overall.export.overallResult')}: `,
-            bold: true,
-            size: 28,
-          }),
-          new TextRun({
-            text: overallPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail'),
-            bold: true,
-            size: 28,
-            color: overallPass ? "00AA00" : "AA0000",
-          }),
-        ],
-        spacing: { after: 200 },
-      }),
-      
-      // Overall Message
-      new Paragraph({
-        children: [
-          new TextRun({
-            text: overallMessage,
-            size: 22,
-          }),
-        ],
-        spacing: { after: 300 },
-      }),
-      
-      // Ethics Principles Section
-      new Paragraph({
-        children: [
-          new TextRun({
-            text: t('assessment.overall.export.ethicsPrinciples'),
-            bold: true,
-            size: 26,
-          }),
-        ],
-        heading: HeadingLevel.HEADING_1,
-        spacing: { after: 200 },
-      }),
-      
-      new Paragraph({
-        children: [
-          new TextRun({
-            text: `${t('assessment.overall.export.ethicsAssessment')}: ${ethicsPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail')}`,
-            size: 22,
-          }),
-        ],
-        spacing: { after: 100 },
-      }),
-      
-      new Paragraph({
-        children: [
-          new TextRun({
-            text: part1Message,
-            size: 22,
-          }),
-        ],
-        spacing: { after: 300 },
-      }),
-      
-      // Quality Dimensions Section
-      new Paragraph({
-        children: [
-          new TextRun({
-            text: t('assessment.overall.export.qualityDimensions'),
-            bold: true,
-            size: 26,
-          }),
-        ],
-        heading: HeadingLevel.HEADING_1,
-        spacing: { after: 200 },
-      }),
-      
-      new Paragraph({
-        children: [
-          new TextRun({
-            text: `${t('assessment.overall.export.qualityAssessment')}: ${qualityPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail')} (${t('assessment.overall.export.score')}: ${totalQualityScore}/15)`,
-            size: 22,
-          }),
-        ],
-        spacing: { after: 100 },
-      }),
-      
-      new Paragraph({
-        children: [
-          new TextRun({
-            text: qualityInterpretation,
-            size: 22,
-          }),
-        ],
-        spacing: { after: 300 },
-      }),
-    ];
-
-    // Add quality dimensions details
-    QUALITY_DIMENSIONS.forEach(dimension => {
-      const score = assessmentData.qualityDimensions[dimension.id] || 0;
-      const assessment = getQualityScoreText(Number(score));
-      
-      children.push(
+      const children = [
+        // Title
         new Paragraph({
           children: [
             new TextRun({
-              text: `${t(`qualityDimensions.dimension${dimension.id}.element`)}: ${score}/3 - ${assessment}`,
+              text: `${t('mainContent.tabs.assessment')} - ${t('assessment.overall.title')}`,
               bold: true,
+              size: 32,
+            }),
+          ],
+          heading: HeadingLevel.TITLE,
+          alignment: AlignmentType.CENTER,
+        }),
+        
+        // Date
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: `${t('assessment.overall.export.date')}: ${date}`,
               size: 24,
             }),
           ],
+          spacing: { after: 200 },
+        }),
+        
+        // Overall Result
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: `${t('assessment.overall.export.overallResult')}: `,
+              bold: true,
+              size: 28,
+            }),
+            new TextRun({
+              text: overallPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail'),
+              bold: true,
+              size: 28,
+              color: overallPass ? "00AA00" : "AA0000",
+            }),
+          ],
+          spacing: { after: 200 },
+        }),
+        
+        // Overall Message
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: overallMessage,
+              size: 22,
+            }),
+          ],
+          spacing: { after: 300 },
+        }),
+        
+        // Ethics Principles Section
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: t('assessment.overall.export.ethicsPrinciples'),
+              bold: true,
+              size: 26,
+            }),
+          ],
+          heading: HeadingLevel.HEADING_1,
+          spacing: { after: 200 },
+        }),
+        
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: `${t('assessment.overall.export.ethicsAssessment')}: ${ethicsPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail')}`,
+              size: 22,
+            }),
+          ],
           spacing: { after: 100 },
-        })
-      );
-      
-      dimension.criteria.forEach((_, idx) => {
-        const criteriaSatisfied = dimension.id === "3" ? (score === 3 || (score >= 1 && idx < score)) : (idx < score);
-        const status = criteriaSatisfied ? t('assessment.overall.export.criteriaStatus.satisfied') : t('assessment.overall.export.criteriaStatus.notSatisfied');
+        }),
+        
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: part1Message,
+              size: 22,
+            }),
+          ],
+          spacing: { after: 300 },
+        }),
+        
+        // Quality Dimensions Section
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: t('assessment.overall.export.qualityDimensions'),
+              bold: true,
+              size: 26,
+            }),
+          ],
+          heading: HeadingLevel.HEADING_1,
+          spacing: { after: 200 },
+        }),
+        
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: `${t('assessment.overall.export.qualityAssessment')}: ${qualityPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail')} (${t('assessment.overall.export.score')}: ${totalQualityScore}/15)`,
+              size: 22,
+            }),
+          ],
+          spacing: { after: 100 },
+        }),
+        
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: qualityInterpretation,
+              size: 22,
+            }),
+          ],
+          spacing: { after: 300 },
+        }),
+      ];
+
+      // Add quality dimensions details
+      QUALITY_DIMENSIONS.forEach(dimension => {
+        const score = assessmentData.qualityDimensions[dimension.id] || 0;
+        const assessment = getQualityScoreText(Number(score));
         
         children.push(
           new Paragraph({
             children: [
               new TextRun({
-                text: `  ${idx + 1}. ${t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}: `,
-                size: 20,
-              }),
-              new TextRun({
-                text: status,
-                size: 20,
+                text: `${t(`qualityDimensions.dimension${dimension.id}.element`)}: ${score}/3 - ${assessment}`,
                 bold: true,
-                color: criteriaSatisfied ? "00AA00" : "AA0000",
+                size: 24,
               }),
             ],
-            spacing: { after: 50 },
+            spacing: { after: 100 },
+          })
+        );
+        
+        dimension.criteria.forEach((_, idx) => {
+          const criteriaSatisfied = dimension.id === "3" ? (score === 3 || (score >= 1 && idx < score)) : (idx < score);
+          const status = criteriaSatisfied ? t('assessment.overall.export.criteriaStatus.satisfied') : t('assessment.overall.export.criteriaStatus.notSatisfied');
+          
+          children.push(
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: `  ${idx + 1}. ${t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}: `,
+                  size: 20,
+                }),
+                new TextRun({
+                  text: status,
+                  size: 20,
+                  bold: true,
+                  color: criteriaSatisfied ? "00AA00" : "AA0000",
+                }),
+              ],
+              spacing: { after: 50 },
+            })
+          );
+        });
+        
+        children.push(
+          new Paragraph({
+            children: [new TextRun({ text: "", size: 20 })],
+            spacing: { after: 200 },
           })
         );
       });
-      
-      children.push(
-        new Paragraph({
-          children: [new TextRun({ text: "", size: 20 })],
-          spacing: { after: 200 },
-        })
-      );
-    });
 
-    const doc = new Document({
-      sections: [
-        {
-          properties: {},
-          children: children,
-        },
-      ],
-    });
+      const doc = new Document({
+        sections: [
+          {
+            properties: {},
+            children: children,
+          },
+        ],
+      });
 
-    return doc;
+      return doc;
+    } finally {
+      setIsGenerating(false);
+    }
   };
   
   // Use useEffect to update the export content whenever the format changes
@@ -628,7 +643,9 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
       pdf.save(fileName);
     } else if (exportFormat === "word") {
       fileName += ".docx";
-      const doc = generateWordExport();
+      const doc = await generateWordExport();
+      // Dynamically import Packer for Word export
+      const { Packer } = await import('docx');
       const blob = await Packer.toBlob(doc);
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
@@ -896,11 +913,24 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
             <Button 
               onClick={handleDownload}
               className="transform transition-transform hover:scale-105"
+              disabled={isGenerating}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-              {t('assessment.overall.export.buttons.download')}
+              {isGenerating ? (
+                <>
+                  <svg className="animate-spin h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  {t('assessment.overall.export.generating', 'Generating...')}
+                </>
+              ) : (
+                <>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                  {t('assessment.overall.export.buttons.download')}
+                </>
+              )}
             </Button>
             <Button 
               onClick={() => setExportDialogOpen(false)}
