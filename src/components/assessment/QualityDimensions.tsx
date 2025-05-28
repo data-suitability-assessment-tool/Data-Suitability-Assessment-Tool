@@ -36,7 +36,6 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
   onEvaluate,
 }) => {
   const { t } = useTranslation();
-  const [qualitySummary, setQualitySummary] = React.useState<JSX.Element | null>(null);
   const [qualityInterpretation, setQualityInterpretation] = React.useState('');
   const [showResult, setShowResult] = React.useState(false);
   const resultRef = useRef<HTMLDivElement>(null);
@@ -116,7 +115,7 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
               <TableHead>{t('assessment.quality.summary.tableHeaders.dimension')}</TableHead>
               <TableHead className="text-center">{t('assessment.quality.summary.tableHeaders.score')}</TableHead>
               <TableHead>{t('assessment.quality.summary.tableHeaders.assessment')}</TableHead>
-              <TableHead>Criteria Satisfied</TableHead>
+              <TableHead>{t('assessment.overall.criteriaSatisfied')}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -172,7 +171,6 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
     }
     
     setQualityInterpretation(message);
-    setQualitySummary(generateQualitySummary());
     setShowResult(true);
     
     // Focus on the result section for screen readers
@@ -284,7 +282,7 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
           aria-labelledby="quality-summary-title"
           className="transition-all"
         >
-          {showResult && qualitySummary}
+          {showResult && generateQualitySummary()}
           
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-6 bg-[var(--light-blue)]/30 p-4 rounded-lg">
             <div>
