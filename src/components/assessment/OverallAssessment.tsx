@@ -28,8 +28,8 @@ interface OverallAssessmentProps {
   ethicsPass: boolean | null;
   qualityPass: boolean | null;
   totalQualityScore: number;
-  part1Message: string;
-  qualityInterpretation: string;
+  part1MessageKey: string;
+  qualityInterpretationKey: string;
   onReset: () => void;
   assessmentData: any;
   onReturnHome?: () => void;
@@ -39,8 +39,8 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
   ethicsPass,
   qualityPass,
   totalQualityScore,
-  part1Message,
-  qualityInterpretation,
+  part1MessageKey,
+  qualityInterpretationKey,
   onReset,
   assessmentData,
   onReturnHome
@@ -60,8 +60,8 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
     resultClass = 'bg-[var(--success-color)] text-white';
     resultText = t('assessment.overall.summary.pass');
   } else if (ethicsPass && !qualityPass) {
-    resultClass = 'bg-[var(--warning-color)] text-white';
-    resultText = t('assessment.overall.summary.warning');
+    resultClass = 'bg-[var(--error-color)] text-white';
+    resultText = t('assessment.overall.summary.fail');
   } else {
     resultClass = 'bg-[var(--error-color)] text-white';
     resultText = t('assessment.overall.summary.fail');
@@ -81,15 +81,28 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
 
   const generateExportContent = () => {
     const date = new Date().toISOString().split('T')[0];
+    const part1Message = part1MessageKey ? t(part1MessageKey) : '';
+    const qualityInterpretation = qualityInterpretationKey ? t(qualityInterpretationKey) : '';
     const part1ResultText = `${t('assessment.overall.export.ethicsAssessment')}: ${ethicsPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail')}\n${t('assessment.overall.export.message')}: ${part1Message}\n`;
     const qualityResultText = `${t('assessment.overall.export.qualityAssessment')}: ${qualityPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail')} (${t('assessment.overall.export.score')}: ${totalQualityScore}/15)\n${t('assessment.overall.export.interpretation')}: ${qualityInterpretation}\n`;
     const overallResultText = `${t('assessment.overall.export.result')}: ${overallPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail')}\n`;
+    
+    // Generate overall assessment message
+    const overallMessage = overallPass 
+      ? t('assessment.overall.messages.bothPass')
+      : ethicsPass && !qualityPass
+        ? t('assessment.overall.messages.ethicsPassQualityFail')
+        : !ethicsPass && qualityPass
+          ? t('assessment.overall.messages.ethicsFailQualityPass')
+          : t('assessment.overall.messages.bothFail');
     
     let content = '';
     
     if (exportFormat === 'text') {
       content = `${t('mainContent.tabs.assessment')} - ${t('assessment.overall.title')}\n`;
       content += `${t('assessment.overall.export.date')}: ${date}\n\n`;
+      content += `${t('assessment.overall.export.overallResult')}: ${overallPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail')}\n`;
+      content += `${t('assessment.overall.export.overallMessage')}: ${overallMessage}\n\n`;
       content += `${t('assessment.overall.export.ethicsPrinciples')}\n`;
       content += part1ResultText + "\n";
       content += `${t('assessment.overall.export.ethicsPrinciplesList')}:\n`;
@@ -108,30 +121,60 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
       content += qualityResultText + "\n";
       content += `${t('assessment.overall.export.qualityDimensionsList')}:\n`;
       
-      // Use QUALITY_DIMENSIONS to ensure all dimensions are included
+      // Use QUALITY_DIMENSIONS to ensure all dimensions are included with detailed criteria
       for (const dimension of QUALITY_DIMENSIONS) {
         const score = assessmentData.qualityDimensions[dimension.id] || 0;
         const assessment = getQualityScoreText(Number(score));
-        content += `- ${t(`qualityDimensions.dimension${dimension.id}.element`)}: ${score} - ${assessment}\n`;
+        content += `- ${t(`qualityDimensions.dimension${dimension.id}.element`)}: ${score}/3 - ${assessment}\n`;
+        
+        // Add detailed criteria satisfaction
+        const criteriaSatisfied: any[] = [];
+        for (let i = 0; i < dimension.criteria.length; i++) {
+          if (dimension.id === "3") {
+            criteriaSatisfied.push(score === 3 || (score >= 1 && i < score));
+          } else {
+            criteriaSatisfied.push(i < score);
+          }
+        }
+        
+        content += `  ${t('assessment.overall.export.criteriaDetails')}:\n`;
+        dimension.criteria.forEach((_, idx) => {
+          const status = criteriaSatisfied[idx] ? t('assessment.overall.export.criteriaStatus.satisfied') : t('assessment.overall.export.criteriaStatus.notSatisfied');
+          content += `    ${idx + 1}. ${t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}: ${status}\n`;
+        });
+        content += '\n';
       }
       
-      content += "\n" + overallResultText;
+      content += overallResultText;
     }
     else if (exportFormat === 'json') {
-      // Create a complete qualityDimensions object that includes all dimensions
-      const completeQualityDimensions: Record<string, number> = {};
+      // Create a complete qualityDimensions object that includes all dimensions with detailed criteria
+      const completeQualityDimensions: Record<string, any> = {};
       
-      // Initialize all dimensions with 0 score
+      // Initialize all dimensions with detailed information
       QUALITY_DIMENSIONS.forEach(dimension => {
-        completeQualityDimensions[dimension.id] = 0;
+        const score = assessmentData.qualityDimensions[dimension.id] || 0;
+        
+        // Calculate criteria satisfaction
+        const criteriaSatisfied: any[] = [];
+        for (let i = 0; i < dimension.criteria.length; i++) {
+          if (dimension.id === "3") {
+            criteriaSatisfied.push(score === 3 || (score >= 1 && i < score));
+          } else {
+            criteriaSatisfied.push(i < score);
+          }
+        }
+        
+        completeQualityDimensions[dimension.id] = {
+          score: score,
+          maxScore: 3,
+          assessment: getQualityScoreText(Number(score)),
+          criteria: dimension.criteria.map((_, idx) => ({
+            text: t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`),
+            satisfied: criteriaSatisfied[idx]
+          }))
+        };
       });
-      
-      // Update with actual scores from assessment data
-      if (assessmentData.qualityDimensions) {
-        Object.entries(assessmentData.qualityDimensions).forEach(([id, score]) => {
-          completeQualityDimensions[id] = Number(score);
-        });
-      }
       
       // Translate ethics principles answers for JSON export
       const translatedEthicsPrinciples: Record<string, string> = {};
@@ -147,6 +190,8 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
       
       content = JSON.stringify({
         date,
+        overallResult: overallPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail'),
+        overallMessage: overallMessage,
         ethicsPrinciples: translatedEthicsPrinciples,
         qualityDimensions: completeQualityDimensions,
         results: {
@@ -160,17 +205,18 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
       }, null, 2);
     }
     else if (exportFormat === 'csv') {
-      // CSV format already includes all dimensions
+      // CSV format with detailed criteria information
       content = `${t('mainContent.tabs.assessment')} - ${t('assessment.overall.title')}\r\n\r\n`;
       content += `${t('assessment.overall.export.summaryHeader')}\r\n`;
       content += `${t('assessment.overall.export.category')},${t('assessment.overall.export.result')}\r\n`;
       content += `${t('assessment.overall.export.date')},${date}\r\n`;
+      content += `${t('assessment.overall.export.overallResult')},${overallPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail')}\r\n`;
+      content += `${t('assessment.overall.export.overallMessage')},"${overallMessage.replace(/"/g, '""')}"\r\n`;
       content += `${t('assessment.overall.export.ethicsAssessment')},${ethicsPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail')}\r\n`;
       content += `${t('assessment.overall.export.message')},"${part1Message.replace(/"/g, '""')}"\r\n`;
       content += `${t('assessment.overall.export.qualityAssessment')},${qualityPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail')}\r\n`;
       content += `${t('assessment.overall.export.interpretation')},"${qualityInterpretation.replace(/"/g, '""')}"\r\n`;
-      content += `${t('assessment.overall.export.score')},${totalQualityScore}/15\r\n`;
-      content += `${t('assessment.overall.export.result')},${overallPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail')}\r\n\r\n`;
+      content += `${t('assessment.overall.export.score')},${totalQualityScore}/15\r\n\r\n`;
       content += `${t('assessment.overall.export.ethicsPrinciples')}\r\n`;
       content += `${t('assessment.overall.export.ethicsPrinciple')},${t('assessment.overall.export.evaluation')}\r\n`;
       
@@ -186,12 +232,29 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
       
       content += "\r\n";
       content += `${t('assessment.overall.export.qualityDimensions')}\r\n`;
-      content += `${t('assessment.overall.export.qualityDimension')},${t('assessment.overall.export.scoreHeader')},${t('assessment.overall.export.assessment')}\r\n`;
+      content += `${t('assessment.overall.export.qualityDimension')},${t('assessment.overall.export.scoreHeader')},${t('assessment.overall.export.assessment')},${t('assessment.overall.export.criteriaDetails')}\r\n`;
       
       for (const dimension of QUALITY_DIMENSIONS) {
         const score = assessmentData.qualityDimensions[dimension.id] || 0;
         const assessment = getQualityScoreText(Number(score));
-        content += `"${t(`qualityDimensions.dimension${dimension.id}.element`)}",${score},"${assessment}"\r\n`;
+        
+        // Calculate criteria satisfaction
+        const criteriaSatisfied: any[] = [];
+        for (let i = 0; i < dimension.criteria.length; i++) {
+          if (dimension.id === "3") {
+            criteriaSatisfied.push(score === 3 || (score >= 1 && i < score));
+          } else {
+            criteriaSatisfied.push(i < score);
+          }
+        }
+        
+        // Create criteria details string
+        const criteriaDetails = dimension.criteria.map((_, idx) => {
+          const status = criteriaSatisfied[idx] ? t('assessment.overall.export.criteriaStatus.satisfied') : t('assessment.overall.export.criteriaStatus.notSatisfied');
+          return `${idx + 1}. ${t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}: ${status}`;
+        }).join('; ');
+        
+        content += `"${t(`qualityDimensions.dimension${dimension.id}.element`)}",${score}/3,"${assessment}","${criteriaDetails.replace(/"/g, '""')}"\r\n`;
       }
     }
     
@@ -261,7 +324,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
           <strong className="block text-center">{ethicsPass ? t('assessment.ethics.results.pass') : t('assessment.ethics.results.fail')}</strong>
         </div>
         
-        <p className="italic mb-4 bg-[var(--light-blue)]/50 p-3 rounded-lg">{part1Message}</p>
+        <p className="italic mb-4 bg-[var(--light-blue)]/50 p-3 rounded-lg">{part1MessageKey ? t(part1MessageKey) : ''}</p>
         
         <div className="rounded-lg overflow-hidden shadow-md">
           <Table aria-labelledby="ethics-summary-title">
@@ -306,7 +369,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
           <span className="ml-2">{t('assessment.quality.summary.totalScore')} {totalQualityScore}/15</span>
         </div>
         
-        <p className="italic mb-4 bg-[var(--light-blue)]/50 p-3 rounded-lg">{qualityInterpretation}</p>
+        <p className="italic mb-4 bg-[var(--light-blue)]/50 p-3 rounded-lg">{qualityInterpretationKey ? t(qualityInterpretationKey) : ''}</p>
         
         <div className="rounded-lg overflow-hidden shadow-md">
           <Table aria-labelledby="quality-summary-title">
@@ -316,17 +379,40 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                 <TableHead scope="col" className="bg-[var(--primary-color)]">{t('assessment.quality.table.headers.elements')}</TableHead>
                 <TableHead scope="col" className="bg-[var(--primary-color)] text-center">{t('assessment.quality.summary.tableHeaders.score')}</TableHead>
                 <TableHead scope="col" className="bg-[var(--primary-color)]">{t('assessment.quality.summary.tableHeaders.assessment')}</TableHead>
+                <TableHead scope="col" className="bg-[var(--primary-color)]">{t('assessment.overall.criteriaSatisfied')}</TableHead>  
               </TableRow>
             </TableHeader>
             <TableBody>
               {QUALITY_DIMENSIONS.map((dimension, index) => {
                 const score = assessmentData.qualityDimensions[dimension.id] || 0;
                 const assessment = getQualityScoreText(Number(score));
+                
+                // Calculate which criteria were satisfied based on the score
+                const criteriaSatisfied: any[] = [];
+                for (let i = 0; i < dimension.criteria.length; i++) {
+                  if (dimension.id === "3") {
+                    // Special case for Accessibility and clarity: if score is 3, both criteria are satisfied
+                    criteriaSatisfied.push(score === 3 || (score >= 1 && i < score));
+                  } else {
+                    // Standard case: score equals number of criteria satisfied
+                    criteriaSatisfied.push(i < score);
+                  }
+                }
+                
                 return (
                   <TableRow key={dimension.id} className={index % 2 === 0 ? "bg-white" : "bg-[var(--light-blue)]"}>
                     <TableCell className="font-bold text-[var(--primary-color)]">{t(`qualityDimensions.dimension${dimension.id}.element`)}</TableCell>
                     <TableCell className="text-start font-semibold">{score}/3</TableCell>
                     <TableCell>{assessment}</TableCell>
+                    <TableCell>
+                      <div className="space-y-1">
+                        {dimension.criteria.map((_, idx) => (
+                          <div key={idx} className={`text-sm font-semibold ${criteriaSatisfied[idx] ? 'text-[var(--success-color)]' : 'text-[var(--error-color)]'}`}>
+                            {criteriaSatisfied[idx] ? '✓' : '✗'} {t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}
+                          </div>
+                        ))}
+                      </div>
+                    </TableCell>
                   </TableRow>
                 );
               })}
