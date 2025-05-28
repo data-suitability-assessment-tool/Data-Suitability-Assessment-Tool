@@ -15,13 +15,6 @@ import {
   TableCell,
   TableCaption 
 } from '../ui/Table';
-import { 
-  Select, 
-  SelectTrigger, 
-  SelectValue, 
-  SelectContent, 
-  SelectItem 
-} from '../ui/Select';
 
 interface QualityDimensionsProps {
   qualityScores: Record<string, number>;
@@ -47,25 +40,33 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
   const [qualityInterpretation, setQualityInterpretation] = React.useState('');
   const [showResult, setShowResult] = React.useState(false);
   const resultRef = useRef<HTMLDivElement>(null);
+  
+  // Track individual criteria satisfaction
+  const [criteriaSatisfaction, setCriteriaSatisfaction] = React.useState<Record<string, boolean[]>>({});
 
   // Initialize dimensions with default values if not done already
   React.useEffect(() => {
     // Check if we need to initialize
     const needsInitialization = QUALITY_DIMENSIONS.some(dimension => 
-      qualityScores[dimension.id] === undefined
+      qualityScores[dimension.id] === undefined || !criteriaSatisfaction[dimension.id]
     );
     
     if (needsInitialization) {
       const initialScores = { ...qualityScores };
+      const initialCriteria = { ...criteriaSatisfaction };
       
-      // Set default value of 0 for any uninitialized dimension
+      // Set default values for any uninitialized dimension
       QUALITY_DIMENSIONS.forEach(dimension => {
         if (initialScores[dimension.id] === undefined) {
           initialScores[dimension.id] = 0;
         }
+        if (!initialCriteria[dimension.id]) {
+          initialCriteria[dimension.id] = new Array(dimension.criteria.length).fill(false);
+        }
       });
       
       setQualityScores(initialScores);
+      setCriteriaSatisfaction(initialCriteria);
     }
   }, []);
 
@@ -77,10 +78,27 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
     return "";
   };
 
-  const handleScoreChange = (id: string, value: number) => {
+  const handleCriteriaChange = (dimensionId: string, criteriaIndex: number, checked: boolean) => {
+    const newCriteriaSatisfaction = {
+      ...criteriaSatisfaction,
+      [dimensionId]: [...(criteriaSatisfaction[dimensionId] || [])]
+    };
+    
+    newCriteriaSatisfaction[dimensionId][criteriaIndex] = checked;
+    setCriteriaSatisfaction(newCriteriaSatisfaction);
+    
+    // Calculate new score for this dimension
+    const satisfiedCount = newCriteriaSatisfaction[dimensionId].filter(Boolean).length;
+    
+    // Special case for Accessibility and clarity (dimension 3): 2 criteria satisfied = 3 points
+    let score = satisfiedCount;
+    if (dimensionId === "3" && satisfiedCount === 2) {
+      score = 3;
+    }
+    
     const newScores = {
       ...qualityScores,
-      [id]: value
+      [dimensionId]: score
     };
     setQualityScores(newScores);
     
@@ -98,12 +116,15 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
               <TableHead>{t('assessment.quality.summary.tableHeaders.dimension')}</TableHead>
               <TableHead className="text-center">{t('assessment.quality.summary.tableHeaders.score')}</TableHead>
               <TableHead>{t('assessment.quality.summary.tableHeaders.assessment')}</TableHead>
+              <TableHead>Criteria Satisfied</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {QUALITY_DIMENSIONS.map((dimension, index) => {
               const score = qualityScores[dimension.id] || 0;
               const assessment = getQualityScoreText(score);
+              const criteria = criteriaSatisfaction[dimension.id] || [];
+              
               return (
                 <TableRow key={dimension.id} className={index % 2 === 0 ? "bg-white" : "bg-[var(--light-blue)]"}>
                   <TableCell className="font-bold text-[var(--primary-color)]">{t(`qualityDimensions.dimension${dimension.id}.element`)}</TableCell>
@@ -111,6 +132,15 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
                     {t('assessment.quality.summary.scoreDisplay', { score: score, maxScore: dimension.maxScore })}
                   </TableCell>
                   <TableCell>{assessment}</TableCell>
+                  <TableCell>
+                    <div className="space-y-1">
+                      {dimension.criteria.map((_, idx) => (
+                        <div key={idx} className={`text-sm font-semibold ${criteria[idx] ? 'text-[var(--success-color)]' : 'text-[var(--error-color)]'}`}>
+                          {criteria[idx] ? '✓' : '✗'} {t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}
+                        </div>
+                      ))}
+                    </div>
+                  </TableCell>
                 </TableRow>
               );
             })}
@@ -192,11 +222,7 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
                 <TableHead className="text-lg">
                   {t('assessment.quality.table.headers.answer')}
                   <TooltipInfo id="tooltip-points-info">
-                    {t('assessment.quality.table.tooltip.title')}<br />
-                    {t('assessment.quality.table.tooltip.high')}<br />
-                    {t('assessment.quality.table.tooltip.medium')}<br />
-                    {t('assessment.quality.table.tooltip.low')}<br />
-                    {t('assessment.quality.table.tooltip.notSufficient')}
+                    Check each criterion that your data satisfies. Each checked criterion awards 1 point.
                   </TooltipInfo>
                 </TableHead>
               </TableRow>
@@ -217,86 +243,21 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
                     ))}
                   </TableCell>
                   <TableCell>
-                    <Select
-                      value={qualityScores[dimension.id]?.toString() || "0"}
-                      onValueChange={(value) => handleScoreChange(dimension.id, parseInt(value))}
-                    >
-                      <SelectTrigger 
-                        className="w-full shadow-sm transition-all hover:border-[var(--secondary-color)]" 
-                        aria-labelledby={`quality-el-${dimension.id} quality-crit-${dimension.id}`}
-                        style={{ fontSize: '1rem' }}
-                      >
-                        <SelectValue 
-                          placeholder={t('assessment.quality.table.options.select')} 
-                          className="text-base"
-                          style={{ fontSize: '1rem' }}
-                        />
-                      </SelectTrigger>
-                      {dimension.id === "3" ? (
-                        <SelectContent 
-                          position="popper"
-                          sideOffset={5}
-                          align="start"
-                        >
-                          <SelectItem 
-                            value="0"
-                            className="text-base py-3"
-                            style={{ fontSize: '1rem' }}
-                          >
-                            <span style={{ fontSize: '1rem' }}>0 - {t('assessment.quality.scoreText.notSufficient')}</span>
-                          </SelectItem>
-                          <SelectItem 
-                            value="1"
-                            className="text-base py-3"
-                            style={{ fontSize: '1rem' }}
-                          >
-                            <span style={{ fontSize: '1rem' }}>1 - {t('assessment.quality.scoreText.low')}</span>
-                          </SelectItem>
-                          <SelectItem 
-                            value="3"
-                            className="text-base py-3"
-                            style={{ fontSize: '1rem' }}
-                          >
-                            <span style={{ fontSize: '1rem' }}>3 - {t('assessment.quality.scoreText.high')}</span>
-                          </SelectItem>
-                        </SelectContent>
-                      ) : (
-                        <SelectContent 
-                          position="popper"
-                          sideOffset={5}
-                          align="start"
-                        >
-                          <SelectItem 
-                            value="0"
-                            className="text-base py-3"
-                            style={{ fontSize: '1rem' }}
-                          >
-                            <span style={{ fontSize: '1rem' }}>0 - {t('assessment.quality.scoreText.notSufficient')}</span>
-                          </SelectItem>
-                          <SelectItem 
-                            value="1"
-                            className="text-base py-3"
-                            style={{ fontSize: '1rem' }}
-                          >
-                            <span style={{ fontSize: '1rem' }}>1 - {t('assessment.quality.scoreText.low')}</span>
-                          </SelectItem>
-                          <SelectItem 
-                            value="2"
-                            className="text-base py-3"
-                            style={{ fontSize: '1rem' }}
-                          >
-                            <span style={{ fontSize: '1rem' }}>2 - {t('assessment.quality.scoreText.medium')}</span>
-                          </SelectItem>
-                          <SelectItem 
-                            value="3"
-                            className="text-base py-3"
-                            style={{ fontSize: '1rem' }}
-                          >
-                            <span style={{ fontSize: '1rem' }}>3 - {t('assessment.quality.scoreText.high')}</span>
-                          </SelectItem>
-                        </SelectContent>
-                      )}
-                    </Select>
+                    <div className="flex flex-col items-center">
+                      {dimension.criteria.map((_, idx) => (
+                        <div key={idx} className="flex items-center justify-center" style={{ minHeight: '3.5rem', marginBottom: idx < dimension.criteria.length - 1 ? '1rem' : '0' }}>
+                          <label className="flex items-center cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={criteriaSatisfaction[dimension.id]?.[idx] || false}
+                              onChange={(e) => handleCriteriaChange(dimension.id, idx, e.target.checked)}
+                              className="h-4 w-4 text-[var(--primary-color)] focus:ring-[var(--primary-color)] border-gray-300 rounded"
+                              aria-describedby={`quality-crit-${dimension.id}`}
+                            />
+                          </label>
+                        </div>
+                      ))}
+                    </div>
                   </TableCell>
                 </TableRow>
               ))}
