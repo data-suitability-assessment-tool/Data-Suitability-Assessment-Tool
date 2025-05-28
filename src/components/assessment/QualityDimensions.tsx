@@ -222,7 +222,11 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
                 <TableHead className="text-lg">
                   {t('assessment.quality.table.headers.answer')}
                   <TooltipInfo id="tooltip-points-info">
-                    Check each criterion that your data satisfies. Each checked criterion awards 1 point.
+                    {t('assessment.quality.table.tooltip.title')}<br />
+                    {t('assessment.quality.table.tooltip.high')}<br />
+                    {t('assessment.quality.table.tooltip.medium')}<br />
+                    {t('assessment.quality.table.tooltip.low')}<br />
+                    {t('assessment.quality.table.tooltip.notSufficient')}
                   </TooltipInfo>
                 </TableHead>
               </TableRow>
