@@ -90,13 +90,13 @@
       }
     },
     "quality": {
-      "title": "Part 2 - Dimensions of Quality",
+      "title": "Part 2 - Dimensions of Data Quality",
       "intro": {
         "part1": "The second part of the evaluation rests on five of the six dimensions of quality developed and used by Statistics Canada. The dimension evaluating the relevance is not included below as it is an element evaluated by the benefit to Canadians core principle above. A definition and a series of criteria are provided with each dimension. Each dimension is evaluated and scored based on the compliance to the criteria, and an aggregated pass/fail rating is returned.",
         "part2": "Please evaluate each criterion to confirm whether the data align with the principles or not by selecting the checkbox next to the criterion. An unselected criterion will be considered as not met."
       },
       "table": {
-        "caption": "Assessment of Dimensions of Quality",
+        "caption": "Assessment of Dimensions of Data Quality",
         "headers": {
           "elements": "Elements",
           "definition": "Definition",
@@ -118,8 +118,8 @@
         }
       },
       "summary": {
-        "title": "Results of the Assessment Against Statistics Canada's Dimensions of Quality:",
-        "tableCaption": "Detailed Dimensions of Quality Scores",
+        "title": "Results of the Assessment Against Statistics Canada's Dimensions of Data Quality:",
+        "tableCaption": "Detailed Dimensions of Data Quality Scores",
         "tableHeaders": {
           "dimension": "Dimension",
           "score": "Score",
@@ -140,7 +140,7 @@
         "low": "The quality of the data as evaluated above is not considered fit-for-use for SDG reporting, please consider addressing some of the evaluation criteria to improve its quality if possible.",
         "medium": "The quality of the data as evaluated above is fit-for-use for SDG reporting but could be improved, please consider addressing some of the evaluation criteria if possible.",
         "high": "The quality of the data as evaluated above is considered fit-for-use for SDG reporting.",
-        "fail": "The quality of the data as evaluated above has at least one dimension of quality that is not sufficient and is therefore not fit-for-use for SDG reporting. Please consider addressing some of the evaluation criteria to improve its quality if possible."
+        "fail": "The quality of the data as evaluated above has at least one dimension of data quality that is not sufficient and is therefore not fit-for-use for SDG reporting. Please consider addressing some of the evaluation criteria to improve its quality if possible."
       },
       "actions": {
         "evaluate": "Evaluate",
@@ -152,7 +152,7 @@
       "summary": {
         "title": "Summary",
         "ethicsResults": "Part 1 - Data Ethics Principles Assessment:",
-        "qualityResults": "Part 2 - Dimensions of Quality Assessment:",
+        "qualityResults": "Part 2 - Dimensions of Data Quality Assessment:",
         "overallResults": "Overall Assessment Result:",
         "pass": "Pass",
         "fail": "Fail",
@@ -192,24 +192,36 @@
         "preview": "Preview",
         "summaryHeader": "SUMMARY",
         "date": "Date",
-        "ethicsAssessment": "Data Ethics Assessment",
-        "message": "Part 1 Message",
-        "qualityAssessment": "Dimensions of Quality Assessment",
-        "interpretation": "Quality Interpretation",
-        "score": "Quality Dimensions Score",
+        "ethicsAssessment": "Data Ethics Principles Assessment",
+        "message": "Assessment of the Data Ethics Principles",
+        "qualityAssessment": "Dimensions of Data Quality Assessment",
+        "interpretation": "Assessment of the Dimensions of Data Quality",
+        "score": "Dimensions of Data Quality Score",
         "result": "Overall Result",
         "category": "Category",
         "ethicsPrinciples": "DATA ETHICS PRINCIPLES",
-        "ethicsPrinciplesList": "Ethics Principles",
+        "ethicsPrinciplesList": "Data Ethics Principles",
         "ethicsPrinciple": "Data Ethics Principle",
         "evaluation": "Evaluation",
-        "qualityDimensions": "DIMENSIONS OF QUALITY",
-        "qualityDimensionsList": "Dimensions of Quality",
-        "qualityDimension": "Dimension of Quality",
+        "qualityDimensions": "DIMENSIONS OF DATA QUALITY",
+        "qualityDimensionsList": "Dimensions of Data Quality",
+        "qualityDimension": "Dimension of Data Quality",
         "scoreHeader": "Score",
         "assessment": "Assessment",
-        "notEvaluated": "Not evaluated"
+        "notEvaluated": "Not evaluated",
+        "criteriaStatus": {
+          "satisfied": "SATISFIED",
+          "notSatisfied": "NOT SATISFIED"
+        },
+        "overallResult": "Overall Result",
+        "overallMessage": "Overall Message",
+        "criteriaDetails": "Criteria Details",
+        "tableHeaders": {
+          "score": "Score",
+          "assessment": "Assessment"
+        }
       },
+      "criteriaSatisfied": "Criteria Satisfied",
       "actions": {
         "reset": "Reset Assessment",
         "home": "Return Home"

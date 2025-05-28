@@ -90,13 +90,13 @@
       }
     },
     "quality": {
-      "title": "Partie 2 - Dimensions de qualité",
+      "title": "Partie 2 - Dimensions de la qualité des données",
       "intro": {
         "part1": "La deuxième partie de l'évaluation repose sur cinq des six dimensions de qualité développées et utilisées par Statistique Canada. La dimension évaluant la pertinence n'est pas incluse ci-dessous car c'est un élément évalué par le principe fondamental des avantages pour les Canadiens ci-dessus. Une définition et une série de critères sont fournis avec chaque dimension. Chaque dimension est évaluée et notée en fonction de la conformité aux critères, et une notation globale réussite/échec est retournée.",
         "part2": "Veuillez évaluer chaque critère pour confirmer si les données sont alignées avec les principes ou non en sélectionnant la case à cocher à côté du critère. Un critère non sélectionné sera considéré comme non satisfait."
       },
       "table": {
-        "caption": "Évaluation des Dimensions de qualité",
+        "caption": "Évaluation des dimensions de la qualité des données",
         "headers": {
           "elements": "Éléments",
           "definition": "Définition",
@@ -118,8 +118,8 @@
         }
       },
       "summary": {
-        "title": "Résultats de l'évaluation par rapport aux Dimensions de qualité de Statistique Canada :",
-        "tableCaption": "Scores détaillés des Dimensions de qualité",
+        "title": "Résultats de l'évaluation par rapport aux dimensions de la qualité des données de Statistique Canada :",
+        "tableCaption": "Scores détaillés des dimensions de la qualité des données",
         "tableHeaders": {
           "dimension": "Dimension",
           "score": "Score",
@@ -152,7 +152,7 @@
       "summary": {
         "title": "Résumé",
         "ethicsResults": "Partie 1 - Évaluation des principes d'éthique des données :",
-        "qualityResults": "Partie 2 - Évaluation des Dimensions de qualité :",
+        "qualityResults": "Partie 2 - Évaluation des dimensions de qualité :",
         "overallResults": "Résultat global de l'évaluation :",
         "pass": "Réussite",
         "fail": "Échec",
@@ -167,7 +167,7 @@
         "bothFail": "Les données ne répondent pas aux normes éthiques et de qualité, elles ne sont donc pas apte à l'emploi pour les rapports sur les ODD."
       },
       "qualitySummary": {
-        "title": "Résumé des Dimensions de qualité",
+        "title": "Résumé des dimensions de la qualité des données",
         "tableHeaders": {
           "dimension": "Dimension",
           "score": "Score",
@@ -189,26 +189,34 @@
           "close": "Fermer"
         },
         "dialogTitle": "Exporter les résultats d'évaluation",
-        "summaryHeader": "RÉSUMÉ",
+        "summaryHeader": "SOMMAIRE",
         "date": "Date",
         "ethicsAssessment": "Évaluation d'éthique des données",
-        "message": "Message partie 1",
-        "qualityAssessment": "Évaluation des Dimensions de qualité",
-        "interpretation": "Interprétation de la qualité",
-        "score": "Score des Dimensions de qualité",
+        "message": "Évaluation des principes d'éthique des données",
+        "qualityAssessment": "Évaluation des dimensions de qualité",
+        "interpretation": "Évaluation des dimensions de qualité",
+        "score": "Score des dimensions de la qualité des données",
         "result": "Résultat global",
         "category": "Catégorie",
         "ethicsPrinciples": "PRINCIPES D'ÉTHIQUE DES DONNÉES",
         "ethicsPrinciple": "Principe d'éthique des données",
         "ethicsPrinciplesList": "Principes d'éthique des données",
         "evaluation": "Évaluation",
-        "qualityDimensions": "DIMENSIONS DE QUALITÉ",
-        "qualityDimension": "Dimension de Qualité",
-        "qualityDimensionsList": "Dimensions de Qualité",
+        "qualityDimensions": "DIMENSIONS DE LA QUALITÉ DES DONNÉES",
+        "qualityDimension": "Dimension de la qualité des données",
+        "qualityDimensionsList": "Dimensions de la qualité des données",
         "scoreHeader": "Score",
         "assessment": "Évaluation",
-        "notEvaluated": "Non évalué"
+        "notEvaluated": "Non évalué",
+        "criteriaStatus": {
+          "satisfied": "SATISFAIT",
+          "notSatisfied": "NON SATISFAIT"
+        },
+        "overallResult": "Résultat global",
+        "overallMessage": "Message global",
+        "criteriaDetails": "Détails des critères"
       },
+      "criteriaSatisfied": "Critères satisfaits",
       "actions": {
         "reset": "Réinitialiser l'évaluation",
         "home": "Retourner à l'accueil"
