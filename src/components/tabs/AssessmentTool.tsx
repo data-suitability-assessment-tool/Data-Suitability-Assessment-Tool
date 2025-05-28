@@ -21,13 +21,13 @@ const AssessmentTool: React.FC<AssessmentToolProps> = ({ onReturnHome }) => {
   // Ethics principles state
   const [ethicsAnswers, setEthicsAnswers] = useState<Record<string, string>>({});
   const [ethicsPass, setEthicsPass] = useState<boolean | null>(null);
-  const [part1Message, setPart1Message] = useState('');
+  const [part1MessageKey, setPart1MessageKey] = useState<string>('');
   
   // Quality dimensions state
   const [qualityScores, setQualityScores] = useState<Record<string, number>>({});
   const [totalQualityScore, setTotalQualityScore] = useState(0);
   const [qualityPass, setQualityPass] = useState<boolean | null>(null);
-  const [qualityInterpretation, setQualityInterpretation] = useState('');
+  const [qualityInterpretationKey, setQualityInterpretationKey] = useState('');
   
   // Assessment data for export
   const assessmentData = {
@@ -45,34 +45,46 @@ const AssessmentTool: React.FC<AssessmentToolProps> = ({ onReturnHome }) => {
       setCurrentStep('quality');
     } else if (currentStep === 'quality') {
       setCurrentStep('overall');
+      // Scroll to top when reaching overall assessment with a slight delay to ensure component is rendered
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
     }
   };
   
   const handleReset = () => {
-    setEthicsAnswers({});
-    setEthicsPass(null);
-    setPart1Message('');
-    setQualityScores({});
-    setTotalQualityScore(0);
-    setQualityPass(null);
-    setQualityInterpretation('');
     setCurrentStep('ethics');
+    setEthicsAnswers({});
+    setQualityScores({});
+    setEthicsPass(null);
+    setQualityPass(null);
+    setPart1MessageKey('');
+    setQualityInterpretationKey('');
+    setTotalQualityScore(0);
+    setAlertOpen(false);
+    setAlertMessage('');
   };
   
   const handleQualityEvaluate = () => {
-    const isQualityPass = totalQualityScore >= 8;
+    // Check if any dimension has a score of 0
+    const hasZeroScore = Object.values(qualityScores).some(score => score === 0);
+    
+    // Fail if any score is 0 or if total score is less than 8
+    const isQualityPass = !hasZeroScore && totalQualityScore >= 8;
     setQualityPass(isQualityPass);
     
-    let message = '';
-    if (totalQualityScore <= 7) {
-      message = t('assessment.quality.interpretation.low');
+    let messageKey = '';
+    if (hasZeroScore) {
+      messageKey = 'assessment.quality.interpretation.fail';
+    } else if (totalQualityScore <= 7) {
+      messageKey = 'assessment.quality.interpretation.low';
     } else if (totalQualityScore >= 8 && totalQualityScore <= 10) {
-      message = t('assessment.quality.interpretation.medium');
+      messageKey = 'assessment.quality.interpretation.medium';
     } else if (totalQualityScore >= 11) {
-      message = t('assessment.quality.interpretation.high');
+      messageKey = 'assessment.quality.interpretation.high';
     }
     
-    setQualityInterpretation(message);
+    setQualityInterpretationKey(messageKey);
     handleNextStep();
   };
   
@@ -88,8 +100,8 @@ const AssessmentTool: React.FC<AssessmentToolProps> = ({ onReturnHome }) => {
             setEthicsAnswers={setEthicsAnswers}
             ethicsPass={ethicsPass}
             setEthicsPass={setEthicsPass}
-            part1Message={part1Message}
-            setPart1Message={setPart1Message}
+            part1MessageKey={part1MessageKey}
+            setPart1MessageKey={setPart1MessageKey}
             onShowAlert={showAlert}
             onNextStep={handleNextStep}
           />
@@ -116,8 +128,8 @@ const AssessmentTool: React.FC<AssessmentToolProps> = ({ onReturnHome }) => {
             ethicsPass={ethicsPass}
             qualityPass={qualityPass}
             totalQualityScore={totalQualityScore}
-            part1Message={part1Message}
-            qualityInterpretation={qualityInterpretation}
+            part1MessageKey={part1MessageKey}
+            qualityInterpretationKey={qualityInterpretationKey}
             onReset={handleReset}
             assessmentData={assessmentData}
             onReturnHome={onReturnHome}
