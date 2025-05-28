@@ -23,7 +23,7 @@ i18n
       }
     },
     fallbackLng: 'en',
-    lng: localStorage.getItem('i18nextLng') || navigator.language?.substring(0, 2) === 'fr' ? 'fr' : 'en',
+    lng: localStorage.getItem('i18nextLng') || navigator.language?.substring(0, 2) === 'en' ? 'en' : 'fr',
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
       format: function(value, format) {
