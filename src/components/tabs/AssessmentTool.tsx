@@ -26,6 +26,15 @@ interface AssessmentToolProps {
   setQualityPass: Dispatch<SetStateAction<boolean | null>>;
   qualityInterpretationKey: string;
   setQualityInterpretationKey: Dispatch<SetStateAction<string>>;
+  // UI state props to preserve across tab switches
+  ethicsShowResult: boolean;
+  setEthicsShowResult: Dispatch<SetStateAction<boolean>>;
+  qualityShowResult: boolean;
+  setQualityShowResult: Dispatch<SetStateAction<boolean>>;
+  qualityInterpretation: string;
+  setQualityInterpretation: Dispatch<SetStateAction<string>>;
+  criteriaSatisfaction: Record<string, boolean[]>;
+  setCriteriaSatisfaction: Dispatch<SetStateAction<Record<string, boolean[]>>>;
 }
 
 const AssessmentTool: React.FC<AssessmentToolProps> = ({
@@ -46,6 +55,15 @@ const AssessmentTool: React.FC<AssessmentToolProps> = ({
   setQualityPass,
   qualityInterpretationKey,
   setQualityInterpretationKey,
+  // UI state props
+  ethicsShowResult,
+  setEthicsShowResult,
+  qualityShowResult,
+  setQualityShowResult,
+  qualityInterpretation,
+  setQualityInterpretation,
+  criteriaSatisfaction,
+  setCriteriaSatisfaction,
 }) => {
   const { t } = useTranslation();
   
@@ -87,6 +105,11 @@ const AssessmentTool: React.FC<AssessmentToolProps> = ({
     setTotalQualityScore(0);
     setAlertOpen(false);
     setAlertMessage('');
+    // Reset UI state
+    setEthicsShowResult(false);
+    setQualityShowResult(false);
+    setQualityInterpretation('');
+    setCriteriaSatisfaction({});
   };
   
   const handleQualityEvaluate = () => {
@@ -136,6 +159,8 @@ const AssessmentTool: React.FC<AssessmentToolProps> = ({
             setPart1MessageKey={setPart1MessageKey}
             onShowAlert={showAlert}
             onNextStep={handleNextStep}
+            showResult={ethicsShowResult}
+            setShowResult={setEthicsShowResult}
           />
         </div>
       )}
@@ -151,6 +176,12 @@ const AssessmentTool: React.FC<AssessmentToolProps> = ({
             setQualityPass={setQualityPass}
             onEvaluate={handleQualityEvaluate}
             onGoBack={handleGoBack}
+            showResult={qualityShowResult}
+            setShowResult={setQualityShowResult}
+            qualityInterpretation={qualityInterpretation}
+            setQualityInterpretation={setQualityInterpretation}
+            criteriaSatisfaction={criteriaSatisfaction}
+            setCriteriaSatisfaction={setCriteriaSatisfaction}
           />
         </div>
       )}

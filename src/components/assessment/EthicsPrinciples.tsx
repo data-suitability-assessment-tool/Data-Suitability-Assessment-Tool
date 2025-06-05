@@ -35,6 +35,8 @@ interface EthicsPrinciplesProps {
   setPart1MessageKey: (value: string) => void;
   onShowAlert: (message: string) => void;
   onNextStep: () => void;
+  showResult: boolean;
+  setShowResult: (value: boolean) => void;
 }
 
 const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
@@ -46,9 +48,10 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
   setPart1MessageKey,
   onShowAlert,
   onNextStep,
+  showResult,
+  setShowResult,
 }) => {
   const { t } = useTranslation();
-  const [showResult, setShowResult] = React.useState(false);
   const resultRef = React.useRef<HTMLDivElement>(null);
 
   const handleAnswerChange = (id: string, value: string) => {

@@ -28,6 +28,12 @@ const MainContent = forwardRef<MainContentRef>((_, ref) => {
   const [qualityPass, setQualityPass] = useState<boolean | null>(null)
   const [qualityInterpretationKey, setQualityInterpretationKey] = useState('')
   
+  // UI state to preserve result display across tab switches
+  const [ethicsShowResult, setEthicsShowResult] = useState(false)
+  const [qualityShowResult, setQualityShowResult] = useState(false)
+  const [qualityInterpretation, setQualityInterpretation] = useState('')
+  const [criteriaSatisfaction, setCriteriaSatisfaction] = useState<Record<string, boolean[]>>({})
+  
   const handleStartAssessment = () => {
     setActiveTab('assessment-tab-panel')
     setShowTabsNavigation(true)
@@ -45,6 +51,11 @@ const MainContent = forwardRef<MainContentRef>((_, ref) => {
     setTotalQualityScore(0)
     setQualityPass(null)
     setQualityInterpretationKey('')
+    // Reset UI state
+    setEthicsShowResult(false)
+    setQualityShowResult(false)
+    setQualityInterpretation('')
+    setCriteriaSatisfaction({})
   }
   
   // Expose handleReturnHome method to parent component
@@ -104,6 +115,15 @@ const MainContent = forwardRef<MainContentRef>((_, ref) => {
                 setQualityPass={setQualityPass}
                 qualityInterpretationKey={qualityInterpretationKey}
                 setQualityInterpretationKey={setQualityInterpretationKey}
+                // Pass UI state as props
+                ethicsShowResult={ethicsShowResult}
+                setEthicsShowResult={setEthicsShowResult}
+                qualityShowResult={qualityShowResult}
+                setQualityShowResult={setQualityShowResult}
+                qualityInterpretation={qualityInterpretation}
+                setQualityInterpretation={setQualityInterpretation}
+                criteriaSatisfaction={criteriaSatisfaction}
+                setCriteriaSatisfaction={setCriteriaSatisfaction}
               />
             </Tabs.Content>
             

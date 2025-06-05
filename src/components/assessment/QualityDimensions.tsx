@@ -25,6 +25,12 @@ interface QualityDimensionsProps {
   setQualityPass: (value: boolean) => void;
   onEvaluate: () => void;
   onGoBack: () => void;
+  showResult: boolean;
+  setShowResult: (value: boolean) => void;
+  qualityInterpretation: string;
+  setQualityInterpretation: (value: string) => void;
+  criteriaSatisfaction: Record<string, boolean[]>;
+  setCriteriaSatisfaction: (value: Record<string, boolean[]>) => void;
 }
 
 const QualityDimensions: React.FC<QualityDimensionsProps> = ({
@@ -36,14 +42,15 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
   setQualityPass,
   onEvaluate,
   onGoBack,
+  showResult,
+  setShowResult,
+  qualityInterpretation,
+  setQualityInterpretation,
+  criteriaSatisfaction,
+  setCriteriaSatisfaction,
 }) => {
   const { t } = useTranslation();
-  const [qualityInterpretation, setQualityInterpretation] = React.useState('');
-  const [showResult, setShowResult] = React.useState(false);
   const resultRef = useRef<HTMLDivElement>(null);
-  
-  // Track individual criteria satisfaction
-  const [criteriaSatisfaction, setCriteriaSatisfaction] = React.useState<Record<string, boolean[]>>({});
 
   // Initialize dimensions with default values if not done already
   React.useEffect(() => {
