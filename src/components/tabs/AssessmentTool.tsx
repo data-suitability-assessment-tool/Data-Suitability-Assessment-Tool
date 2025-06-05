@@ -1,5 +1,6 @@
 // src/components/tabs/AssessmentTool.tsx
 import React, { useState } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 import AlertDialogComponent from '../ui/AlertDialog';
 import EthicsPrinciples from '../assessment/EthicsPrinciples';
@@ -8,26 +9,49 @@ import OverallAssessment from '../assessment/OverallAssessment';
 
 interface AssessmentToolProps {
   onReturnHome?: () => void;
+  // State props passed down from MainContent
+  currentStep: 'ethics' | 'quality' | 'overall';
+  setCurrentStep: Dispatch<SetStateAction<'ethics' | 'quality' | 'overall'>>;
+  ethicsAnswers: Record<string, string>;
+  setEthicsAnswers: Dispatch<SetStateAction<Record<string, string>>>;
+  ethicsPass: boolean | null;
+  setEthicsPass: Dispatch<SetStateAction<boolean | null>>;
+  part1MessageKey: string;
+  setPart1MessageKey: Dispatch<SetStateAction<string>>;
+  qualityScores: Record<string, number>;
+  setQualityScores: Dispatch<SetStateAction<Record<string, number>>>;
+  totalQualityScore: number;
+  setTotalQualityScore: Dispatch<SetStateAction<number>>;
+  qualityPass: boolean | null;
+  setQualityPass: Dispatch<SetStateAction<boolean | null>>;
+  qualityInterpretationKey: string;
+  setQualityInterpretationKey: Dispatch<SetStateAction<string>>;
 }
 
-const AssessmentTool: React.FC<AssessmentToolProps> = ({ onReturnHome }) => {
+const AssessmentTool: React.FC<AssessmentToolProps> = ({
+  onReturnHome,
+  currentStep,
+  setCurrentStep,
+  ethicsAnswers,
+  setEthicsAnswers,
+  ethicsPass,
+  setEthicsPass,
+  part1MessageKey,
+  setPart1MessageKey,
+  qualityScores,
+  setQualityScores,
+  totalQualityScore,
+  setTotalQualityScore,
+  qualityPass,
+  setQualityPass,
+  qualityInterpretationKey,
+  setQualityInterpretationKey,
+}) => {
   const { t } = useTranslation();
   
-  // State for the assessment
-  const [currentStep, setCurrentStep] = useState<'ethics' | 'quality' | 'overall'>('ethics');
+  // Local state for alerts only
   const [alertOpen, setAlertOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
-  
-  // Ethics principles state
-  const [ethicsAnswers, setEthicsAnswers] = useState<Record<string, string>>({});
-  const [ethicsPass, setEthicsPass] = useState<boolean | null>(null);
-  const [part1MessageKey, setPart1MessageKey] = useState<string>('');
-  
-  // Quality dimensions state
-  const [qualityScores, setQualityScores] = useState<Record<string, number>>({});
-  const [totalQualityScore, setTotalQualityScore] = useState(0);
-  const [qualityPass, setQualityPass] = useState<boolean | null>(null);
-  const [qualityInterpretationKey, setQualityInterpretationKey] = useState('');
   
   // Assessment data for export
   const assessmentData = {

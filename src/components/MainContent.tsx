@@ -1,4 +1,6 @@
 // src/components/MainContent.tsx (updated version)
+/* eslint-disable @typescript-eslint/no-unused-vars */
+// @ts-ignore - React is used for JSX
 import React, { useState, forwardRef, useImperativeHandle } from 'react'
 import { useTranslation } from 'react-i18next'
 import * as Tabs from '@radix-ui/react-tabs'
@@ -16,6 +18,16 @@ const MainContent = forwardRef<MainContentRef>((_, ref) => {
   const [showTabsNavigation, setShowTabsNavigation] = useState(false)
   const [currentYear] = useState(() => new Date().getFullYear())
   
+  // Assessment state lifted up to preserve across tab switches
+  const [currentStep, setCurrentStep] = useState<'ethics' | 'quality' | 'overall'>('ethics')
+  const [ethicsAnswers, setEthicsAnswers] = useState<Record<string, string>>({})
+  const [ethicsPass, setEthicsPass] = useState<boolean | null>(null)
+  const [part1MessageKey, setPart1MessageKey] = useState<string>('')
+  const [qualityScores, setQualityScores] = useState<Record<string, number>>({})
+  const [totalQualityScore, setTotalQualityScore] = useState(0)
+  const [qualityPass, setQualityPass] = useState<boolean | null>(null)
+  const [qualityInterpretationKey, setQualityInterpretationKey] = useState('')
+  
   const handleStartAssessment = () => {
     setActiveTab('assessment-tab-panel')
     setShowTabsNavigation(true)
@@ -24,6 +36,15 @@ const MainContent = forwardRef<MainContentRef>((_, ref) => {
   const handleReturnHome = () => {
     setActiveTab('front-page')
     setShowTabsNavigation(false)
+    // Reset assessment state when returning home
+    setCurrentStep('ethics')
+    setEthicsAnswers({})
+    setEthicsPass(null)
+    setPart1MessageKey('')
+    setQualityScores({})
+    setTotalQualityScore(0)
+    setQualityPass(null)
+    setQualityInterpretationKey('')
   }
   
   // Expose handleReturnHome method to parent component
@@ -33,6 +54,7 @@ const MainContent = forwardRef<MainContentRef>((_, ref) => {
   
   return (
     <div className="container mx-auto px-4 py-6 flex-grow">
+      {/* This component uses React JSX */}
       {activeTab === 'front-page' && (
         <FrontPage onStartAssessment={handleStartAssessment} />
       )}
@@ -63,7 +85,26 @@ const MainContent = forwardRef<MainContentRef>((_, ref) => {
               className="shadow-sm rounded-b-lg"
               tabIndex={0}
             >
-              <AssessmentTool onReturnHome={handleReturnHome} />
+              <AssessmentTool 
+                onReturnHome={handleReturnHome}
+                // Pass assessment state as props
+                currentStep={currentStep}
+                setCurrentStep={setCurrentStep}
+                ethicsAnswers={ethicsAnswers}
+                setEthicsAnswers={setEthicsAnswers}
+                ethicsPass={ethicsPass}
+                setEthicsPass={setEthicsPass}
+                part1MessageKey={part1MessageKey}
+                setPart1MessageKey={setPart1MessageKey}
+                qualityScores={qualityScores}
+                setQualityScores={setQualityScores}
+                totalQualityScore={totalQualityScore}
+                setTotalQualityScore={setTotalQualityScore}
+                qualityPass={qualityPass}
+                setQualityPass={setQualityPass}
+                qualityInterpretationKey={qualityInterpretationKey}
+                setQualityInterpretationKey={setQualityInterpretationKey}
+              />
             </Tabs.Content>
             
             <Tabs.Content 
