@@ -22,7 +22,8 @@ const FrontPage: React.FC<FrontPageProps> = ({ onStartAssessment }) => {
             id="front-page-title"
             className="text-3xl md:text-4xl font-bold mb-6 text-center"
           >
-            {t('frontPage.title')}
+            <div>{t('frontPage.titleLine1')}</div>
+            <div>{t('frontPage.titleLine2')}</div>
           </h1>
           
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 md:p-8 shadow-inner">
