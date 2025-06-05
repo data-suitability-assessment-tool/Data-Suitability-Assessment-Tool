@@ -15,8 +15,12 @@ interface FooterProps {
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-center items-center">
-            <div className="mb-4 md:mb-0">
+            <div className="mb-4 md:mb-0 text-center">
               <p className="text-gray-600">{t('footer.copyright')} {year}</p>
+              <p 
+                className="text-sm text-gray-500 mt-2"
+                dangerouslySetInnerHTML={{ __html: t('footer.builtWith') }}
+              />
             </div>
           </div>
         </div>
