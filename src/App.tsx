@@ -25,7 +25,7 @@ function App() {
   }, [i18n.language])
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50">
+          <div className="flex flex-col min-h-screen bg-[var(--background-color)]">
       <a 
         href="#main-content" 
         className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 focus:bg-white focus:text-[var(--primary-color)] focus:p-4 focus:shadow-lg focus:rounded-md"

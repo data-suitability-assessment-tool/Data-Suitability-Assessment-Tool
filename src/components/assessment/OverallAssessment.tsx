@@ -885,8 +885,8 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
             
             {(exportFormat === 'pdf' || exportFormat === 'word') && (
               <div className="mt-4">
-                <div className="p-4 bg-blue-50 border border-blue-200 rounded-md">
-                  <p className="text-sm text-blue-800">
+                <div className="p-4 bg-[var(--blue-2)] border border-[var(--blue-6)] rounded-md">
+                  <p className="text-sm text-[var(--blue-11)]">
                     {exportFormat === 'pdf' 
                       ? t('assessment.overall.export.pdfPreview', 'PDF will be generated when you click Download.')
                       : t('assessment.overall.export.wordPreview', 'Word document will be generated when you click Download.')

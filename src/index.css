@@ -1,17 +1,23 @@
 @import 'tailwindcss';
+@import '@radix-ui/colors/indigo.css';
+@import '@radix-ui/colors/blue.css';
+@import '@radix-ui/colors/slate.css';
+@import '@radix-ui/colors/green.css';
+@import '@radix-ui/colors/red.css';
+@import '@radix-ui/colors/amber.css';
 
 @layer base {
   :root {
-    /* Color variables */
-    --primary-color: #002060; /* Dark Blue */
-    --secondary-color: #4472c4; /* Medium Blue */
-    --light-blue: #d9e1f2; /* Light Blue */
-    --success-color: #1a7c42; /* Darker Green for better contrast */
-    --error-color: #a30000; /* Darker Red for better contrast */
-    --background-color: #f8fafc; /* Lighter background for modern feel */
-    --border-color: #e2e8f0; /* Softer border color */
-    --warning-color: #e6a100; /* Darker Yellow for better contrast */
-    --text-color: #334155; /* Softer text color for better readability */
+    /* Color variables using Radix UI color palette */
+    --primary-color: var(--indigo-9); /* Dark indigo for primary */
+    --secondary-color: var(--blue-8); /* Medium blue for secondary */
+    --light-blue: var(--blue-3); /* Light blue background */
+    --success-color: var(--green-9); /* Success green */
+    --error-color: var(--red-9); /* Error red */
+    --background-color: var(--slate-1); /* Light background */
+    --border-color: var(--slate-6); /* Border color */
+    --warning-color: var(--amber-9); /* Warning amber */
+    --text-color: var(--slate-12); /* Dark text */
     --white-text: #fff; /* Text color for dark backgrounds */
   }
 
@@ -72,7 +78,7 @@
   .select-answer:focus {
     outline: none;
     border-color: var(--secondary-color);
-    box-shadow: 0 0 0 3px rgba(68, 114, 196, 0.25);
+    box-shadow: 0 0 0 3px var(--blue-4);
   }
 
   /* Modern result cards */
@@ -127,7 +133,7 @@
   }
 
   .btn-primary:hover:not(:disabled) {
-    background-color: var(--secondary-color);
+    background-color: var(--indigo-10);
     transform: translateY(-1px);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   }
@@ -143,7 +149,7 @@
   }
 
   .btn-secondary:hover:not(:disabled) {
-    background-color: var(--primary-color);
+    background-color: var(--blue-9);
     transform: translateY(-1px);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   }
@@ -171,7 +177,7 @@
     top: 0.25rem;
     bottom: 0.25rem;
     width: 4px;
-    background-color: var(--secondary-color);
+    background-color: var(--indigo-6);
     border-radius: 2px;
   }
 
@@ -204,6 +210,6 @@
   }
   
   .table-row:hover {
-    background-color: rgba(217, 225, 242, 0.5);
+    background-color: var(--blue-2);
   }
 }
