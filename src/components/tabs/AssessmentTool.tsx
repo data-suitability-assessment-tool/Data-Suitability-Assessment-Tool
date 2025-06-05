@@ -87,6 +87,14 @@ const AssessmentTool: React.FC<AssessmentToolProps> = ({ onReturnHome }) => {
     setQualityInterpretationKey(messageKey);
     handleNextStep();
   };
+
+  const handleGoBack = () => {
+    if (currentStep === 'quality') {
+      setCurrentStep('ethics');
+    } else if (currentStep === 'overall') {
+      setCurrentStep('quality');
+    }
+  };
   
   return (
     <div 
@@ -118,6 +126,7 @@ const AssessmentTool: React.FC<AssessmentToolProps> = ({ onReturnHome }) => {
             qualityPass={qualityPass}
             setQualityPass={setQualityPass}
             onEvaluate={handleQualityEvaluate}
+            onGoBack={handleGoBack}
           />
         </div>
       )}

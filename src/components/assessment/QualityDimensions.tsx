@@ -24,6 +24,7 @@ interface QualityDimensionsProps {
   qualityPass: boolean | null;
   setQualityPass: (value: boolean) => void;
   onEvaluate: () => void;
+  onGoBack: () => void;
 }
 
 const QualityDimensions: React.FC<QualityDimensionsProps> = ({
@@ -34,6 +35,7 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
   qualityPass,
   setQualityPass,
   onEvaluate,
+  onGoBack,
 }) => {
   const { t } = useTranslation();
   const [qualityInterpretation, setQualityInterpretation] = React.useState('');
@@ -311,6 +313,14 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
       </CardContent>
       
       <CardFooter className="text-center gap-3">
+        <Button 
+          onClick={onGoBack}
+          variant="outline"
+          aria-label={t('assessment.quality.actions.goBack')}
+          className="transform transition-transform hover:scale-105 px-6 py-2.5 text-lg"
+        >
+          {t('assessment.quality.actions.goBack')}
+        </Button>
         {!showResult ? (
           <Button 
             onClick={handleEvaluate}
