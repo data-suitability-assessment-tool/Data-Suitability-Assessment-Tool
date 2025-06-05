@@ -10,8 +10,9 @@
     "builtWith": "Développé avec <a href=\"https://fr.react.dev/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">React</a>, <a href=\"https://www.typescriptlang.org/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">TypeScript</a>, <a href=\"https://www.radix-ui.com/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Radix UI</a> et <a href=\"https://tailwindcss.com/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Tailwind CSS</a>"
   },
   "frontPage": {
-    "title": "Bienvenue à l'outil d'auto-évaluation de la qualité des données",
-    "intro": "L'outil d'auto-évaluation de la qualité des données est conçu pour évaluer l'adéquation des données non officielles pour les rapports sur les ODD. Cet outil est basé sur les principes d'éthique des données et le cadre des dimensions de qualité de Statistique Canada.",
+    "titleLine1": "Bienvenue à l'outil",
+    "titleLine2": "d'auto-évaluation de la qualité des données",
+    "intro": "L'outil d'auto-évaluation de la qualité des données est conçu pour évaluer l'adéquation des données non officielles pour les rapports sur les ODD. Cet outil est basé sur les principes d'éthique des données et le cadre des dimensions de qualité établis par Statistique Canada.",
     "assessmentInfo": "En utilisant cet outil, vous pourrez évaluer vos données par rapport à :",
     "bulletPoints": {
       "item1": "Les principes fondamentaux de l'éthique des données de Statistique Canada pour la collecte, l'édition et la diffusion des données",

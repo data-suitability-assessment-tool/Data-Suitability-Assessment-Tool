@@ -10,8 +10,9 @@
     "builtWith": "Built with <a href=\"https://react.dev/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">React</a>, <a href=\"https://www.typescriptlang.org/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">TypeScript</a>, <a href=\"https://www.radix-ui.com/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Radix UI</a>, and <a href=\"https://tailwindcss.com/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Tailwind CSS</a>"
   },
   "frontPage": {
-    "title": "Welcome to the Data Quality Self-Evaluation Tool",
-    "intro": "The Data Quality Self-Evaluation Tool is designed to assess the fitness-for-use of non-official data for SDG reporting. This tool is based on Statistics Canada's data ethics principles and dimensions of quality.",
+    "titleLine1": "Welcome to the",
+    "titleLine2": "Data Quality Self-Evaluation Tool",
+    "intro": "The Data Quality Self-Evaluation Tool is designed to assess the fitness-for-use of non-official data for SDG reporting. This tool is based on Statistics Canada's established data ethics principles and dimensions of quality framework.",
     "assessmentInfo": "By using this tool, you will be able to assess your data against:",
     "bulletPoints": {
       "item1": "Statistics Canada's core data ethics principles for data collection, editing, and dissemination",
