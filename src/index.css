@@ -9,14 +9,14 @@
 @layer base {
   :root {
     /* Color variables using Radix UI color palette */
-    --primary-color: var(--indigo-9); /* Dark indigo for primary */
-    --secondary-color: var(--blue-8); /* Medium blue for secondary */
-    --light-blue: var(--blue-3); /* Light blue background */
-    --success-color: var(--green-9); /* Success green */
-    --error-color: var(--red-9); /* Error red */
+    --primary-color: var(--indigo-12); /* Dark indigo for primary */
+    --secondary-color: var(--indigo-9); /* Medium blue for secondary */
+    --light-blue: var(--indigo-4); /* Light indigo background */
+    --success-color: var(--green-11); /* Success green */
+    --error-color: var(--red-11); /* Error red */
     --background-color: var(--slate-1); /* Light background */
     --border-color: var(--slate-6); /* Border color */
-    --warning-color: var(--amber-9); /* Warning amber */
+    --warning-color: var(--amber-10); /* Warning amber */
     --text-color: var(--slate-12); /* Dark text */
     --white-text: #fff; /* Text color for dark backgrounds */
   }
