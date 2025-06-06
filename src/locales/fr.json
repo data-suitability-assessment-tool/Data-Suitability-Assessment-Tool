@@ -12,7 +12,7 @@
   "frontPage": {
     "titleLine1": "Bienvenue à l'outil",
     "titleLine2": "d'auto-évaluation de la qualité des données",
-    "intro": "L'outil d'auto-évaluation de la qualité des données est conçu pour évaluer la pertinence de l'utilisation des données non officielles pour rapporter sur les ODD. Cet outil est basé sur les principes d'éthique des données et les dimensions de qualité de Statistique Canada.",
+    "intro": "L'outil d'auto-évaluation de la qualité des données est conçu pour aider à évaluer l'aptitude à l'emploi des données non officielles pour un rapport potentiel sur les ODD. Cet outil est basé sur les principes fondamentaux de l'éthique des données de Statistique Canada et intègre cinq des six dimensions de la qualité des données.",
     "assessmentInfo": "En utilisant cet outil, vous serez en mesure d'évaluer vos données par rapport aux éléments suivants :",
     "bulletPoints": {
       "item1": "Les principes fondamentaux de l'éthique des données de Statistique Canada pour la collecte, l'édition et la diffusion des données",
