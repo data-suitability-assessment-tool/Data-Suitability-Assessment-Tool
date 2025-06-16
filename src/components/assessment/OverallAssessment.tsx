@@ -47,7 +47,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
 }) => {
   const { t } = useTranslation();
   const [exportDialogOpen, setExportDialogOpen] = React.useState(false);
-  const [exportFormat, setExportFormat] = React.useState<'text' | 'json' | 'csv' | 'pdf' | 'word'>('text');
+  const [exportFormat, setExportFormat] = React.useState<'text' | 'csv' | 'pdf' | 'word'>('text');
   const [exportContent, setExportContent] = React.useState('');
   const [isGenerating, setIsGenerating] = React.useState(false);
   const resultSummaryRef = useRef<HTMLDivElement>(null);
@@ -147,63 +147,6 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
       }
       
       content += overallResultText;
-    }
-    else if (exportFormat === 'json') {
-      // Create a complete qualityDimensions object that includes all dimensions with detailed criteria
-      const completeQualityDimensions: Record<string, any> = {};
-      
-      // Initialize all dimensions with detailed information
-      QUALITY_DIMENSIONS.forEach(dimension => {
-        const score = assessmentData.qualityDimensions[dimension.id] || 0;
-        
-        // Calculate criteria satisfaction
-        const criteriaSatisfied: any[] = [];
-        for (let i = 0; i < dimension.criteria.length; i++) {
-          if (dimension.id === "3") {
-            criteriaSatisfied.push(score === 3 || (score >= 1 && i < score));
-          } else {
-            criteriaSatisfied.push(i < score);
-          }
-        }
-        
-        completeQualityDimensions[dimension.id] = {
-          score: score,
-          maxScore: 3,
-          assessment: getQualityScoreText(Number(score)),
-          criteria: dimension.criteria.map((_, idx) => ({
-            text: t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`),
-            satisfied: criteriaSatisfied[idx]
-          }))
-        };
-      });
-      
-      // Translate ethics principles answers for JSON export
-      const translatedEthicsPrinciples: Record<string, string> = {};
-      if (assessmentData.ethicsPrinciples) {
-        Object.entries(assessmentData.ethicsPrinciples).forEach(([id, answer]) => {
-          translatedEthicsPrinciples[id] = answer === "Yes" 
-            ? t('assessment.ethics.table.answers.yes') 
-            : answer === "No" 
-              ? t('assessment.ethics.table.answers.no') 
-              : answer as string || t('assessment.overall.export.notEvaluated');
-        });
-      }
-      
-      content = JSON.stringify({
-        date,
-        overallResult: overallPass ? t('assessment.overall.summary.pass') : t('assessment.overall.summary.fail'),
-        overallMessage: overallMessage,
-        ethicsPrinciples: translatedEthicsPrinciples,
-        qualityDimensions: completeQualityDimensions,
-        results: {
-          ethicsPass,
-          qualityPass,
-          overallPass,
-          totalQualityScore,
-          part1Message,
-          qualityInterpretation
-        }
-      }, null, 2);
     }
     else if (exportFormat === 'csv') {
       // CSV format with detailed criteria information
@@ -619,15 +562,6 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
       link.download = fileName;
       link.click();
       URL.revokeObjectURL(url);
-    } else if (exportFormat === "json") {
-      fileName += ".json";
-      const blob = new Blob([exportContent], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = fileName;
-      link.click();
-      URL.revokeObjectURL(url);
     } else if (exportFormat === "csv") {
       fileName += ".csv";
       const blob = new Blob([exportContent], { type: "text/csv" });
@@ -857,17 +791,16 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                 id="export-format"
                 className="w-full p-2 border border-[var(--border-color)] rounded-md shadow-sm bg-white text-[var(--text-color)] focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)]"
                 value={exportFormat}
-                onChange={(e) => setExportFormat(e.target.value as 'text' | 'json' | 'csv' | 'pdf' | 'word')}
+                onChange={(e) => setExportFormat(e.target.value as 'text' | 'csv' | 'pdf' | 'word')}
               >
                 <option value="text">{t('assessment.overall.export.formats.text')}</option>
-                <option value="json">{t('assessment.overall.export.formats.json')}</option>
                 <option value="csv">{t('assessment.overall.export.formats.csv')}</option>
                 <option value="pdf">{t('assessment.overall.export.formats.pdf')}</option>
                 <option value="word">{t('assessment.overall.export.formats.word')}</option>
               </select>
             </div>
             
-            {(exportFormat === 'text' || exportFormat === 'json' || exportFormat === 'csv') && (
+            {(exportFormat === 'text' || exportFormat === 'csv') && (
               <div className="mt-4">
                 <label htmlFor="export-content" className="block text-sm font-medium text-[var(--text-color)]">
                   {t('assessment.overall.export.preview', 'Preview')}
