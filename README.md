@@ -1,6 +1,6 @@
 # Data Quality Self-Evaluation Tool
 
-The Data Quality Self-Evaluation Tool is designed to assess the fitness-for-use of citizen-generated data in accordance with Statistics Canada's data ethics principles and quality dimensions. This tool is designed to improve reporting on the Sustainable Development Goals (SDGs) and assist in addressing data gaps.
+The Data Quality Self-Evaluation Tool is designed to assess the fitness for purpose of non-official data in accordance with Statistics Canada's data ethics principles and quality dimensions. This tool is designed to improve reporting on the Sustainable Development Goals (SDGs) and assist in addressing data gaps.
 
 ## Development
 
