@@ -226,8 +226,8 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
                 <TableHead className="text-lg">{t('assessment.quality.table.headers.elements')}</TableHead>
                 <TableHead className="text-lg">{t('assessment.quality.table.headers.definition')}</TableHead>
                 <TableHead className="text-lg">{t('assessment.quality.table.headers.criteria')}</TableHead>
-                <TableHead className="text-lg">
-                  <div className="flex items-center">
+                <TableHead className="text-lg text-center">
+                  <div className="flex items-center justify-end">
                     {t('assessment.quality.table.headers.answer')}
                     <TooltipInfo id="tooltip-points-info">
                       {t('assessment.quality.table.tooltip.title')}<br />
@@ -248,27 +248,24 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
                     <span id={`quality-el-${dimension.id}`}>{t(`qualityDimensions.dimension${dimension.id}.element`)}</span>
                   </TableCell>
                   <TableCell className="text-base">{t(`qualityDimensions.dimension${dimension.id}.definition`)}</TableCell>
-                  <TableCell id={`quality-crit-${dimension.id}`} className="text-base">
-                    {dimension.criteria.map((_, idx) => (
-                      <React.Fragment key={idx}>
-                        {idx + 1}. {t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}
-                        <br /> <br />
-                      </React.Fragment>
-                    ))}
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex flex-col items-center">
+                  <TableCell id={`quality-crit-${dimension.id}`} className="text-base" colSpan={2}>
+                    <div className="dimension-content">
                       {dimension.criteria.map((_, idx) => (
-                        <div key={idx} className="flex items-center justify-center" style={{ minHeight: '3.5rem', marginBottom: idx < dimension.criteria.length - 1 ? '1rem' : '0' }}>
-                          <label className="flex items-center cursor-pointer">
-                            <input
-                              type="checkbox"
-                              checked={criteriaSatisfaction[dimension.id]?.[idx] || false}
-                              onChange={(e) => handleCriteriaChange(dimension.id, idx, e.target.checked)}
-                              className="h-4 w-4 text-[var(--primary-color)] focus:ring-[var(--primary-color)] border-gray-300 rounded"
-                              aria-describedby={`quality-crit-${dimension.id}`}
-                            />
-                          </label>
+                        <div key={idx} className="criteria-row-unified">
+                          <div className="criteria-text-unified">
+                            {idx + 1}. {t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}
+                          </div>
+                          <div className="criteria-checkbox-unified">
+                            <label className="flex items-center justify-center cursor-pointer">
+                              <input
+                                type="checkbox"
+                                checked={criteriaSatisfaction[dimension.id]?.[idx] || false}
+                                onChange={(e) => handleCriteriaChange(dimension.id, idx, e.target.checked)}
+                                className="h-4 w-4 text-[var(--primary-color)] focus:ring-[var(--primary-color)] border-gray-300 rounded"
+                                aria-describedby={`quality-crit-${dimension.id}`}
+                              />
+                            </label>
+                          </div>
                         </div>
                       ))}
                     </div>

@@ -214,6 +214,34 @@
   }
 }
 
+/* Quality dimensions criteria alignment */
+.dimension-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.criteria-row-unified {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 0.5rem 0;
+}
+
+.criteria-text-unified {
+  flex: 1;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+}
+
+.criteria-checkbox-unified {
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Mobile-specific styles */
 @media screen and (max-width: 849px) {
   /* Header mobile layout - restructure to vertical stack */
