@@ -77,7 +77,7 @@
         }
       },
       "results": {
-        "title": "Résultats de l'évaluation par rapport aux principes fondamentaux de Statistique Canada :",
+        "title": "Résultats de l'évaluation par rapport aux principes fondamentaux d'éthique des données de Statistique Canada :",
         "pass": "Réussite",
         "fail": "Échec",
         "passMessage": "Telles qu'évaluées ci-dessus par rapport aux principes fondamentaux de Statistique Canada, les données sont considérées adéquates à l'utilisation pour les rapports sur les ODD.",
@@ -88,7 +88,7 @@
         "evaluate": "Évaluer"
       },
       "alerts": {
-        "answerAll": "Veuillez fournir des réponses pour tous les principes fondamentaux."
+        "answerAll": "Veuillez fournir des réponses pour tous les critères."
       }
     },
     "quality": {

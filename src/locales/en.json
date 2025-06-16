@@ -77,7 +77,7 @@
         }
       },
       "results": {
-        "title": "Results of the Assessment Against Statistics Canada's Core Principles:",
+        "title": "Results of the Assessment Against Statistics Canada's Core Data Ethics Principles:",
         "pass": "Pass",
         "fail": "Fail",
         "passMessage": "As evaluated above against Statistics Canada's data ethics principles, the data are considered fit for purpose for SDG reporting.",
@@ -88,7 +88,7 @@
         "evaluate": "Evaluate"
       },
       "alerts": {
-        "answerAll": "Please provide answers for all core principles."
+        "answerAll": "Please provide answers to all criteria."
       }
     },
     "quality": {
