@@ -234,7 +234,8 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
                       {t('assessment.quality.table.tooltip.high')}<br />
                       {t('assessment.quality.table.tooltip.medium')}<br />
                       {t('assessment.quality.table.tooltip.low')}<br />
-                      {t('assessment.quality.table.tooltip.notSufficient')}
+                      {t('assessment.quality.table.tooltip.notSufficient')}<br /><br />
+                      {t('assessment.quality.table.tooltip.exceptions')}
                     </TooltipInfo>
                   </div>
                 </TableHead>

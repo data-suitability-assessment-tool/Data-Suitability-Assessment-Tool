@@ -80,8 +80,8 @@
         "title": "Résultats de l'évaluation par rapport aux principes fondamentaux d'éthique des données de Statistique Canada :",
         "pass": "Réussite",
         "fail": "Échec",
-        "passMessage": "Telles qu'évaluées ci-dessus par rapport aux principes fondamentaux de Statistique Canada, les données sont considérées adéquates à l'utilisation pour les rapports sur les ODD.",
-        "failMessage": "Telles qu'évaluées ci-dessus par rapport aux principes fondamentaux de Statistique Canada, les données ne sont pas considérées adéquates à l'utilisation pour les rapports sur les ODD. Veuillez réviser vos données pour s'assurer que tous les principes fondamentaux sont respectés pour être considérées adéquates à l'utilisation pour les rapports sur les ODD."
+        "passMessage": "Telles qu'évaluées ci-dessus par rapport aux principes d'éthique des données de Statistique Canada, les données sont considérées comme adéquates à l'utilisation pour les rapports sur les ODD.",
+        "failMessage": "Telles qu'évaluées ci-dessus par rapport aux principes d'éthique des données de Statistique Canada, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Veuillez réviser vos données pour s'assurer que tous les principes fondamentaux sont respectés pour être considérées comme adéquates à l'utilisation pour les rapports sur les ODD."
       },
       "actions": {
         "continue": "Continuer",
@@ -110,7 +110,8 @@
           "high": "3 points = Élevé (tous les critères satisfaits)",
           "medium": "2 points = Moyen (2 critères satisfaits)",
           "low": "1 point = Faible (1 critère satisfait)",
-          "notSufficient": "0 point = Insuffisant (aucun critère satisfait)"
+          "notSufficient": "0 point = Insuffisant (aucun critère satisfait)",
+          "exceptions": "Veuillez noter que la dimension 'Accessibilité et clarté' ne contient que 2 critères ; satisfaire les deux critères (2/2) résulte en la note maximale de 3 points (Élevée)."
         },
         "options": {
           "notSufficient": "0 - Insuffisant (aucun critère satisfait)",
@@ -164,10 +165,10 @@
         "totalScore": "Résultat total sur 15"
       },
       "messages": {
-        "bothPass": "Les données ont réussi les deux évaluations et sont considérées adéquates à l'utilisation pour les rapports sur les ODD.",
-        "ethicsFailQualityPass": "Les données ne répondent pas aux principes d'éthique des données et ne sont pas considérées adéquates à l'utilisation pour les rapports sur les ODD. Les données doivent respecter tous les principes d'éthique des données pour être considérées adéquates à l'utilisation pour les rapports sur les ODD. Veuillez réviser vos données et corriger les principes d'éthique des données qui ne sont pas respectés pour que les données soient adéquate à l'utilisation pour les rapports sur les ODD.",
-        "ethicsPassQualityFail": "Les données répondent à tous les principes d'éthique des données, mais ne répondent pas au nombre requis de critères de qualité des données. Elles ne sont pas considérées adéquates à l'utilisation pour les rapports sur les ODD. Veuillez réviser vos données et corriger les critères de qualité des données qui ne sont pas respectés pour que les données soient adéquate à l'utilisation pour les rapports sur les ODD.",
-        "bothFail": "Les données ne répondent pas aux principes d'éthique des données ni aux critères des dimensions de qualité, elles ne sont donc pas considérées adéquates à l'utilisation pour les rapports sur les ODD. Veuillez réviser vos données et corriger les principes d'éthique des données et les critères de qualité des données qui ne sont pas respectés pour que les données soient adéquate à l'utilisation pour les rapports sur les ODD."
+        "bothPass": "Les données ont réussi les deux évaluations et sont considérées comme adéquates à l'utilisation pour les rapports sur les ODD.",
+        "ethicsFailQualityPass": "Les données ne répondent pas aux principes d'éthique des données et ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Les données doivent respecter tous les principes d'éthique des données pour être considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Veuillez réviser vos données et corriger les principes d'éthique des données qui ne sont pas respectés pour que les données soient adéquate à l'utilisation pour les rapports sur les ODD.",
+        "ethicsPassQualityFail": "Les données répondent à tous les principes d'éthique des données, mais ne répondent pas au nombre requis de critères de qualité des données. Elles ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Veuillez réviser vos données et corriger les critères de qualité des données qui ne sont pas respectés pour que les données soient adéquate à l'utilisation pour les rapports sur les ODD.",
+        "bothFail": "Les données ne répondent pas aux principes d'éthique des données ni aux critères des dimensions de qualité, elles ne sont donc pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Veuillez réviser vos données et corriger les principes d'éthique des données et les critères de qualité des données qui ne sont pas respectés pour que les données soient adéquate à l'utilisation pour les rapports sur les ODD."
       },
       "qualitySummary": {
         "title": "Résumé des dimensions de la qualité",

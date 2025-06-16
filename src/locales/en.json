@@ -110,7 +110,8 @@
           "high": "3 points = High (all criteria satisfied)",
           "medium": "2 points = Medium (2 criteria satisfied)",
           "low": "1 point = Low (1 criterion satisfied)",
-          "notSufficient": "0 points = Not sufficient (no criteria satisfied)"
+          "notSufficient": "0 points = Not sufficient (no criteria satisfied)",
+          "exceptions": "Please note that the 'Accessibility and clarity' dimension contains only 2 criteria; satisfying both criteria (2/2) results in the maximum score of 3 points (High)."
         },
         "options": {
           "notSufficient": "0 - Not sufficient (no criteria satisfied)",
