@@ -12,13 +12,13 @@
   "frontPage": {
     "titleLine1": "Bienvenue à l'outil",
     "titleLine2": "d'auto-évaluation de la qualité des données",
-    "intro": "L'outil d'auto-évaluation de la qualité des données est conçu pour aider à évaluer l'aptitude à l'emploi des données non officielles pour un rapport potentiel sur les ODD. Cet outil est basé sur les principes fondamentaux de l'éthique des données de Statistique Canada et intègre cinq des six dimensions de la qualité des données.",
+    "intro": "L'outil d'auto-évaluation de la qualité des données est conçu pour aider à évaluer l'adéquation à l'utilisation des données non officielles pour un rapport potentiel sur les ODD. Cet outil est basé sur les principes fondamentaux de l'éthique des données de Statistique Canada et intègre cinq des six dimensions de la qualité des données.",
     "assessmentInfo": "En utilisant cet outil, vous serez en mesure d'évaluer vos données par rapport aux éléments suivants :",
     "bulletPoints": {
       "item1": "Les principes fondamentaux de l'éthique des données de Statistique Canada pour la collecte, l'édition et la diffusion des données",
       "item2": "Cinq des six dimensions de qualité développées et utilisées par Statistique Canada pour assurer la qualité des données"
     },
-    "usage": "Toute personne qui souhaite évaluer des données pour potentialité de rapports sur les ODD devrait utiliser cet outil pour évaluer la qualité et les normes éthiques de ses données avant de les soumettre.",
+    "usage": "Toute personne qui souhaite évaluer des données pour potentialité de rapports sur les ODD devrait utiliser cet outil pour évaluer la qualité et les normes éthiques de ses données.",
     "noteToUsers": "Veuillez noter que cet outil d'auto-évaluation de la qualité des données n'est pas suffisant pour évaluer si les données répondent aux normes officielles de la statistique.",
     "contactInfo": "Si vous souhaitez soumettre vos données ou contacter un analyste après avoir terminé votre évaluation, veuillez contacter l'équipe ODD de Statistique Canada à :",
     "email": "statcan.sdg-odd.statcan@statcan.gc.ca",
@@ -80,8 +80,8 @@
         "title": "Résultats de l'évaluation par rapport aux principes fondamentaux de Statistique Canada :",
         "pass": "Réussite",
         "fail": "Échec",
-        "passMessage": "Telles qu'évaluées ci-dessus par rapport aux principes fondamentaux de Statistique Canada, les données sont considérées comme apte à l'emploi pour les rapports sur les ODD.",
-        "failMessage": "Telles qu'évaluées ci-dessus par rapport aux principes fondamentaux de Statistique Canada, les données ne sont pas considérées comme apte à l'emploi pour les rapports sur les ODD. Veuillez réviser vos données pour s'assurer que tous les principes fondamentaux sont respectés pour être considérées comme apte à l'emploi pour les rapports sur les ODD."
+        "passMessage": "Telles qu'évaluées ci-dessus par rapport aux principes fondamentaux de Statistique Canada, les données sont considérées adéquates à l'utilisation pour les rapports sur les ODD.",
+        "failMessage": "Telles qu'évaluées ci-dessus par rapport aux principes fondamentaux de Statistique Canada, les données ne sont pas considérées adéquates à l'utilisation pour les rapports sur les ODD. Veuillez réviser vos données pour s'assurer que tous les principes fondamentaux sont respectés pour être considérées adéquates à l'utilisation pour les rapports sur les ODD."
       },
       "actions": {
         "continue": "Continuer",
@@ -121,13 +121,13 @@
       },
       "summary": {
         "title": "Résultats de l'évaluation par rapport aux dimensions de la qualité de Statistique Canada :",
-        "tableCaption": "Scores détaillés des dimensions de la qualité",
+        "tableCaption": "Résultats détaillés des dimensions de la qualité",
         "tableHeaders": {
           "dimension": "Dimension",
-          "score": "Score",
+          "score": "Résultat",
           "assessment": "Évaluation"
         },
-        "totalScore": "Score total :",
+        "totalScore": "Résultat total :",
         "scoreDisplay": "{{score}}/{{maxScore}}",
         "pass": "Réussite",
         "fail": "Échec"
@@ -139,10 +139,10 @@
         "high": "Élevé"
       },
       "interpretation": {
-        "low": "La qualité des données telle qu'évaluée ci-dessus n'est pas considérée comme apte à l'emploi pour les rapports sur les ODD. Veuillez envisager de répondre à certains des critères d'évaluation pour en améliorer la qualité, si possible.",
-        "medium": "La qualité des données telle qu'évaluée ci-dessus est apte à l'emploi pour les rapports sur les ODD mais pourrait être améliorée. Veuillez envisager de répondre à certains des critères d'évaluation si possible.",
-        "high": "La qualité des données telle qu'évaluée ci-dessus est apte à l'emploi pour les rapports sur les ODD.",
-        "fail": "La qualité des données telle qu'évaluée ci-dessus a au moins une dimension de qualité qui n'est pas suffisante et n'est donc pas apte à l'emploi pour les rapports sur les ODD. Veuillez envisager de répondre à certains des critères d'évaluation pour en améliorer la qualité, si possible."
+        "low": "La qualité des données telle qu'évaluée ci-dessus n'est pas considérée adéquates à l'utilisation pour les rapports sur les ODD. Veuillez envisager de répondre à certains des critères d'évaluation pour en améliorer la qualité, si possible.",
+        "medium": "La qualité des données telle qu'évaluée ci-dessus est considérée adéquate à l'utilisation pour les rapports sur les ODD mais pourrait être améliorée. Veuillez envisager de répondre à certains des critères d'évaluation si possible.",
+        "high": "La qualité des données telle qu'évaluée ci-dessus est considérée adéquate à l'utilisation pour les rapports sur les ODD.",
+        "fail": "La qualité des données telle qu'évaluée ci-dessus a au moins une dimension de qualité qui n'est pas suffisante et n'est donc pas considérée adéquate à l'utilisation pour les rapports sur les ODD. Veuillez envisager de répondre à certains des critères d'évaluation pour en améliorer la qualité, si possible."
       },
       "actions": {
         "evaluate": "Évaluer",
@@ -160,20 +160,20 @@
         "pass": "Réussite",
         "fail": "Échec",
         "warning": "Avertissement",
-        "score": "Score : {{score}}/15",
-        "totalScore": "Score total sur 15"
+        "score": "Résultat : {{score}}/15",
+        "totalScore": "Résultat total sur 15"
       },
       "messages": {
-        "bothPass": "Les données ont réussi les deux évaluations et sont apte à l'emploi pour les rapports sur les ODD.",
-        "ethicsFailQualityPass": "Les données ne répondent pas aux principes d'éthique des données et ne sont pas considérées comme apte à l'emploi pour les rapports sur les ODD. Les données doivent respecter tous les principes d'éthique des données pour être apte à l'emploi pour les rapports sur les ODD. Veuillez réviser vos données et corriger les principes d'éthique des données qui ne sont pas respectés pour que les données soient apte à l'emploi pour les rapports sur les ODD.",
-        "ethicsPassQualityFail": "Les données répondent à tous les principes d'éthique des données, mais ne répondent pas au nombre requis de critères de qualité des données. Elles ne sont pas considérées comme apte à l'emploi pour les rapports sur les ODD. Veuillez réviser vos données et corriger les critères de qualité des données qui ne sont pas respectés pour que les données soient apte à l'emploi pour les rapports sur les ODD.",
-        "bothFail": "Les données ne répondent pas aux principes d'éthique des données ni aux critères des dimensions de qualité, elles ne sont donc pas apte à l'emploi pour les rapports sur les ODD. Veuillez réviser vos données et corriger les principes d'éthique des données et les critères de qualité des données qui ne sont pas respectés pour que les données soient apte à l'emploi pour les rapports sur les ODD."
+        "bothPass": "Les données ont réussi les deux évaluations et sont considérées adéquates à l'utilisation pour les rapports sur les ODD.",
+        "ethicsFailQualityPass": "Les données ne répondent pas aux principes d'éthique des données et ne sont pas considérées adéquates à l'utilisation pour les rapports sur les ODD. Les données doivent respecter tous les principes d'éthique des données pour être considérées adéquates à l'utilisation pour les rapports sur les ODD. Veuillez réviser vos données et corriger les principes d'éthique des données qui ne sont pas respectés pour que les données soient adéquate à l'utilisation pour les rapports sur les ODD.",
+        "ethicsPassQualityFail": "Les données répondent à tous les principes d'éthique des données, mais ne répondent pas au nombre requis de critères de qualité des données. Elles ne sont pas considérées adéquates à l'utilisation pour les rapports sur les ODD. Veuillez réviser vos données et corriger les critères de qualité des données qui ne sont pas respectés pour que les données soient adéquate à l'utilisation pour les rapports sur les ODD.",
+        "bothFail": "Les données ne répondent pas aux principes d'éthique des données ni aux critères des dimensions de qualité, elles ne sont donc pas considérées adéquates à l'utilisation pour les rapports sur les ODD. Veuillez réviser vos données et corriger les principes d'éthique des données et les critères de qualité des données qui ne sont pas respectés pour que les données soient adéquate à l'utilisation pour les rapports sur les ODD."
       },
       "qualitySummary": {
         "title": "Résumé des dimensions de la qualité",
         "tableHeaders": {
           "dimension": "Dimension",
-          "score": "Score",
+          "score": "Résultat",
           "assessment": "Évaluation"
         }
       },
@@ -201,7 +201,7 @@
         "message": "Détails de l'évaluation des principes d'éthique des données",
         "qualityAssessment": "Évaluation des dimensions de la qualité",
         "interpretation": "Détails de l'évaluation des dimensions de la qualité",
-        "score": "Score des dimensions de la qualité",
+        "score": "Résultat des dimensions de la qualité",
         "result": "Résultat global",
         "category": "Catégorie",
         "ethicsPrinciples": "PRINCIPES D'ÉTHIQUE DES DONNÉES",
@@ -211,7 +211,7 @@
         "qualityDimensions": "DIMENSIONS DE LA QUALITÉ",
         "qualityDimension": "Dimension de la qualité",
         "qualityDimensionsList": "Dimensions de la qualité",
-        "scoreHeader": "Score",
+        "scoreHeader": "Résultat",
         "assessment": "Évaluation",
         "notEvaluated": "Non évalué",
         "criteriaStatus": {
