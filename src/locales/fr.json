@@ -1,6 +1,6 @@
 {
   "header": {
-    "beta": "VERSION BÊTA : Cet outil est en cours de développement. Nous apprécions vos commentaires.",
+    "beta": "VERSION BÊTA : Cet outil est en cours d'élaboration. Vos commentaires sont les bienvenus.",
     "title": "Outil d'auto-évaluation de la qualité des données",
     "switchToFrench": "Français",
     "switchToEnglish": "English"
@@ -57,7 +57,7 @@
   },
   "assessment": {
     "ethics": {
-      "title": "Partie 1 - Principes d'éthique des données",
+      "title": "Partie 1 - Principes de l'éthique des données",
       "intro": {
         "part1": "La première partie consiste en une évaluation des données par rapport aux principes fondamentaux de Statistique Canada en matière de collecte, de vérification et de diffusion des données.",
         "part2": "Veuillez évaluer chaque élément pour vérifier si les données s'harmonisent avec les principes ou non."
@@ -77,11 +77,11 @@
         }
       },
       "results": {
-        "title": "Résultats de l'évaluation par rapport aux principes fondamentaux d'éthique des données de Statistique Canada :",
+        "title": "Résultats de l'évaluation par rapport aux principes fondamentaux de l'éthique des données de Statistique Canada :",
         "pass": "Réussite",
         "fail": "Échec",
-        "passMessage": "Telles qu'évaluées ci-dessus par rapport aux principes d'éthique des données de Statistique Canada, les données sont considérées comme adéquates à l'utilisation pour les rapports sur les ODD.",
-        "failMessage": "Telles qu'évaluées ci-dessus par rapport aux principes d'éthique des données de Statistique Canada, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Veuillez réviser vos données pour s'assurer que tous les principes fondamentaux sont respectés pour être considérées comme adéquates à l'utilisation pour les rapports sur les ODD."
+        "passMessage": "Telles qu'évaluées ci-dessus par rapport aux principes de l'éthique des données de Statistique Canada, les données sont considérées comme adéquates à l'utilisation pour les rapports sur les ODD.",
+        "failMessage": "Telles qu'évaluées ci-dessus par rapport aux principes de l'éthique des données de Statistique Canada, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Veuillez réviser vos données pour s'assurer que tous les principes fondamentaux sont respectés pour être considérées comme adéquates à l'utilisation pour les rapports sur les ODD."
       },
       "actions": {
         "continue": "Continuer",
@@ -106,18 +106,18 @@
           "answer": "Réponse"
         },
         "tooltip": {
-          "title": "Les points correspondent au nombre de critères satisfaits :",
-          "high": "3 points = Élevé (tous les critères satisfaits)",
-          "medium": "2 points = Moyen (2 critères satisfaits)",
-          "low": "1 point = Faible (1 critère satisfait)",
-          "notSufficient": "0 point = Insuffisant (aucun critère satisfait)",
+          "title": "Les points correspondent au nombre de critères respectés :",
+          "high": "3 points = Élevé (tous les critères respectés)",
+          "medium": "2 points = Moyen (2 critères respectés)",
+          "low": "1 point = Faible (1 critère respecté)",
+          "notSufficient": "0 point = Insuffisant (aucun critère respecté)",
           "exceptions": "Veuillez noter que la dimension 'Accessibilité et clarté' ne contient que 2 critères ; satisfaire les deux critères (2/2) résulte en la note maximale de 3 points (Élevée)."
         },
         "options": {
-          "notSufficient": "0 - Insuffisant (aucun critère satisfait)",
-          "low": "1 - Faible (1 critère satisfait)",
-          "medium": "2 - Moyen (2 critères satisfaits)",
-          "high": "3 - Élevé (tous les critères satisfaits)"
+          "notSufficient": "0 - Insuffisant (aucun critère respecté)",
+          "low": "1 - Faible (1 critère respecté)",
+          "medium": "2 - Moyen (2 critères respectés)",
+          "high": "3 - Élevé (tous les critères respectés)"
         }
       },
       "summary": {
@@ -140,10 +140,10 @@
         "high": "Élevé"
       },
       "interpretation": {
-        "low": "La qualité des données telle qu'évaluée ci-dessus n'est pas considérée adéquates à l'utilisation pour les rapports sur les ODD. Veuillez envisager de répondre à certains des critères d'évaluation pour en améliorer la qualité, si possible.",
-        "medium": "La qualité des données telle qu'évaluée ci-dessus est considérée adéquate à l'utilisation pour les rapports sur les ODD mais pourrait être améliorée. Veuillez envisager de répondre à certains des critères d'évaluation si possible.",
-        "high": "La qualité des données telle qu'évaluée ci-dessus est considérée adéquate à l'utilisation pour les rapports sur les ODD.",
-        "fail": "La qualité des données telle qu'évaluée ci-dessus a au moins une dimension de qualité qui n'est pas suffisante et n'est donc pas considérée adéquate à l'utilisation pour les rapports sur les ODD. Veuillez envisager de répondre à certains des critères d'évaluation pour en améliorer la qualité, si possible."
+        "low": "La qualité des données telle qu'évaluée ci-dessus n'est pas considérée comme adéquate à l'utilisation pour les rapports sur les ODD. Veuillez envisager de répondre à certains des critères d'évaluation pour en améliorer la qualité, si possible.",
+        "medium": "La qualité des données telle qu'évaluée ci-dessus est considérée comme adéquate à l'utilisation pour les rapports sur les ODD mais pourrait être améliorée. Veuillez envisager de répondre à certains des critères d'évaluation si possible.",
+        "high": "La qualité des données telle qu'évaluée ci-dessus est considérée comme adéquate à l'utilisation pour les rapports sur les ODD.",
+        "fail": "La qualité des données telle qu'évaluée ci-dessus a au moins une dimension de qualité qui n'est pas suffisante et n'est donc pas considérée comme adéquate à l'utilisation pour les rapports sur les ODD. Veuillez envisager de répondre à certains des critères d'évaluation pour en améliorer la qualité, si possible."
       },
       "actions": {
         "evaluate": "Évaluer",
@@ -183,7 +183,6 @@
         "formatLabel": "Format d'exportation :",
         "formats": {
           "text": "Texte",
-          "json": "JSON",
           "csv": "CSV",
           "pdf": "PDF",
           "word": "Document Word"
@@ -216,8 +215,8 @@
         "assessment": "Évaluation",
         "notEvaluated": "Non évalué",
         "criteriaStatus": {
-          "satisfied": "SATISFAIT",
-          "notSatisfied": "NON SATISFAIT"
+          "satisfied": "RESPECTÉ",
+          "notSatisfied": "NON RESPECTÉ"
         },
         "overallResult": "Résultat global",
         "overallMessage": "Détails de l'évaluation globale",
@@ -226,7 +225,7 @@
         "pdfPreview": "Un rapport PDF sera généré lorsque vous cliquez sur Télécharger.",
         "wordPreview": "Un rapport Word sera généré lorsque vous cliquez sur Télécharger."
       },
-      "criteriaSatisfied": "Critères satisfaits",
+      "criteriaSatisfied": "Critères respectés",
       "actions": {
         "reset": "Réinitialiser l'évaluation",
         "home": "Retourner à l'accueil"

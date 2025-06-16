@@ -183,7 +183,6 @@
         "formatLabel": "Export Format:",
         "formats": {
           "text": "Text",
-          "json": "JSON",
           "csv": "CSV",
           "pdf": "PDF",
           "word": "DOCX"
