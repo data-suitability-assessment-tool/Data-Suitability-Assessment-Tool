@@ -225,7 +225,7 @@
         "pdfPreview": "Un rapport PDF sera généré lorsque vous cliquez sur Télécharger.",
         "wordPreview": "Un rapport Word sera généré lorsque vous cliquez sur Télécharger."
       },
-      "criteriaSatisfied": "Critères respectés",
+      "criteriaSatisfied": "Critères respectés ou non respectés",
       "actions": {
         "reset": "Réinitialiser l'évaluation",
         "home": "Retourner à l'accueil"

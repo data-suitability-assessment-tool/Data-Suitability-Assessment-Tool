@@ -229,7 +229,7 @@
           "assessment": "Assessment"
         }
       },
-      "criteriaSatisfied": "Criteria Satisfied",
+      "criteriaSatisfied": "Criteria Satisfied or Not Satisfied",
       "actions": {
         "reset": "Reset Assessment",
         "home": "Return Home"
