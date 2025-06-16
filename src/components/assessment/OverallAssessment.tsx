@@ -564,7 +564,9 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
       URL.revokeObjectURL(url);
     } else if (exportFormat === "csv") {
       fileName += ".csv";
-      const blob = new Blob([exportContent], { type: "text/csv" });
+      // Add UTF-8 BOM for proper encoding of French characters
+      const BOM = '\uFEFF';
+      const blob = new Blob([BOM + exportContent], { type: "text/csv;charset=utf-8;" });
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
