@@ -12,7 +12,7 @@
   "frontPage": {
     "titleLine1": "Welcome to the",
     "titleLine2": "Data Quality Self-Evaluation Tool",
-    "intro": "The Data Quality Self-Evaluation Tool is designed to help assess the fitness for purpose of non-official data for potential SDG reporting. This tool is based on Statistics Canada's core principles of data ethics and incorporates five of the six dimensions of data quality.",
+    "intro": "The Data Quality Self-Evaluation Tool is designed to help assess if non-official data are considered fit for purpose for potential SDG reporting. This tool is based on Statistics Canada's core principles of data ethics and incorporates five of the six dimensions of data quality.",
     "assessmentInfo": "By using this tool, you will be able to assess your data against:",
     "bulletPoints": {
       "item1": "Statistics Canada's core data ethics principles for data collection, editing, and dissemination",
