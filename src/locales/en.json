@@ -7,7 +7,7 @@
   },
   "footer": {
     "copyright": "© Statistics Canada - Data Quality Self-Evaluation Tool.",
-    "builtWith": "Built with <a href=\"https://react.dev/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">React</a>, <a href=\"https://www.typescriptlang.org/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">TypeScript</a>, <a href=\"https://www.radix-ui.com/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Radix UI</a>, and <a href=\"https://tailwindcss.com/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Tailwind CSS</a>"
+    "builtWith": "Built with <a href=\"https://react.dev/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">React</a>"
   },
   "frontPage": {
     "titleLine1": "Welcome to the",

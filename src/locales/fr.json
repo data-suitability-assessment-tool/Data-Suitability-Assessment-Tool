@@ -7,7 +7,7 @@
   },
   "footer": {
     "copyright": "© Statistique Canada - Outil d'auto-évaluation de la qualité des données.",
-    "builtWith": "Développé avec <a href=\"https://fr.react.dev/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">React</a>, <a href=\"https://www.typescriptlang.org/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">TypeScript</a>, <a href=\"https://www.radix-ui.com/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Radix UI</a> et <a href=\"https://tailwindcss.com/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Tailwind CSS</a>"
+    "builtWith": "Développé avec <a href=\"https://fr.react.dev/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">React</a>"
   },
   "frontPage": {
     "titleLine1": "Bienvenue à l'outil",
