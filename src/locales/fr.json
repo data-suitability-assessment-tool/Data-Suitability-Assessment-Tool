@@ -45,7 +45,7 @@
         "part3": "Le titre de droit d'auteur de tous les logiciels tiers distribués avec ce logiciel est détenu par les détenteurs de droits d'auteur respectifs, comme indiqué dans ces fichiers. Les utilisateurs sont invités à lire les licences tierces référencées avec ces actifs."
       },
       "privacySection": "Confidentialité et stockage des données",
-      "privacyDetails": "Cet outil d'auto-évaluation de la qualité des données effectue toutes les évaluations localement dans le navigateur de l'utilisateur et de l'utilisatrice. Aucune donnée n'est collectée, stockée ou transmise à Statistique Canada.",
+      "privacyDetails": "Cet outil d'auto-évaluation de la qualité des données effectue toutes les évaluations localement dans le navigateur de l'utilisateur ou de l'utilisatrice. Aucune donnée n'est collectée, stockée ou transmise à Statistique Canada.",
       "licenseSection": "Licence MIT",
       "licenseDetails": {
         "copyright": "Copyright © {{year}} Gouvernement du Canada - Government of Canada",
