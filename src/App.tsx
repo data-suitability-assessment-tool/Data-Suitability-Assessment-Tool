@@ -21,7 +21,7 @@ function App() {
   // Update document language attribute when language changes
   useEffect(() => {
     document.documentElement.lang = i18n.language
-    document.title = i18n.language === 'en' ? 'Data Quality Self-Evaluation Tool' : 'Outil d\'auto-évaluation de la qualité des données'
+    document.title = i18n.language === 'en' ? 'Data Suitability Assessment Tool' : 'Outil d\'évaluation de l\'adéquation des données'
   }, [i18n.language])
 
   return (
