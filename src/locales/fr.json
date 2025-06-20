@@ -1,18 +1,18 @@
 {
   "header": {
     "beta": "VERSION BÊTA : Cet outil est en cours d'élaboration. Vos commentaires sont les bienvenus.",
-    "title": "Outil d'auto-évaluation de la qualité des données",
+    "title": "Outil d'évaluation de l'adéquation des données",
     "switchToFrench": "Français",
     "switchToEnglish": "English"
   },
   "footer": {
-    "copyright": "© Statistique Canada - Outil d'auto-évaluation de la qualité des données.",
+    "copyright": "© Statistique Canada - Outil d'évaluation de l'adéquation des données.",
     "builtWith": "Développé avec <a href=\"https://fr.react.dev/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">React</a>"
   },
   "frontPage": {
     "titleLine1": "Bienvenue à l'outil",
-    "titleLine2": "d'auto-évaluation de la qualité des données",
-    "intro": "L'outil d'auto-évaluation de la qualité des données est conçu pour aider à évaluer l'adéquation à l'utilisation des données non officielles pour un rapport potentiel sur les ODD. Cet outil est basé sur les principes fondamentaux de l'éthique des données de Statistique Canada et intègre cinq des six dimensions de la qualité des données.",
+    "titleLine2": "d'évaluation de l'adéquation des données",
+    "intro": "L'outil d'évaluation de l'adéquation des données est conçu pour aider à évaluer l'adéquation à l'utilisation des données non officielles pour un rapport potentiel sur les ODD. Cet outil est basé sur les principes fondamentaux de l'éthique des données de Statistique Canada et intègre cinq des six dimensions de la qualité des données.",
     "assessmentInfo": "En utilisant cet outil, vous serez en mesure d'évaluer vos données par rapport aux éléments suivants :",
     "bulletPoints": {
       "item1": "Les principes fondamentaux de l'éthique des données de Statistique Canada pour la collecte, l'édition et la diffusion des données",
@@ -26,13 +26,13 @@
   },
   "mainContent": {
     "tabs": {
-      "assessment": "Outil d'auto-évaluation de la qualité des données",
+      "assessment": "Outil d'évaluation de l'adéquation des données",
       "license": "Licence"
     }
   },
   "license": {
     "title": "Informations de licence",
-    "intro": "Cette page contient des informations sur les conditions d'utilisation, la confidentialité et le stockage des données, et la licence pour l'outil d'auto-évaluation de la qualité des données.",
+    "intro": "Cette page contient des informations sur les conditions d'utilisation, la confidentialité et le stockage des données, et la licence pour l'outil d'évaluation de l'adéquation des données.",
     "table": {
       "headers": {
         "section": "Section",
@@ -45,7 +45,7 @@
         "part3": "Le titre de droit d'auteur de tous les logiciels tiers distribués avec ce logiciel est détenu par les détenteurs de droits d'auteur respectifs, comme indiqué dans ces fichiers. Les utilisateurs sont invités à lire les licences tierces référencées avec ces actifs."
       },
       "privacySection": "Confidentialité et stockage des données",
-      "privacyDetails": "Cet outil d'auto-évaluation de la qualité des données effectue toutes les évaluations localement dans le navigateur de l'utilisateur et de l'utilisatrice. Aucune donnée n'est collectée, stockée ou transmise à Statistique Canada.",
+      "privacyDetails": "Cet outil d'évaluation de l'adéquation des données effectue toutes les évaluations localement dans le navigateur de l'utilisateur et de l'utilisatrice. Aucune donnée n'est collectée, stockée ou transmise à Statistique Canada.",
       "licenseSection": "Licence MIT",
       "licenseDetails": {
         "copyright": "Copyright © {{year}} Gouvernement du Canada - Government of Canada",
