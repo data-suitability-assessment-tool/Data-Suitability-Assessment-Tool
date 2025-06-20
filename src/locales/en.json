@@ -21,7 +21,7 @@
       "label": "Assessment criteria list"
     },
     "usage": "If you wish to pursue the assessment of your data for a potential SDG reporting, please <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white underline hover:text-white/80\" aria-label=\"Email us about your data assessment\">contact us</a> with your submission once the data have been evaluated successfully with this tool.",
-    "noteToUsers": "Please note that this Data Suitability Assessment Tool is not sufficient to assess if the data meets official statistics standards.",
+    "noteToUsers": "Through this tool, data suitability is assessed by evaluating both the quality and the ethics of the data. Data ethics assess whether the data have been used appropriately throughout its life cycle, which spans from the acquisition to the dissemination. Data quality is important as it helps evaluate the measures in place to safeguard the data against errors and inform users of its reliability. Please note that this Data Suitability Assessment Tool is not sufficient to assess if the data meets official statistics standards.",
     "contactInfo": "Do not hesitate to <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white underline hover:text-white/80 hover:underline\" aria-label=\"Email Statistics Canada's SDG team for questions\">contact Statistics Canada's SDG team</a> should you have any questions.",
     "email": "statcan.sdg-odd.statcan@statcan.gc.ca",
     "startButton": "Start Assessment",
