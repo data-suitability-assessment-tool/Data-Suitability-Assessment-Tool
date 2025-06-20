@@ -20,9 +20,9 @@
       "item2": "dimensions of quality for producing relevant and robust statistical information.",
       "label": "Assessment criteria list"
     },
-    "usage": "If you wish to pursue the assessment of your data for a potential SDG reporting, please <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white underline hover:text-white/80\">contact us</a> with your submission once the data have been evaluated successfully with this tool.",
+    "usage": "If you wish to pursue the assessment of your data for a potential SDG reporting, please <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white underline hover:text-white/80\" aria-label=\"Email us about your data assessment\">contact us</a> with your submission once the data have been evaluated successfully with this tool.",
     "noteToUsers": "Please note that this Data Suitability Assessment Tool is not sufficient to assess if the data meets official statistics standards.",
-    "contactInfo": "Do not hesitate to <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white underline hover:text-white/80 hover:underline\">contact Statistics Canada's SDG team</a> should you have any questions.",
+    "contactInfo": "Do not hesitate to <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white underline hover:text-white/80 hover:underline\" aria-label=\"Email Statistics Canada's SDG team for questions\">contact Statistics Canada's SDG team</a> should you have any questions.",
     "email": "statcan.sdg-odd.statcan@statcan.gc.ca",
     "startButton": "Start Assessment",
     "startButtonAriaLabel": "Start the data suitability assessment",
