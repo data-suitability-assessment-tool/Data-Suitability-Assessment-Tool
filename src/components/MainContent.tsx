@@ -79,13 +79,13 @@ const MainContent = forwardRef<MainContentRef>((_, ref) => {
             >
               <Tabs.Trigger
                 value="assessment-tab-panel"
-                className={`py-2 sm:py-3 px-4 sm:px-6 text-lg font-bold text-base rounded-t-lg mr-1 sm:mr-2 transition-all duration-200 ease-in-out border-t border-l border-r border-[var(--border-color)] flex-1 data-[state=active]:bg-[var(--primary-color)] data-[state=active]:text-white data-[state=active]:font-bold data-[state=active]:shadow-md data-[state=active]:translate-y-px data-[state=inactive]:bg-[var(--light-blue)]/50 data-[state=inactive]:text-[var(--text-color)] hover:bg-[var(--light-blue)] hover:text-[var(--primary-color)]`}
+                className={`py-2 sm:py-3 px-4 sm:px-6 text-lg font-bold text-base rounded-t-lg mr-1 sm:mr-2 transition-all duration-200 ease-in-out border-t border-l border-r border-[var(--border-color)] flex-1 cursor-pointer data-[state=active]:bg-[var(--primary-color)] data-[state=active]:text-white data-[state=active]:font-bold data-[state=active]:shadow-md data-[state=active]:translate-y-px data-[state=inactive]:bg-[var(--light-blue)]/50 data-[state=inactive]:text-[var(--text-color)] data-[state=inactive]:hover:bg-[var(--light-blue)] data-[state=inactive]:hover:text-[var(--primary-color)] data-[state=inactive]:hover:shadow-md`}
               >
                 {t('mainContent.tabs.assessment')}
               </Tabs.Trigger>
               <Tabs.Trigger
                 value="license-tab-panel"
-                className={`py-2 sm:py-3 px-4 sm:px-6 text-lg font-bold text-base rounded-t-lg transition-all duration-200 ease-in-out border-t border-l border-r border-[var(--border-color)] flex-1 data-[state=active]:bg-[var(--primary-color)] data-[state=active]:text-white data-[state=active]:font-bold data-[state=active]:shadow-md data-[state=active]:translate-y-px data-[state=inactive]:bg-[var(--light-blue)]/50 data-[state=inactive]:text-[var(--text-color)] hover:bg-[var(--light-blue)] hover:text-[var(--primary-color)]`}
+                className={`py-2 sm:py-3 px-4 sm:px-6 text-lg font-bold text-base rounded-t-lg transition-all duration-200 ease-in-out border-t border-l border-r border-[var(--border-color)] flex-1 cursor-pointer data-[state=active]:bg-[var(--primary-color)] data-[state=active]:text-white data-[state=active]:font-bold data-[state=active]:shadow-md data-[state=active]:translate-y-px data-[state=inactive]:bg-[var(--light-blue)]/50 data-[state=inactive]:text-[var(--text-color)] data-[state=inactive]:hover:bg-[var(--light-blue)] data-[state=inactive]:hover:text-[var(--primary-color)] data-[state=inactive]:hover:shadow-md`}
               >
                 {t('mainContent.tabs.license')}
               </Tabs.Trigger>
