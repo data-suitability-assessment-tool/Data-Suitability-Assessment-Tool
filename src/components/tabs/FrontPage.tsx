@@ -59,7 +59,7 @@ const FrontPage: React.FC<FrontPageProps> = ({ onStartAssessment }) => {
         <Button 
           onClick={onStartAssessment}
           size="lg"
-          className="px-12 py-4 text-xl font-semibold transition-all transform hover:scale-105 focus:scale-105 shadow-xl hover:shadow-2xl bg-[var(--primary-color)] border-0 rounded-full"
+          className="px-12 py-4 text-xl font-semibold transition-all transform hover:scale-105 focus:scale-105 shadow-xl hover:shadow-2xl bg-[var(--primary-color)] border-0 rounded-full cursor-pointer"
           aria-label={t('frontPage.startButtonAriaLabel')}
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
