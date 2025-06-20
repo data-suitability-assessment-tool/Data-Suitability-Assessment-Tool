@@ -12,27 +12,27 @@
   "frontPage": {
     "titleLine1": "Welcome to the",
     "titleLine2": "Data Suitability Assessment Tool",
-    "intro": "The Data Suitability Assessment Tool is designed to help assess the fitness for purpose of non-official data for potential SDG reporting. This tool is based on Statistics Canada's core principles of data ethics and incorporates five of the six dimensions of data quality.",
+    "intro": "The Data Suitability Assessment Tool is designed to help assess if non-official data are considered fit for purpose for potential SDG reporting. This tool is based on Statistics Canada's core principles of data ethics and incorporates five of the six dimensions of data quality.",
     "assessmentInfo": "By using this tool, you will be able to assess your data against:",
     "bulletPoints": {
-      "item1": "Statistics Canada's core data ethics principles for data collection, editing, and dissemination",
-      "item2": "Five of the six dimensions of quality developed and used by Statistics Canada to ensure data quality"
+      "item1": "Statistics Canada's core data ethics principles for data collection, editing, and dissemination.",
+      "item2": "Statistics Canada's dimensions of quality for producing relevant and robust statistical information."
     },
-    "usage": "Anyone who wishes to evaluate data for potential SDG reporting should use this tool to assess the quality and ethical standards of their data.",
-    "noteToUsers": "Please note that this Data Suitability Assessment Tool is not sufficient to assess if the data meets official statistics standards.",
+    "usage": "Anyone who wishes to evaluate data for potential SDG reporting should contact us once the data has been evaluated with this tool.",
+    "noteToUsers": "Please note that this Data Quality Self-Evaluation Tool is not sufficient to assess if the data meets official statistics standards.",
     "contactInfo": "If you wish to submit your data or contact an analyst after completing your evaluation, please contact Statistics Canada's SDG team at:",
     "email": "statcan.sdg-odd.statcan@statcan.gc.ca",
     "startButton": "Start Assessment"
   },
   "mainContent": {
     "tabs": {
-      "assessment": "Data Suitability Assessment Tool",
+      "assessment": "Data Quality Self-Evaluation Tool",
       "license": "License"
     }
   },
   "license": {
     "title": "License Information",
-    "intro": "This page contains information about the terms and conditions of use, the privacy and data storage policies, and the license for the Data Suitability Assessment Tool.",
+    "intro": "This page contains information about the terms and conditions of use, the privacy and data storage policies, and the license for the Data Quality Self-Evaluation Tool.",
     "table": {
       "headers": {
         "section": "Section",
@@ -45,7 +45,7 @@
         "part3": "Copyright title to all 3rd party software distributed with this software is held by the respective copyright holders as noted in those files. Users are asked to read the 3rd Party Licenses referenced with those assets."
       },
       "privacySection": "Privacy and Data Storage",
-      "privacyDetails": "This Data Suitability Assessment Tool performs all assessments locally in the user's browser. No data is collected, stored, or transmitted to Statistics Canada.",
+      "privacyDetails": "This Data Quality Self-Evaluation Tool performs all assessments locally in the user's browser. No data is collected, stored, or transmitted to Statistics Canada.",
       "licenseSection": "MIT License",
       "licenseDetails": {
         "copyright": "Copyright © {{year}} Government of Canada - Gouvernement du Canada",
