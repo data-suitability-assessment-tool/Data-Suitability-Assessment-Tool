@@ -63,9 +63,10 @@ const Header = ({ onTitleClick }: HeaderProps) => {
           >
             {t('header.title')}
           </h1>
-          <div className="bg-white/20 px-3 py-1 rounded-full text-sm font-medium mt-2">
-            {t('header.beta')}
-          </div>
+          <div 
+            className="bg-white/20 px-3 py-1 rounded-full text-sm font-medium mt-2"
+            dangerouslySetInnerHTML={{ __html: t('header.beta') }}
+          ></div>
         </div>
       </div>
     </header>
