@@ -45,7 +45,7 @@
         "part3": "Copyright title to all 3rd party software distributed with this software is held by the respective copyright holders as noted in those files. Users are asked to read the 3rd Party Licenses referenced with those assets."
       },
       "privacySection": "Privacy and Data Storage",
-      "privacyDetails": "This DataSuitability Assessment Tool performs all assessments locally in the user's browser. No data is collected, stored, or transmitted to Statistics Canada.",
+      "privacyDetails": "This Data Suitability Assessment Tool performs all assessments locally in the user's browser. No data is collected, stored, or transmitted to Statistics Canada.",
       "licenseSection": "MIT License",
       "licenseDetails": {
         "copyright": "Copyright © {{year}} Government of Canada - Gouvernement du Canada",
