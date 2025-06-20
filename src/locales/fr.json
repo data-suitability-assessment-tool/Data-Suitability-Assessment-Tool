@@ -1,6 +1,6 @@
 {
   "header": {
-    "beta": "VERSION BÊTA : Cet outil est en cours d'élaboration. Vos <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white-600 underline hover:text-slate-900 hover:underline\">commentaires</a> sont les bienvenus.",
+    "beta": "VERSION BÊTA : Cet outil est en cours d'élaboration. Vos <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white underline hover:text-white/80 hover:underline\">commentaires</a> sont les bienvenus.",
     "title": "Outil d'évaluation de l'adéquation des données",
     "switchToFrench": "Français",
     "switchToEnglish": "English"
@@ -10,17 +10,17 @@
     "builtWith": "Développé avec <a href=\"https://fr.react.dev/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">React</a>"
   },
   "frontPage": {
-    "titleLine1": "Bienvenue à l'outil",
-    "titleLine2": "d'évaluation de l'adéquation des données",
-    "intro": "L'outil d'évaluation de l'adéquation des données est conçu pour aider à évaluer si les données non officielles sont considérées comme adéquates à l'utilisation pour un rapport potentiel sur les ODD. Cet outil est basé sur les principes fondamentaux de l'éthique des données de Statistique Canada et intègre cinq des six dimensions de la qualité des données.",
-    "assessmentInfo": "En utilisant cet outil, vous serez en mesure d'évaluer vos données par rapport aux éléments suivants :",
+    "titleLine1": "Bienvenue à ",
+    "titleLine2": "l'outil d'évaluation de l'adéquation des données",
+    "intro": "L'outil d'évaluation de l'adéquation des données est conçu pour aider à évaluer si les données non officielles sont considérées comme adéquates à l'utilisation pour contribuer aux rapports du Canada sur les objectifs de développement durable (ODD).",
+    "assessmentInfo": "En utilisant cet outil, vous serez en mesure d'évaluer vos données par rapport aux éléments suivants de Statistique Canada :",
     "bulletPoints": {
       "item1": "Les principes fondamentaux de l'éthique des données de Statistique Canada pour la collecte, l'édition et la diffusion des données.",
       "item2": "Les dimensions de la qualité de Statistique Canada pour la production d'informations statistiques pertinentes et exactes."
     },
-    "usage": "Toute personne qui souhaite évaluer des données pour potentialité de rapports sur les ODD devrait nous contacter une fois que les données ont été évaluées à l'aide de cet outil.",
-    "noteToUsers": "Veuillez noter que cet outil d'évaluation de l'adéquation des données n'est pas suffisant pour évaluer si les données répondent aux normes officielles de la statistique.",
-    "contactInfo": "Si vous souhaitez soumettre vos données ou contacter un analyste après avoir terminé votre évaluation, veuillez contacter l'équipe ODD de Statistique Canada à :",
+    "usage": "Si vous souhaitez poursuivre l'évaluation de vos données pour un rapport potentiel sur les ODD, veuillez <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white underline hover:text-white/80\">nous contacter</a> avec votre soumission une fois que les données ont été évaluées avec succès à l'aide de cet outil.",
+    "noteToUsers": "Veuillez noter que cet outil d'évaluation de l'adéquation des données n'est pas suffisant pour évaluer si les données répondent aux normes de statistiques officielles.",
+    "contactInfo": "N'hésitez pas à <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white underline hover:text-white/80 hover:underline\">contacter l'équipe ODD de Statistique Canada</a> si vous avez des questions.",
     "email": "statcan.sdg-odd.statcan@statcan.gc.ca",
     "startButton": "Commencer l'évaluation"
   },

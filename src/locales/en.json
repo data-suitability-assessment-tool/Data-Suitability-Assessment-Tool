@@ -1,6 +1,6 @@
 {
   "header": {
-    "beta": "BETA: This is a tool in development. We welcome your <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white-600 underline hover:text-slate-900 hover:underline\">feedback</a>.",
+    "beta": "BETA: This is a tool in development. We welcome your <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white underline hover:text-white/80 hover:underline\">feedback</a>.",
     "title": "Data Suitability Assessment Tool",
     "switchToFrench": "Français",
     "switchToEnglish": "English"
@@ -12,15 +12,15 @@
   "frontPage": {
     "titleLine1": "Welcome to the",
     "titleLine2": "Data Suitability Assessment Tool",
-    "intro": "The Data Suitability Assessment Tool is designed to help assess if non-official data are considered fit for purpose for potential SDG reporting. This tool is based on Statistics Canada's core principles of data ethics and incorporates five of the six dimensions of data quality.",
-    "assessmentInfo": "By using this tool, you will be able to assess your data against:",
+    "intro": "The Data Suitability Assessment Tool is designed to help assess if non-official data are considered fit for purpose to contribute to Canada's reporting on the Sustainable Development Goals (SDGs).",
+    "assessmentInfo": "By using this tool, you will be able to assess your data against Statistics Canada's:",
     "bulletPoints": {
-      "item1": "Statistics Canada's core data ethics principles for data collection, editing, and dissemination.",
-      "item2": "Statistics Canada's dimensions of quality for producing relevant and robust statistical information."
+      "item1": "core data ethics principles for data collection, editing, and dissemination.",
+      "item2": "dimensions of quality for producing relevant and robust statistical information."
     },
-    "usage": "Anyone who wishes to evaluate data for potential SDG reporting should contact us once the data has been evaluated with this tool.",
+    "usage": "If you wish to pursue the assessment of your data for a potential SDG reporting, please <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white underline hover:text-white/80\">contact us</a> with your submission once the data have been evaluated successfully with this tool.",
     "noteToUsers": "Please note that this Data Suitability Assessment Tool is not sufficient to assess if the data meets official statistics standards.",
-    "contactInfo": "If you wish to submit your data or contact an analyst after completing your evaluation, please contact Statistics Canada's SDG team at:",
+    "contactInfo": "Do not hesitate to <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white underline hover:text-white/80 hover:underline\">contact Statistics Canada's SDG team</a> should you have any questions.",
     "email": "statcan.sdg-odd.statcan@statcan.gc.ca",
     "startButton": "Start Assessment"
   },
