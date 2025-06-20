@@ -3,7 +3,8 @@
     "beta": "BETA: This is a tool in development. We welcome your <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white underline hover:text-white/80 hover:underline\">feedback</a>.",
     "title": "Data Suitability Assessment Tool",
     "switchToFrench": "Français",
-    "switchToEnglish": "English"
+    "switchToEnglish": "English",
+    "returnToHome": "Return to home page"
   },
   "footer": {
     "copyright": "© Statistics Canada - Data Suitability Assessment Tool.",
@@ -16,19 +17,23 @@
     "assessmentInfo": "By using this tool, you will be able to assess your data against Statistics Canada's:",
     "bulletPoints": {
       "item1": "core data ethics principles for data collection, editing, and dissemination.",
-      "item2": "dimensions of quality for producing relevant and robust statistical information."
+      "item2": "dimensions of quality for producing relevant and robust statistical information.",
+      "label": "Assessment criteria list"
     },
     "usage": "If you wish to pursue the assessment of your data for a potential SDG reporting, please <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white underline hover:text-white/80\">contact us</a> with your submission once the data have been evaluated successfully with this tool.",
     "noteToUsers": "Please note that this Data Suitability Assessment Tool is not sufficient to assess if the data meets official statistics standards.",
     "contactInfo": "Do not hesitate to <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white underline hover:text-white/80 hover:underline\">contact Statistics Canada's SDG team</a> should you have any questions.",
     "email": "statcan.sdg-odd.statcan@statcan.gc.ca",
-    "startButton": "Start Assessment"
+    "startButton": "Start Assessment",
+    "startButtonAriaLabel": "Start the data suitability assessment",
+    "emailAriaLabel": "Email Statistics Canada's SDG team"
   },
   "mainContent": {
     "tabs": {
       "assessment": "Data Suitability Assessment Tool",
       "license": "License"
-    }
+    },
+    "navigation": "Main navigation tabs"
   },
   "license": {
     "title": "License Information",

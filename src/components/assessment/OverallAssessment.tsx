@@ -794,6 +794,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                 className="w-full p-2 border border-[var(--border-color)] rounded-md shadow-sm bg-white text-[var(--text-color)] focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)]"
                 value={exportFormat}
                 onChange={(e) => setExportFormat(e.target.value as 'text' | 'csv' | 'pdf' | 'word')}
+                aria-label={t('assessment.overall.export.formatLabel')}
               >
                 <option value="text">{t('assessment.overall.export.formats.text')}</option>
                 <option value="csv">{t('assessment.overall.export.formats.csv')}</option>
@@ -813,6 +814,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                     className="w-full h-64 p-3 border border-[var(--border-color)] rounded-md shadow-sm bg-gray-50 font-mono text-sm"
                     value={exportContent}
                     readOnly
+                    aria-label={t('assessment.overall.export.preview')}
                   />
                 </div>
               </div>
@@ -838,6 +840,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
               variant="secondary"
               className="transform transition-transform hover:scale-105"
               disabled={exportFormat === 'pdf' || exportFormat === 'word'}
+              aria-label={t('assessment.overall.export.buttons.copy')}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" />
@@ -849,6 +852,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
               onClick={handleDownload}
               className="transform transition-transform hover:scale-105"
               disabled={isGenerating}
+              aria-label={isGenerating ? t('assessment.overall.export.generating') : t('assessment.overall.export.buttons.download')}
             >
               {isGenerating ? (
                 <>
@@ -871,6 +875,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
               onClick={() => setExportDialogOpen(false)}
               variant="outline"
               className="border-[var(--primary-color)] text-[var(--primary-color)]"
+              aria-label={t('assessment.overall.export.buttons.close')}
             >
               {t('assessment.overall.export.buttons.close')}
             </Button>

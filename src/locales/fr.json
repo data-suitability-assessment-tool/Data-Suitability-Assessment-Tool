@@ -3,7 +3,8 @@
     "beta": "VERSION BÊTA : Cet outil est en cours d'élaboration. Vos <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white underline hover:text-white/80 hover:underline\">commentaires</a> sont les bienvenus.",
     "title": "Outil d'évaluation de l'adéquation des données",
     "switchToFrench": "Français",
-    "switchToEnglish": "English"
+    "switchToEnglish": "English",
+    "returnToHome": "Retourner à la page d'accueil"
   },
   "footer": {
     "copyright": "© Statistique Canada - Outil d'évaluation de l'adéquation des données.",
@@ -16,19 +17,23 @@
     "assessmentInfo": "En utilisant cet outil, vous serez en mesure d'évaluer vos données par rapport aux éléments suivants de Statistique Canada :",
     "bulletPoints": {
       "item1": "Les principes fondamentaux de l'éthique des données de Statistique Canada pour la collecte, l'édition et la diffusion des données.",
-      "item2": "Les dimensions de la qualité de Statistique Canada pour la production d'informations statistiques pertinentes et exactes."
+      "item2": "Les dimensions de la qualité de Statistique Canada pour la production d'informations statistiques pertinentes et exactes.",
+      "label": "Liste des critères d'évaluation"
     },
     "usage": "Si vous souhaitez poursuivre l'évaluation de vos données pour un rapport potentiel sur les ODD, veuillez <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white underline hover:text-white/80\">nous contacter</a> avec votre soumission une fois que les données ont été évaluées avec succès à l'aide de cet outil.",
     "noteToUsers": "Veuillez noter que cet outil d'évaluation de l'adéquation des données n'est pas suffisant pour évaluer si les données répondent aux normes de statistiques officielles.",
     "contactInfo": "N'hésitez pas à <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white underline hover:text-white/80 hover:underline\">contacter l'équipe ODD de Statistique Canada</a> si vous avez des questions.",
     "email": "statcan.sdg-odd.statcan@statcan.gc.ca",
-    "startButton": "Commencer l'évaluation"
+    "startButton": "Commencer l'évaluation",
+    "startButtonAriaLabel": "Commencer l'évaluation de l'adéquation des données",
+    "emailAriaLabel": "Envoyer un courriel à l'équipe ODD de Statistique Canada"
   },
   "mainContent": {
     "tabs": {
       "assessment": "Outil d'évaluation de l'adéquation des données",
       "license": "Licence"
-    }
+    },
+    "navigation": "Onglets de navigation principaux"
   },
   "license": {
     "title": "Informations de licence",
