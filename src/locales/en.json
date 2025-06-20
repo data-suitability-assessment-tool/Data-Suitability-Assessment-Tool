@@ -19,20 +19,20 @@
       "item2": "Statistics Canada's dimensions of quality for producing relevant and robust statistical information."
     },
     "usage": "Anyone who wishes to evaluate data for potential SDG reporting should contact us once the data has been evaluated with this tool.",
-    "noteToUsers": "Please note that this Data Quality Self-Evaluation Tool is not sufficient to assess if the data meets official statistics standards.",
+    "noteToUsers": "Please note that this Data Suitability Assessment Tool is not sufficient to assess if the data meets official statistics standards.",
     "contactInfo": "If you wish to submit your data or contact an analyst after completing your evaluation, please contact Statistics Canada's SDG team at:",
     "email": "statcan.sdg-odd.statcan@statcan.gc.ca",
     "startButton": "Start Assessment"
   },
   "mainContent": {
     "tabs": {
-      "assessment": "Data Quality Self-Evaluation Tool",
+      "assessment": "Data Suitability Assessment Tool",
       "license": "License"
     }
   },
   "license": {
     "title": "License Information",
-    "intro": "This page contains information about the terms and conditions of use, the privacy and data storage policies, and the license for the Data Quality Self-Evaluation Tool.",
+    "intro": "This page contains information about the terms and conditions of use, the privacy and data storage policies, and the license for the Data Suitability Assessment Tool.",
     "table": {
       "headers": {
         "section": "Section",
@@ -45,7 +45,7 @@
         "part3": "Copyright title to all 3rd party software distributed with this software is held by the respective copyright holders as noted in those files. Users are asked to read the 3rd Party Licenses referenced with those assets."
       },
       "privacySection": "Privacy and Data Storage",
-      "privacyDetails": "This Data Quality Self-Evaluation Tool performs all assessments locally in the user's browser. No data is collected, stored, or transmitted to Statistics Canada.",
+      "privacyDetails": "This DataSuitability Assessment Tool performs all assessments locally in the user's browser. No data is collected, stored, or transmitted to Statistics Canada.",
       "licenseSection": "MIT License",
       "licenseDetails": {
         "copyright": "Copyright © {{year}} Government of Canada - Gouvernement du Canada",
