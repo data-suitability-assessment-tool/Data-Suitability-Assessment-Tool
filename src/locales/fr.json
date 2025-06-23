@@ -79,9 +79,9 @@
         "caption": "Évaluation des principes d'éthique des données",
         "headers": {
           "elements": "Éléments",
-          "explanation": "Explication",
+          "explanation": "Explications",
           "criteria": "Critères",
-          "answer": "Réponse"
+          "answer": "Réponses"
         },
         "answers": {
           "select": "Sélectionner",
@@ -122,9 +122,9 @@
         "caption": "Évaluation des dimensions de la qualité",
         "headers": {
           "elements": "Éléments",
-          "definition": "Définition",
+          "definition": "Définitions",
           "criteria": "Critères",
-          "answer": "Réponse"
+          "answer": "Réponses"
         },
         "tooltip": {
           "title": "Les points correspondent au nombre de critères respectés :",
@@ -141,12 +141,12 @@
           "high": "3 - Élevé (tous les critères respectés)"
         }
       },
-              "summary": {
+      "summary": {
           "title": "Résultats de l'évaluation par rapport aux dimensions de la qualité des données de Statistique Canada :",
           "tableCaption": "Résultats détaillés des dimensions de la qualité des données",
         "tableHeaders": {
-          "dimension": "Dimension",
-          "score": "Résultat",
+          "dimension": "Dimensions",
+          "score": "Résultats",
           "assessment": "Évaluation"
         },
         "totalScore": "Résultat total :",
@@ -194,7 +194,7 @@
       "qualitySummary": {
         "title": "Résumé des dimensions de la qualité des données",
         "tableHeaders": {
-          "dimension": "Dimension",
+          "dimension": "Dimensions",
           "score": "Résultat",
           "assessment": "Évaluation"
         }

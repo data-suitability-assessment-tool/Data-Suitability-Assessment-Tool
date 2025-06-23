@@ -79,9 +79,9 @@
         "caption": "Assessment of Data Ethics Principles",
         "headers": {
           "elements": "Elements",
-          "explanation": "Explanation",
+          "explanation": "Explanations",
           "criteria": "Criteria",
-          "answer": "Answer"
+          "answer": "Answers"
         },
         "answers": {
           "select": "Select",
@@ -122,9 +122,9 @@
         "caption": "Assessment of Data Quality Dimensions",
         "headers": {
           "elements": "Elements",
-          "definition": "Definition",
+          "definition": "Definitions",
           "criteria": "Criteria",
-          "answer": "Answer"
+          "answer": "Answers"
         },
         "tooltip": {
           "title": "Points correspond to the number of criteria satisfied:",
@@ -145,8 +145,8 @@
         "title": "Results of the Assessment Against Statistics Canada's Data Quality Dimensions:",
         "tableCaption": "Detailed Data Quality Dimensions Scores",
         "tableHeaders": {
-          "dimension": "Dimension",
-          "score": "Score",
+          "dimension": "Dimensions",
+          "score": "Scores",
           "assessment": "Assessment"
         },
         "totalScore": "Total score:",
