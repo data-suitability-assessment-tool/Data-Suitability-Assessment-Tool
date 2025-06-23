@@ -188,7 +188,7 @@
       "messages": {
         "bothPass": "As evaluated, the data are considered fit for purpose for SDG reporting.",
         "ethicsFailQualityPass": "As evaluated, the data are not considered fit for purpose for SDG reporting. The data must satisfy all core data ethics principles to be suitable for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's information page.",
-        "ethicsPassQualityFail": "As evaluated, the data are not considered fit for purpose for SDG reporting. The data must obtain a minimum score of 8 on the assessment against the dimensions of quality criteria.To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's information page.",
+        "ethicsPassQualityFail": "As evaluated, the data are not considered fit for purpose for SDG reporting. The data must obtain a minimum score of 8 on the assessment against the dimensions of quality criteria. To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's information page.",
         "bothFail": "As evaluated, the data are not considered fit for purpose for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's information page."
       },
       "qualitySummary": {
