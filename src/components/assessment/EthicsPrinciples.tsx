@@ -126,9 +126,21 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
       <CardContent>
         <div className="mb-6 text-[var(--text-color)]">
           <p className="text-lg">
-            {t('assessment.ethics.intro.part1')}
+          {t('assessment.ethics.intro.intro') }
           </p>
-          <br></br>
+          <ol 
+                className="my-6 list-decimal pl-6 space-y-2" 
+                aria-label={t('frontPage.bulletPoints.label')}
+            >
+              <li className="text-lg">{t('assessment.ethics.intro.bulletPoints.item1')}</li>
+              <li className="text-lg">{t('assessment.ethics.intro.bulletPoints.item2')}</li>
+              <li className="text-lg">{t('assessment.ethics.intro.bulletPoints.item3')}</li>
+              <li className="text-lg">{t('assessment.ethics.intro.bulletPoints.item4')}</li>
+              <li className="text-lg">{t('assessment.ethics.intro.bulletPoints.item5')}</li>
+            </ol>
+          <p className="text-lg" dangerouslySetInnerHTML={{__html: t('assessment.ethics.intro.part1')}}
+          />
+          <br/>
           <p className="text-lg">
             {t('assessment.ethics.intro.part2')}
           </p>
