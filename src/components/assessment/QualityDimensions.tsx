@@ -321,7 +321,7 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
           
           {showResult && qualityInterpretation && (
             <div className="mt-4 italic bg-[var(--light-blue)]/50 p-4 rounded-lg shadow-sm" role="status" aria-live="polite">
-              {qualityInterpretation}
+              <div dangerouslySetInnerHTML={{__html: qualityInterpretation}} />
             </div>
           )}
         </div>

@@ -244,7 +244,7 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
 
           {showResult && (
             <div className="mt-5 italic bg-[var(--light-blue)]/50 p-4 rounded-lg" role="status" aria-live="polite">
-              <p>{t(part1MessageKey)}</p>
+              <p dangerouslySetInnerHTML={{__html: t(part1MessageKey)}} />
             </div>
           )}
         </div>

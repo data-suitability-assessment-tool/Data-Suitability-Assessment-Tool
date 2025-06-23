@@ -603,7 +603,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
           <strong className="block text-center">{ethicsPass ? t('assessment.ethics.results.pass') : t('assessment.ethics.results.fail')}</strong>
         </div>
         
-        <p className="italic mb-4 bg-[var(--light-blue)]/50 p-3 rounded-lg">{part1MessageKey ? t(part1MessageKey) : ''}</p>
+        <p className="italic mb-4 bg-[var(--light-blue)]/50 p-3 rounded-lg" dangerouslySetInnerHTML={{__html: part1MessageKey ? t(part1MessageKey) : ''}} />
         
         <div className="rounded-lg overflow-hidden shadow-md">
           <Table aria-labelledby="ethics-summary-title">
@@ -648,7 +648,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
           <span className="ml-2">{t('assessment.quality.summary.totalScore')} {totalQualityScore}/15</span>
         </div>
         
-        <p className="italic mb-4 bg-[var(--light-blue)]/50 p-3 rounded-lg">{qualityInterpretationKey ? t(qualityInterpretationKey) : ''}</p>
+        <p className="italic mb-4 bg-[var(--light-blue)]/50 p-3 rounded-lg" dangerouslySetInnerHTML={{__html: qualityInterpretationKey ? t(qualityInterpretationKey) : ''}} />
         
         <div className="rounded-lg overflow-hidden shadow-md">
           <Table aria-labelledby="quality-summary-title">
@@ -719,14 +719,15 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
           </div>
           
           <div className="mt-4 mb-6 italic bg-[var(--light-blue)]/50 p-4 rounded-lg">
-            {overallPass 
-              ? t('assessment.overall.messages.bothPass')
-              : ethicsPass && !qualityPass
-                ? t('assessment.overall.messages.ethicsPassQualityFail')
-                : !ethicsPass && qualityPass
-                  ? t('assessment.overall.messages.ethicsFailQualityPass')
-                  : t('assessment.overall.messages.bothFail')
-            }
+            <div dangerouslySetInnerHTML={{
+              __html: overallPass 
+                ? t('assessment.overall.messages.bothPass')
+                : ethicsPass && !qualityPass
+                  ? t('assessment.overall.messages.ethicsPassQualityFail')
+                  : !ethicsPass && qualityPass
+                    ? t('assessment.overall.messages.ethicsFailQualityPass')
+                    : t('assessment.overall.messages.bothFail')
+            }} />
           </div>
           
           {renderEthicsPrinciplesSummary()}
