@@ -29,7 +29,6 @@ const FrontPage: React.FC<FrontPageProps> = ({ onStartAssessment }) => {
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 md:p-8 shadow-inner">
             <div className="prose prose-lg prose-invert max-w-none">
               <p className="text-lg">{t('frontPage.intro')}</p>
-              <p className="mt-4 text-lg">{t('frontPage.noteToUsers')}</p>
               <p className="mt-4 text-lg">{t('frontPage.assessmentInfo')}</p>
               
               <ul 
@@ -40,8 +39,10 @@ const FrontPage: React.FC<FrontPageProps> = ({ onStartAssessment }) => {
                 <li className="text-lg">{t('frontPage.bulletPoints.item2')}</li>
               </ul>
               
+              <p className="mt-4 text-lg">{t('frontPage.noteToUsers')}</p>
+
               <p 
-                className="text-lg"
+                className="mt-4 text-lg"
                 dangerouslySetInnerHTML={{ __html: t('frontPage.usage') }}
               ></p>
               
