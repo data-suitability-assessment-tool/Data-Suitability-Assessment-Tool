@@ -62,19 +62,12 @@ const License = ({ currentYear }: { currentYear: number }) => {
                 <TableCell className="p-4 border-b border-[var(--border-color)]">
                   <div className="license-terms space-y-4">
                     <p>{t('license.table.termsDetails.part1')}</p>
-                    <p>{t('license.table.termsDetails.part2')}</p>
+                    <p dangerouslySetInnerHTML={{__html: t('license.table.termsDetails.part2')}}/>
                     <p>{t('license.table.termsDetails.part3')}</p>
                   </div>
                 </TableCell>
               </TableRow>
-              <TableRow className="bg-[var(--light-blue)] hover:bg-[var(--light-blue)]/70 transition-colors">
-                <TableCell className="font-bold text-[var(--primary-color)] p-4 border-b border-[var(--border-color)] align-top">
-                  {t('license.table.privacySection')}
-                </TableCell>
-                <TableCell className="p-4 border-b border-[var(--border-color)]">
-                  <p>{t('license.table.privacyDetails')}</p>
-                </TableCell>
-              </TableRow>
+
               <TableRow className="bg-white hover:bg-[var(--light-blue)]/30 transition-colors">
                 <TableCell className="font-bold text-[var(--primary-color)] p-4 align-top">
                   {t('license.table.licenseSection')}
