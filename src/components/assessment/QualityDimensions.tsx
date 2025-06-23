@@ -210,9 +210,22 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
       <CardContent>
         <div className="intro-text mb-6">
           <p className="text-lg">
+            {t('assessment.quality.intro.intro')}
+          </p>
+          <ol 
+                className="my-6 list-decimal pl-6 space-y-2" 
+                aria-label={t('frontPage.bulletPoints.label')}
+            >
+              <li className="text-lg">{t('assessment.quality.intro.bulletPoints.item1')}</li>
+              <li className="text-lg">{t('assessment.quality.intro.bulletPoints.item2')}</li>
+              <li className="text-lg">{t('assessment.quality.intro.bulletPoints.item3')}</li>
+              <li className="text-lg">{t('assessment.quality.intro.bulletPoints.item4')}</li>
+              <li className="text-lg">{t('assessment.quality.intro.bulletPoints.item5')}</li>
+            </ol>
+          <p className="text-lg">
             {t('assessment.quality.intro.part1')}
           </p>
-          <br></br>
+          <br />
           <p className="text-lg">
             {t('assessment.quality.intro.part2')}
           </p>
