@@ -20,7 +20,7 @@
       "item2": "La qualité des données est importante puisqu'elle permet d'évaluer les mesures mises en place pour protéger les données contre les erreurs et informer les utilisateurs de leur adéquation à l'utilisation.",
       "label": "Liste des critères d'évaluation"
     },
-    "usage": "Si vous souhaitez poursuivre l'évaluation de vos données pour un rapport potentiel sur les ODD, veuillez <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white underline hover:text-white/80\" aria-label=\"Nous envoyer un courriel concernant votre évaluation de données\">nous contacter</a> avec votre soumission une fois que les données ont été évaluées avec succès à l'aide de cet outil.",
+    "usage": "Si vous souhaitez poursuivre l'évaluation de vos données pour un rapport potentiel sur les ODD, veuillez <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white underline hover:text-white/80\" aria-label=\"Nous envoyer un courriel concernant votre évaluation de données\">nous contacter</a> avec votre soumission une fois que les données ont été évaluées à l'aide de cet outil.",
     "noteToUsers": "Veuillez noter que cet outil d'évaluation de l'adéquation des données n'est pas destiné à évaluer si les données répondent aux normes de statistiques officielles.",
     "contactInfo": "N'hésitez pas à <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white underline hover:text-white/80 hover:underline\" aria-label=\"Envoyer un courriel à l'équipe ODD de Statistique Canada pour des questions\">contacter l'équipe ODD de Statistique Canada</a> si vous avez des questions.",
     "email": "statcan.sdg-odd.statcan@statcan.gc.ca",
@@ -90,11 +90,11 @@
         }
       },
       "results": {
-        "title": "Résultats de l'évaluation par rapport aux principes fondamentaux de l'éthique des données de Statistique Canada :",
+        "title": "Résultats de l'évaluation des principes d'éthique des données :",
         "pass": "Réussite",
         "fail": "Échec",
         "passMessage": "Telles qu'évaluées ci-dessus, les données sont considérées comme adéquates à l'utilisation pour les rapports sur les ODD.",
-        "failMessage": "Telles qu'évaluées ci-dessus, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter la page d'information de Statistique Canada."
+        "failMessage": "Telles qu'évaluées ci-dessus, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter <i><u>l'hyperlien</u></i> de Statistique Canada."
       },
       "actions": {
         "continue": "Continuer",
@@ -142,8 +142,8 @@
         }
       },
       "summary": {
-          "title": "Résultats de l'évaluation par rapport aux dimensions de la qualité des données de Statistique Canada :",
-          "tableCaption": "Résultats détaillés des dimensions de la qualité des données",
+          "title": "Résultats de l'évaluation de la qualité des données :",
+          "tableCaption": "Résultats détaillés de la qualité des données",
         "tableHeaders": {
           "dimension": "Dimensions",
           "score": "Résultats",
@@ -161,10 +161,10 @@
         "high": "Élevé"
       },
       "interpretation": {
-        "low": "Telle qu'évaluée ci-dessus, la qualité des données n'est pas considérée comme adéquate à l'utilisation pour les rapports sur les ODD. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter la page d'information de Statistique Canada.",
-        "medium": "Telle qu'évaluée ci-dessus, la qualité des données est considérée comme adéquate à l'utilisation pour les rapports sur les ODD mais pourrait être améliorée. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter la page d'information de Statistique Canada.",
+        "low": "Telle qu'évaluée ci-dessus, la qualité des données n'est pas considérée comme adéquate à l'utilisation pour les rapports sur les ODD. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter <i><u>l'hyperlien</u></i> de Statistique Canada.",
+        "medium": "Telle qu'évaluée ci-dessus, la qualité des données est considérée comme adéquate à l'utilisation pour les rapports sur les ODD mais pourrait être améliorée. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter <i><u>l'hyperlien</u></i> de Statistique Canada.",
         "high": "Telle qu'évaluée ci-dessus, la qualité des données est considérée comme adéquate à l'utilisation pour les rapports sur les ODD.",
-        "fail": "Telle qu'évaluée ci-dessus, la qualité des données n'est pas considérée comme adéquate à l'utilisation pour les rapports sur les ODD. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter la page d'information de Statistique Canada."
+        "fail": "Telle qu'évaluée ci-dessus, la qualité des données n'est pas considérée comme adéquate à l'utilisation pour les rapports sur les ODD. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter <i><u>l'hyperlien</u></i> de Statistique Canada."
       },
       "actions": {
         "evaluate": "Évaluer",
@@ -187,9 +187,9 @@
       },
       "messages": {
         "bothPass": "Telles qu'évaluées, les données sont considérées comme adéquates à l'utilisation pour les rapports sur les ODD.",
-        "ethicsFailQualityPass": "Telles qu'évaluées, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Les données doivent satisfaire tous les principes fondamentaux d'éthique des données pour être considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter la page d'information de Statistique Canada.",
-        "ethicsPassQualityFail": "Telles qu'évaluées, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Les données doivent obtenir un score minimum de 8 sur l'évaluation par rapport aux critères des dimensions de qualité. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter la page d'information de Statistique Canada.",
-        "bothFail": "Telles qu'évaluées, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter la page d'information de Statistique Canada."
+        "ethicsFailQualityPass": "Telles qu'évaluées, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Les données doivent satisfaire tous les principes fondamentaux d'éthique des données pour être considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter <i><u>l'hyperlien</u></i> de Statistique Canada.",
+        "ethicsPassQualityFail": "Telles qu'évaluées, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Les données doivent obtenir un score minimum de 8 sur l'évaluation par rapport aux critères des dimensions de qualité. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter <i><u>l'hyperlien</u></i> de Statistique Canada.",
+        "bothFail": "Telles qu'évaluées, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter <i><u>l'hyperlien</u></i> de Statistique Canada."
       },
       "qualitySummary": {
         "title": "Résumé des dimensions de la qualité des données",
@@ -246,7 +246,7 @@
         "pdfPreview": "Un rapport PDF sera généré lorsque vous cliquez sur Télécharger.",
         "wordPreview": "Un rapport Word sera généré lorsque vous cliquez sur Télécharger."
       },
-      "criteriaSatisfied": "Critères respectés ou non respectés",
+      "criteriaSatisfied": "Critères respectés ✓ ou non respectés ✗",
       "actions": {
         "reset": "Réinitialiser l'évaluation",
         "home": "Retourner à l'accueil"

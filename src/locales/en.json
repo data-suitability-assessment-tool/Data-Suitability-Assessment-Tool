@@ -16,12 +16,12 @@
     "intro": "The Data Suitability Assessment Tool is mainly designed to help assess if non-official data are considered fit for purpose to contribute to Canada's reporting on the Sustainable Development Goals (SDGs), but it can also be used to evaluate data for any other purposes.",
     "assessmentInfo": "Through this tool, data suitability is assessed by evaluating both the quality and the ethics of the data.",
     "bulletPoints": {
-      "item1": "Data ethics assess whether the data have been acquired and used appropriately throughout its life cycle, which spans from the acquisition to the dissemination.",
-      "item2": "Data quality is important as it helps evaluate the measures in place to safeguard the data against errors and inform users of its fitness for purpose.",
+      "item1": "Data ethics assess whether the data have been acquired and used appropriately throughout their life cycle, which spans from the acquisition to the dissemination.",
+      "item2": "Data quality is important as it helps evaluate the measures in place to safeguard the data against errors and inform users of their fitness for purpose.",
       "label": "Assessment criteria list"
     },
-    "usage": "If you wish to pursue the assessment of your data for a potential SDG reporting, please <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white underline hover:text-white/80\" aria-label=\"Email us about your data assessment\">contact us</a> with your submission once the data have been evaluated successfully with this tool.",
-    "noteToUsers": "Please note that this Data Suitability Assessment Tool is not meant to assess if the data meets official statistics standards.",
+    "usage": "If you wish to pursue the assessment of your data for a potential SDG reporting, please <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white underline hover:text-white/80\" aria-label=\"Email us about your data assessment\">contact us</a> with your submission once the data have been evaluated with this tool.",
+    "noteToUsers": "Please note that this Data Suitability Assessment Tool is not meant to assess if the data meet official statistics standards.",
     "contactInfo": "Do not hesitate to <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" class=\"text-white underline hover:text-white/80 hover:underline\" aria-label=\"Email Statistics Canada's SDG team for questions\">contact Statistics Canada's SDG team</a> should you have any questions.",
     "email": "statcan.sdg-odd.statcan@statcan.gc.ca",
     "startButton": "Start Assessment",
@@ -90,11 +90,11 @@
         }
       },
       "results": {
-        "title": "Results of the Assessment Against Statistics Canada's Core Data Ethics Principles:",
+        "title": "Results of Data Ethics Assessment:",
         "pass": "Pass",
         "fail": "Fail",
         "passMessage": "As evaluated above, the data are considered fit for purpose for SDG reporting.",
-        "failMessage": "As evaluated above, the data are not considered fit for purpose for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's information page."
+        "failMessage": "As evaluated above, the data are not considered fit for purpose for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's <i><u>hyperlink</u></i>."
       },
       "actions": {
         "continue": "Continue",
@@ -142,7 +142,7 @@
         }
       },
       "summary": {
-        "title": "Results of the Assessment Against Statistics Canada's Data Quality Dimensions:",
+        "title": "Results of Data Quality Assessment:",
         "tableCaption": "Detailed Data Quality Dimensions Scores",
         "tableHeaders": {
           "dimension": "Dimensions",
@@ -161,10 +161,10 @@
         "high": "High"
       },
       "interpretation": {
-        "low": "As evaluated above, the quality of the data is not considered fit for purpose for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's information page.",
-        "medium": "As evaluated above, the quality of the data is considered fit for purpose for SDG reporting but could be improved. To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's information page.",
+        "low": "As evaluated above, the quality of the data is not considered fit for purpose for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's <i><u>hyperlink</u></i>.",
+        "medium": "As evaluated above, the quality of the data is considered fit for purpose for SDG reporting but could be improved. To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's <i><u>hyperlink</u></i>.",
         "high": "As evaluated above, the quality of the data is considered fit for purpose for SDG reporting.",
-        "fail": "As evaluated above, the quality of the data is not considered fit for purpose for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's information page."
+        "fail": "As evaluated above, the quality of the data is not considered fit for purpose for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's <i><u>hyperlink</u></i>."
       },
       "actions": {
         "evaluate": "Evaluate",
@@ -187,9 +187,9 @@
       },
       "messages": {
         "bothPass": "As evaluated, the data are considered fit for purpose for SDG reporting.",
-        "ethicsFailQualityPass": "As evaluated, the data are not considered fit for purpose for SDG reporting. The data must satisfy all core data ethics principles to be suitable for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's information page.",
-        "ethicsPassQualityFail": "As evaluated, the data are not considered fit for purpose for SDG reporting. The data must obtain a minimum score of 8 on the assessment against the dimensions of quality criteria. To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's information page.",
-        "bothFail": "As evaluated, the data are not considered fit for purpose for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's information page."
+        "ethicsFailQualityPass": "As evaluated, the data are not considered fit for purpose for SDG reporting. The data must satisfy all core data ethics principles to be suitable for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's <i><u>hyperlink</u></i>.",
+        "ethicsPassQualityFail": "As evaluated, the data are not considered fit for purpose for SDG reporting. The data must obtain a minimum score of 8 on the assessment against the dimensions of quality criteria. To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's <i><u>hyperlink</u></i>.",
+        "bothFail": "As evaluated, the data are not considered fit for purpose for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's <i><u>hyperlink</u></i>."
       },
       "qualitySummary": {
         "title": "Data Quality Dimensions Summary",
@@ -250,7 +250,7 @@
           "assessment": "Assessment"
         }
       },
-      "criteriaSatisfied": "Criteria Satisfied or Not Satisfied",
+      "criteriaSatisfied": "Criteria Satisfied ✓ or Not Satisfied ✗",
       "actions": {
         "reset": "Reset Assessment",
         "home": "Return Home"
@@ -280,7 +280,7 @@
     },
     "principle5": {
       "element": "Confidentiality",
-      "explanation": "Ensuring that the data does not contain confidential information, such as personal information or identifying characteristics is critical to ensuring confidentiality. Some examples of methods that can help include limiting access to confidential information to a need to know basis while limiting collection to strictly necessary information from fully consenting individuals.",
+      "explanation": "Ensuring that the data do not contain confidential information, such as personal information or identifying characteristics is critical to ensuring confidentiality. Some examples of methods that can help include limiting access to confidential information to a need to know basis while limiting collection to strictly necessary information from fully consenting individuals.",
       "criteria": "Is confidentiality maintained?"
     }
   },
@@ -305,7 +305,7 @@
     },
     "dimension3": {
       "element": "Accessibility and clarity",
-      "definition": "The accessibility and clarity of data and supporting information refer to the ease with which users can learn that the information exists, find it, view it and use it. The data and its supporting information must be easily accessible and harvested to facilitate its use in Canada's reporting on the SDGs.",
+      "definition": "The accessibility and clarity of data and supporting information refer to the ease with which users can learn that the information exists, find it, view it and use it. The data and their supporting information must be easily accessible and harvested to facilitate its use in Canada's reporting on the SDGs.",
       "criteria": [
         "Data and supporting information are easily accessible.",
         "Data and supporting information are provided in an easy-to-use format."
