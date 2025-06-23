@@ -90,7 +90,7 @@
         }
       },
       "results": {
-        "title": "Results of Data Ethics Assessment:",
+        "title": "Results of the Data Ethics Assessment:",
         "pass": "Pass",
         "fail": "Fail",
         "passMessage": "As evaluated above, the data are considered fit for purpose for SDG reporting.",
@@ -142,7 +142,7 @@
         }
       },
       "summary": {
-        "title": "Results of Data Quality Assessment:",
+        "title": "Results of the Data Quality Assessment:",
         "tableCaption": "Detailed Data Quality Dimensions Scores",
         "tableHeaders": {
           "dimension": "Dimensions",
