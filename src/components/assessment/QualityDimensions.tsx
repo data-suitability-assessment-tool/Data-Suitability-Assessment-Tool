@@ -78,13 +78,13 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
     }
   }, []);
 
-  const getQualityScoreText = (score: number) => {
-    if (score === 0) return t('assessment.quality.scoreText.notSufficient');
-    if (score === 1) return t('assessment.quality.scoreText.low');
-    if (score === 2) return t('assessment.quality.scoreText.medium');
-    if (score === 3) return t('assessment.quality.scoreText.high');
-    return "";
-  };
+ // const getQualityScoreText = (score: number) => {
+ //   if (score === 0) return t('assessment.quality.scoreText.notSufficient');
+ //   if (score === 1) return t('assessment.quality.scoreText.low');
+ //   if (score === 2) return t('assessment.quality.scoreText.medium');
+ //   if (score === 3) return t('assessment.quality.scoreText.high');
+ //   return "";
+ // };
 
   const handleCriteriaChange = (dimensionId: string, criteriaIndex: number, checked: boolean) => {
     const newCriteriaSatisfaction = {
