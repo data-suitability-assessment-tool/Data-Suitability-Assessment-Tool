@@ -657,14 +657,12 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
               <TableRow>
                 <TableHead scope="col" className="bg-[var(--primary-color)]">{t('assessment.quality.table.headers.elements')}</TableHead>
                 <TableHead scope="col" className="bg-[var(--primary-color)] text-center">{t('assessment.quality.summary.tableHeaders.score')}</TableHead>
-                <TableHead scope="col" className="bg-[var(--primary-color)]">{t('assessment.quality.summary.tableHeaders.assessment')}</TableHead>
                 <TableHead scope="col" className="bg-[var(--primary-color)]">{t('assessment.overall.criteriaSatisfied')}</TableHead>  
               </TableRow>
             </TableHeader>
             <TableBody>
               {QUALITY_DIMENSIONS.map((dimension, index) => {
                 const score = assessmentData.qualityDimensions[dimension.id] || 0;
-                const assessment = getQualityScoreText(Number(score));
                 
                 // Calculate which criteria were satisfied based on the score
                 const criteriaSatisfied: any[] = [];
@@ -682,7 +680,6 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                   <TableRow key={dimension.id} className={index % 2 === 0 ? "bg-white" : "bg-[var(--light-blue)]"}>
                     <TableCell className="font-bold text-[var(--primary-color)]">{t(`qualityDimensions.dimension${dimension.id}.element`)}</TableCell>
                     <TableCell className="text-start font-semibold">{score}/3</TableCell>
-                    <TableCell>{assessment}</TableCell>
                     <TableCell>
                       <div className="space-y-1">
                         {dimension.criteria.map((_, idx) => (

@@ -123,14 +123,12 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
             <TableRow>
               <TableHead>{t('assessment.quality.summary.tableHeaders.dimension')}</TableHead>
               <TableHead className="text-center">{t('assessment.quality.summary.tableHeaders.score')}</TableHead>
-              <TableHead>{t('assessment.quality.summary.tableHeaders.assessment')}</TableHead>
               <TableHead>{t('assessment.overall.criteriaSatisfied')}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {QUALITY_DIMENSIONS.map((dimension, index) => {
               const score = qualityScores[dimension.id] || 0;
-              const assessment = getQualityScoreText(score);
               const criteria = criteriaSatisfaction[dimension.id] || [];
               
               return (
@@ -139,7 +137,6 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
                   <TableCell className="text-start font-semibold">
                     {t('assessment.quality.summary.scoreDisplay', { score: score, maxScore: dimension.maxScore })}
                   </TableCell>
-                  <TableCell>{assessment}</TableCell>
                   <TableCell>
                     <div className="space-y-1">
                       {dimension.criteria.map((_, idx) => (
