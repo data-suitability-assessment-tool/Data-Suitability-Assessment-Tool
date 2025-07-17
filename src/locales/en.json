@@ -265,7 +265,7 @@
     },
     "principle2": {
       "element": "Fairness and do no harm",
-      "explanation": "Data that include potentially sensitive topics require a dissemination plan to alleciate any potential harm, unfairness or risk of amplifying stereotypes and stigma on groups featured in the data. Additionally, the appropriate partners should be consulted throughout the process to discuss any potential fairness and harm issues. The data must use the appropriate terminology and categories to describe the various population groups featured.",
+      "explanation": "Data that include potentially sensitive topics require a dissemination plan to alleviate any potential harm, unfairness or risk of amplifying stereotypes and stigma on groups featured in the data. Additionally, the appropriate partners should be consulted throughout the process to discuss any potential fairness and harm issues. The data must use the appropriate terminology and categories to describe the various population groups featured.",
       "criteria": "Are potentially sensitive topics handled in a way that ensures fairness and causes no harm?"
     },
     "principle3": {
