@@ -210,7 +210,7 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
             {t('assessment.quality.intro.intro')}
           </p>
           <ol 
-                className="my-6 list-decimal pl-6 space-y-2" 
+                className="my-6 list-decimal pl-8 space-y-2" 
                 aria-label={t('frontPage.bulletPoints.label')}
             >
               <li className="text-lg">{t('assessment.quality.intro.bulletPoints.item1')}</li>
