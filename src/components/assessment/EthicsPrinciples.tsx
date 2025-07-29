@@ -129,7 +129,7 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
           {t('assessment.ethics.intro.intro') }
           </p>
           <ol 
-                className="my-6 list-decimal pl-6 space-y-2" 
+                className="my-6 list-decimal pl-8 space-y-2" 
                 aria-label={t('frontPage.bulletPoints.label')}
             >
               <li className="text-lg">{t('assessment.ethics.intro.bulletPoints.item1')}</li>
