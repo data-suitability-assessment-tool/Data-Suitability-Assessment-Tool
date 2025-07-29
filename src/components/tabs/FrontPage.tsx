@@ -32,7 +32,7 @@ const FrontPage: React.FC<FrontPageProps> = ({ onStartAssessment }) => {
               <p className="mt-4 text-lg">{t('frontPage.assessmentInfo')}</p>
               
               <ul 
-                className="my-6 list-disc pl-6 space-y-2" 
+                className="my-6 list-disc pl-8 space-y-2" 
                 aria-label={t('frontPage.bulletPoints.label')}
               >
                 <li className="text-lg">{t('frontPage.bulletPoints.item1')}</li>
